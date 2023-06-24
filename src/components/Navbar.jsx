@@ -11,6 +11,7 @@ import {
   HomeIcon, ShoppingBagIcon, TagIcon, PhotoIcon, PhoneIcon
 } from '@heroicons/react/24/solid'
 import ClickAwayListener from './ClickAwayListener'
+import IconButton from './IconButton'
 
 // NAVBAR ITEMS
 const links = [{
@@ -89,8 +90,12 @@ const Navbar = () => {
               ))}
             </ul>
             <section className='flex flex-col items-center justify-end gap-4'>
-              <ShoppingCartIcon class='h-8 w-8 text-gray-500' />
-              <UserCircleIcon class='h-8 w-8 text-gray-500' />
+              <IconButton w={12}>
+                <ShoppingCartIcon class='h-8 w-8 text-gray-500' />
+              </IconButton>
+              <IconButton w={12}>
+                <UserCircleIcon class='h-8 w-8 text-gray-500' />
+              </IconButton>
             </section>
           </div>
         </ClickAwayListener>
