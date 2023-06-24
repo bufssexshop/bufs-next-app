@@ -16,7 +16,7 @@ export default function RootLayout ({ children }) {
         <header>
           <Navbar />
         </header>
-        <section className='mt-28'>
+        <section className=' xs:mt-16 xs:p-4 md:mt-28 md:p-10'>
           {children}
         </section>
       </body>
