@@ -1,6 +1,6 @@
-const IconButton = ({ children, w = '10', onClick = undefined }) => {
+const IconButton = ({ children, onClick = undefined }) => {
   return (
-    <div onClick={onClick} className={`w-${w} h-${w} bg-slate-100 rounded-full flex justify-center items-center`}>
+    <div onClick={onClick} className='p-2 rounded-full bg-slate-100 flex justify-center items-center'>
       {children}
     </div>
   )

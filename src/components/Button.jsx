@@ -5,9 +5,9 @@ const buttonHeights = {
 }
 
 const buttonVariants = {
-  primary: 'text-xs bg-pink text-white',
-  secondary: 'text-sm bg-pink text-white',
-  tertiary: 'text-base bg-pink text-white'
+  primary: 'text-xs bg-customPink text-white',
+  secondary: 'text-sm bg-customPink text-white',
+  tertiary: 'text-base bg-customPink text-white'
 }
 
 const Button = ({

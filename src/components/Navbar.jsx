@@ -53,7 +53,7 @@ const Navbar = () => {
   }, [pathname])
 
   return (
-    <nav className={`box-border fixed top-0 w-full grid grid-flow-row-dense grid-cols-12 grid-rows-12  xs:${showMenu ? 'h-60' : 'h-16'} md:h-28 py-2 shadow-md bg-white`}>
+    <nav className={`z-10 box-border fixed top-0 w-full grid grid-flow-row-dense grid-cols-12 grid-rows-12  xs:${showMenu ? 'h-60' : 'h-16'} md:h-28 py-2 shadow-md bg-white`}>
       <section className='xs:col-span-8 xs:ml-8 md:col-span-3 flex  xs:justify-start md:justify-center items-center'>
         <Image
           src='/bufssexshoppink.png'
@@ -68,7 +68,7 @@ const Navbar = () => {
       <section className='col-span-6 xs:hidden md:block'>
         <ul className='flex justify-around items-center h-full'>
           {links.map(({ label, route }) => (
-            <li className={`${pathname === route ? 'text-pink' : 'text-slate-500'} duration-0 hover:text-pink hover:duration-500`} key={route}>
+            <li className={`${pathname === route ? 'text-customPink' : 'text-slate-500'} duration-0 hover:text-customPink hover:duration-500`} key={route}>
               <Link href={route}>{label}</Link>
             </li>
           ))}
@@ -81,19 +81,19 @@ const Navbar = () => {
           <div className='flex'>
             <ul className='w-4/5 flex-col justify-around items-center'>
               {links.map(({ id, label, route, icon }) => (
-                <div key={id} className={`flex items-center gap-4 ${pathname === route ? 'text-pink' : 'text-slate-500'}`}>
-                  {icon(pathname === route ? 'text-pink' : 'text-slate-500')}
+                <div key={id} className={`flex items-center gap-4 ${pathname === route ? 'text-customPink' : 'text-slate-500'}`}>
+                  {icon(pathname === route ? 'text-pink-400' : 'text-slate-500')}
                   <li className='my-2' key={route}>
                     <Link href={route}>{label}</Link>
                   </li>
                 </div>
               ))}
             </ul>
-            <section className='flex flex-col items-center justify-end gap-4'>
-              <IconButton w={12}>
+            <section className='flex flex-col items-start justify-end gap-4'>
+              <IconButton>
                 <ShoppingCartIcon class='h-8 w-8 text-gray-500' />
               </IconButton>
-              <IconButton w={12}>
+              <IconButton>
                 <UserCircleIcon class='h-8 w-8 text-gray-500' />
               </IconButton>
             </section>
