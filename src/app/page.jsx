@@ -1,6 +1,7 @@
 'use client'
 import { Special_Elite as SpecialElite } from 'next/font/google'
 import useResponsive from '@/hooks/useResponsive'
+import InputWithIcon from '@/components/InputWithIcon'
 
 const specialElite = SpecialElite({ weight: '400', subsets: ['latin'] })
 
@@ -25,7 +26,9 @@ const Home = () => {
       >
         <section className='mt-28 text-center'>
           <h1 className={`${specialElite.className} uppercase text-slate-500 xs:text-3xl md:text-5xl`}>buf's sex shop</h1>
-          <input />
+          <InputWithIcon
+            placeholder="Ingrese un correo"
+          />
         </section>
       </div>
       <h1>Hola Mundo!</h1>
