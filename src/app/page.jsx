@@ -26,9 +26,7 @@ const Home = () => {
       >
         <section className='mt-28 text-center'>
           <h1 className={`${specialElite.className} uppercase text-slate-500 xs:text-3xl md:text-5xl`}>buf's sex shop</h1>
-          <InputWithIcon
-            placeholder="Ingrese un correo"
-          />
+          <InputWithIcon />
         </section>
       </div>
       <h1>Hola Mundo!</h1>

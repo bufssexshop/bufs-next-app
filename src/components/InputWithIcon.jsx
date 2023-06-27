@@ -4,23 +4,28 @@ const InputWithIcon = ({
   placeholder,
   fullWidth,
   error,
-  size
+  size,
+  onChange = undefined,
+  icon = undefined,
+  backgroundOpacity
 }) => {
+  const inputPaddingClass = placeholder ? 'pl-10' : 'pl-3';
+
   return (
     <div className="relative flex flex-col">
-        {label && (
-          <label
-            htmlFor={label}
-            className="mt-1 text-left text-gray-500 sm:text-[1rem] pointer-events-none block"
-          >
-            {label}
-          </label>
-        )}
+      {label && (
+        <label
+          htmlFor={label}
+          className="mt-1 text-left text-slate-500 text-lg pointer-events-none block"
+        >
+          {label}
+        </label>
+      )}
       <div className="relative mt-1">
         <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
-          @
+          {icon}
           <svg
-            className="h-5 w-5 text-gray-400"
+            className="h-5 w-5 text-slate-500"
             fill="none"
             viewBox="0 0 20 20"
           >
@@ -35,18 +40,32 @@ const InputWithIcon = ({
         </span>
         <input
           id={label}
-          className="pl-10 pr-3 py-2 border-gray-300 border rounded-full focus:outline-none"
+          className={
+            `pl-25
+            ${fullWidth ? 'w-full' : ''}
+            h-25
+            pr-3
+            py-2
+            border-slate-500
+            border
+            rounded-full
+            focus:outline-none
+            ${size}
+            ${backgroundOpacity}
+            ${backgroundOpacity}
+            ${inputPaddingClass}`
+          }
           type={type}
           placeholder={placeholder}
+          onChange={onChange}
         />
       </div>
       {error && (
-        <div className="text-red-500 text-sm mt-1 ml-3">
-          {error}
-        </div>
+        <div className="text-red-500 text-sm text-left mt-1 ml-0 ml-3">{error}</div>
       )}
     </div>
   );
 };
 
 export default InputWithIcon;
+
