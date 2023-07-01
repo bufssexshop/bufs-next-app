@@ -1,6 +1,8 @@
 'use client'
 import { Special_Elite as SpecialElite } from 'next/font/google'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import useResponsive from '@/hooks/useResponsive'
+import InputText from '@/components/InputText'
 
 const specialElite = SpecialElite({ weight: '400', subsets: ['latin'] })
 
@@ -23,9 +25,15 @@ const Home = () => {
           backgroundPosition: 'top'
         }}
       >
-        <section className='mt-28 text-center'>
+        <section className='mt-28 flex flex-col items-center gap-2'>
           <h1 className={`${specialElite.className} uppercase text-slate-500 xs:text-3xl md:text-5xl`}>buf's sex shop</h1>
-          <input />
+          <InputText
+            opacity
+            id='searchBar'
+            placeholder='Buscar...'
+            icon={<MagnifyingGlassIcon class='h-6 w-6 text-gray-500' />}
+            error=''
+          />
         </section>
       </div>
       <h1>Hola Mundo!</h1>
