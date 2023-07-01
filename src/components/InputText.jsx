@@ -1,7 +1,13 @@
 const inputHeights = {
-  small: 'h-6 p-1',
+  small: 'h-7 p-1',
   medium: 'h-9 p-2',
   large: 'h-12 p-3'
+}
+
+const iconWidths = {
+  small: 'w-4 h-4',
+  medium: 'w-6 h-6',
+  large: 'w-7 h-7'
 }
 
 const InputText = ({
@@ -10,63 +16,62 @@ const InputText = ({
   placeholder,
   fullWidth,
   error,
-  size,
+  size = 'medium',
   onChange = undefined,
   icon = undefined,
   opacity,
   id
 }) => {
-  const inputPaddingClass = placeholder ? 'pl-10' : 'pl-3'
+  const iconCustom = { ...icon, props: { class: `${iconWidths[size]} text-slate-500` } }
 
   return (
     <div
-      className={
-        `relative flex flex-col
-        opacity-${opacity || '0'}
-        ${inputHeights[size]}`
-      }
+      className={`flex flex-col ${fullWidth ? 'w-full' : ''}`}
       id={id}
     >
       {label && (
         <label
-          htmlFor={label}
-          className='mt-1 ml-3 text-left text-slate-500 text-lg pointer-events-none block'
+          htmlFor={id}
+          className='mt-1 pl-4 xs:text-sm text-slate-500 text-lg pointer-events-none block'
         >
           {label}
         </label>
       )}
-      <div className={
-        `relative mt-1 ${fullWidth ? '' : 'inline-flex'}
-        opacity:${opacity}`
-      }>
-        <span className='absolute inset-y-0 left-0 pl-3 flex items-center mr-2'>
-          {icon}
+
+      <div
+        className={`
+          flex
+          ${opacity ? 'opacity-70' : ''}
+          ${inputHeights[size]}
+          bg-white
+          border
+          border-slate-500
+          rounded-full
+        `}
+      >
+        <span className='flex justify-center items-center'>
+          {iconCustom}
         </span>
         <input
-          id={label}
-          className={
-            `pl-35
-            ${fullWidth ? 'w-full' : ''}
-            h-25
-            pr-3
-            py-2
-            border-slate-500
-            border
-            rounded-full
+          id={id}
+          className={`
+            h-full
+            pl-2
+            bg-white
             focus:outline-none
-            ${inputPaddingClass}`
-          }
+            text-slate-500
+          `}
           type={type}
           placeholder={placeholder}
           onChange={onChange}
         />
       </div>
+
       {error && (
-        <div className='mt-1 ml-3 text-left text-red-600 text-xs'>{error}</div>
+        <div className='mt-1 pl-4 text-left text-red-600 text-xs'>{error}</div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default InputText;
-
+export default InputText
