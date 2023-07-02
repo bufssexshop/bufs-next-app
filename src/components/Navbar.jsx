@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Button from './Button'
 import Image from 'next/image'
+import Login from './Login'
 import { usePathname } from 'next/navigation'
 
 // ICONS
@@ -44,11 +45,14 @@ const links = [{
 const Navbar = () => {
   const pathname = usePathname()
   const [showMenu, setShowMenu] = useState(false)
+  const [showLogin, setShowLogin] = useState(false)
 
   const handleShowMenu = () => setShowMenu((prev) => !prev)
+  const handleShowLogin = () => setShowLogin((prev) => !prev)
 
   useEffect(() => {
     if (showMenu) handleShowMenu()
+    if (showLogin) handleShowLogin()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
 
@@ -93,8 +97,8 @@ const Navbar = () => {
               <IconButton>
                 <ShoppingCartIcon class='h-8 w-8 text-gray-500' />
               </IconButton>
-              <IconButton>
-                <UserCircleIcon class='h-8 w-8 text-gray-500' />
+              <IconButton onClick={() => handleShowLogin()}>
+                <UserCircleIcon class='h-8 w-8 text-red-500' />
               </IconButton>
             </section>
           </div>
@@ -104,7 +108,8 @@ const Navbar = () => {
       <section className='xs:hidden md:flex col-span-3 h-full justify-center items-center'>
         <div className='flex lg:w-1/2 items-center justify-around'>
           <ShoppingCartIcon class='h-6 w-6 text-gray-500' />
-          <Button onClick={undefined} label='Iniciar sesion' />
+          <Button onClick={() => handleShowLogin()} label='Iniciar sesion' />
+          {showLogin && <Login open={showLogin} />}
         </div>
       </section>
 

@@ -22,11 +22,12 @@ const InputText = ({
   opacity,
   id
 }) => {
-  const iconCustom = { ...icon, props: { class: `${iconWidths[size]} text-slate-500` } }
+  // const iconCustom = { ...icon, props: { class: `${iconWidths[size]} text-slate-500` } }
+  const iconCustom = icon ? <span className={`${iconWidths[size]} text-slate-500`}>{icon}</span> : null
 
   return (
     <div
-      className={`flex flex-col ${fullWidth ? 'w-full' : ''}`}
+      className={`flex flex-col ${fullWidth ? 'w-full' : ''} m-2`}
       id={id}
     >
       {label && (
