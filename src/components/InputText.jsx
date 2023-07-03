@@ -27,7 +27,7 @@ const InputText = ({
 
   return (
     <div
-      className={`flex flex-col ${fullWidth ? 'w-full' : ''} m-2`}
+      className={`flex flex-col ${fullWidth ? 'w-full' : ''}`}
       id={id}
     >
       {label && (

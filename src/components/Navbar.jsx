@@ -98,7 +98,7 @@ const Navbar = () => {
                 <ShoppingCartIcon class='h-8 w-8 text-gray-500' />
               </IconButton>
               <IconButton onClick={() => handleShowLogin()}>
-                <UserCircleIcon class='h-8 w-8 text-red-500' />
+                <UserCircleIcon class='h-8 w-8 text-gray-500' />
               </IconButton>
             </section>
           </div>
