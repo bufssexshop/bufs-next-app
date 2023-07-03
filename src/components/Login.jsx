@@ -5,21 +5,19 @@ import Modal from './Modal'
 import InputText from './InputText'
 
 const Login = ({ open }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
-    setIsModalOpen(open)
+    setShowModal(open)
   }, [open])
 
-  const closeModal = () => {
-    setIsModalOpen(false)
-  }
+  const closeModal = () => setShowModal(false)
 
   return (
     <div>
-      {isModalOpen &&
+      {showModal &&
         <Modal
-          isOpen={isModalOpen}
+          isOpen={showModal}
           onClose={closeModal}
           title='Iniciar sesion'
           size='large'
