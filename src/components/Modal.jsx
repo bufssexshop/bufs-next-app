@@ -3,9 +3,9 @@ import React from 'react'
 import Button from './Button'
 
 const modalWidths = {
-  small: 'w-72 py-4 px-2',
-  medium: 'w-80 p-6',
-  large: 'w-3/12 p-8'
+  small: 'w-4/12 py-4 px-2',
+  medium: 'w-5/12 p-6',
+  large: 'w-6/12 p-8'
 }
 
 const Modal = ({
@@ -35,7 +35,7 @@ const Modal = ({
             ${modalWidths[size]}`}
           >
             <div className='bg-white rounded-lg z-10'>
-              <h2 className='text-xl font-bold text-slate-500 mb-4 flex flex-col items-center'>{title}</h2>
+              <h1 className='text-xl font-bold text-slate-500 mb-4 flex flex-col items-center'>{title}</h1>
               {children}
               <hr className='border-t my-4' />
               <div className='flex justify-end gap-3'>

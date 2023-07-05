@@ -35,6 +35,7 @@ const Login = () => {
               id='password'
               placeholder='Contraseña'
               error=''
+              type='password'
               icon={<LockClosedIcon />}
             />
           </div>
