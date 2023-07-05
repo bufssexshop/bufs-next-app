@@ -109,11 +109,7 @@ const Navbar = () => {
         <div className='flex lg:w-1/2 items-center justify-around'>
           <ShoppingCartIcon class='h-6 w-6 text-gray-500' />
           <Button onClick={() => handleShowLogin()} label='Iniciar sesion' />
-          {showLogin && (
-            <ClickAwayListener setValue={setShowLogin}>
-              <Login open={showLogin} />
-            </ClickAwayListener>
-          )}
+          {showLogin && <Login />}
         </div>
       </section>
 

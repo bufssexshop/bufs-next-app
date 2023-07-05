@@ -1,31 +1,25 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { AtSymbolIcon, LockClosedIcon } from '@heroicons/react/24/solid'
 import Modal from './Modal'
 import InputText from './InputText'
 
-const Login = ({ open }) => {
-  const [showModal, setShowModal] = useState(false)
-
-  useEffect(() => {
-    setShowModal(open)
-  }, [open])
+const Login = () => {
+  const [showModal, setShowModal] = useState(true)
 
   const closeModal = () => setShowModal(false)
 
   return (
-    <div>
+    <section>
       {showModal &&
         <Modal
           isOpen={showModal}
           onClose={closeModal}
           title='Iniciar sesion'
           size='large'
-          firstButton={{
-            label: 'Aceptar'
-          }}
-          secondButton={{
-            label: 'Cancelar'
+          secondaryButton={{
+            variant: 'primary',
+            label: 'Iniciar sesion'
           }}
         >
           <div>
@@ -45,7 +39,7 @@ const Login = ({ open }) => {
             />
           </div>
         </Modal>}
-    </div>
+    </section>
   )
 }
 
