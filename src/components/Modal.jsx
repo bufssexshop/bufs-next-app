@@ -23,7 +23,7 @@ const Modal = ({
   }
 
   return (
-    <section className='fixed inset-0 flex items-center justify-center'>
+    <section className='z-50 fixed inset-0 flex items-center justify-center'>
 
       {/* Background black */}
       <div
@@ -35,7 +35,7 @@ const Modal = ({
         bg-white rounded-lg z-10
         ${modalWidths[size]}`}
       >
-        <div className='bg-white rounded-lg z-10'>
+        <div className='bg-white rounded-lg'>
           <h1 className='text-xl font-bold text-slate-500 mb-4 flex flex-col items-center'>{title}</h1>
           {children}
           <hr className='border-t my-4' />

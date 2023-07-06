@@ -22,7 +22,6 @@ const InputText = ({
   opacity,
   id
 }) => {
-  // const iconCustom = { ...icon, props: { class: `${iconWidths[size]} text-slate-500` } }
   const iconCustom = icon ? <span className={`${iconWidths[size]} text-slate-500`}>{icon}</span> : null
 
   return (
