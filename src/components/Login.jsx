@@ -11,26 +11,21 @@ import Modal from './Modal'
 
 const Login = ({ onClose, open }) => {
   const schema = loginSchema.messages({
-    'any.required': 'Este campo es requerido'
-    // 'string.empty': '',
-    // 'string.max': '',
-    // 'string.email': '',
-    // 'string.min': '',
-    // 'any.only': '',
-    // 'string.pattern.base': '',
+    'any.required': 'Este campo es requerido',
+    'string.empty': 'Este campo es requerido'
   })
 
   const {
     watch,
     setValue,
     unregister,
-    setError,
     register,
     handleSubmit,
     clearErrors,
     formState: { errors }
   } = useForm({
-    resolver: joiResolver(schema)
+    resolver: joiResolver(schema),
+    mode: 'onChange'
   })
 
   useEffect(() => {
@@ -38,24 +33,12 @@ const Login = ({ onClose, open }) => {
     register('password')
 
     if (open) clearErrors()
+
     return () => {
       unregister('email')
       unregister('password')
     }
   }, [open])
-
-  useEffect(() => {
-    setError('email', {
-      types: {
-        required: 'This is required'
-      }
-    })
-    setError('password', {
-      types: {
-        required: 'This is required'
-      }
-    })
-  }, [setError])
 
   const email = watch('email')
   const password = watch('password')

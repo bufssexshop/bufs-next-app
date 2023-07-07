@@ -1,5 +1,5 @@
-'use client'
 import React from 'react'
+import { XMarkIcon } from '@heroicons/react/24/solid'
 
 const modalWidths = {
   small: 'xs:w-80 sm:w-96',
@@ -33,6 +33,9 @@ const Modal = ({
         bg-white rounded-lg z-10
         ${modalWidths[size]}`}
       >
+        <div className='relative'>
+          <XMarkIcon onClick={onClose} class='cursor-pointer absolute hover:bg-slate-200 hover:rounded-full right-2 top-2 h-6 w-6 text-gray-500 duration-300' />
+        </div>
         <div className='bg-white rounded-lg p-4 flex flex-col items-center'>
           {icon && icon}
           <h1 className='text-xl font-bold text-slate-500 mb-4 flex flex-col items-center'>{title}</h1>
