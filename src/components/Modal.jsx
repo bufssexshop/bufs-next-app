@@ -4,7 +4,7 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 const modalWidths = {
   small: 'xs:w-80 sm:w-96',
   medium: 'w-5/12 py-6',
-  large: 'w-6/12 py-8'
+  large: 'w-8/12 py-8'
 }
 
 const Modal = ({
