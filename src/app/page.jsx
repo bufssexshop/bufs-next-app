@@ -31,7 +31,7 @@ const Home = () => {
             opacity
             id='searchBar'
             placeholder='Buscar...'
-            icon={<MagnifyingGlassIcon class='h-6 w-6 text-gray-500' />}
+            icon={<MagnifyingGlassIcon className='h-6 w-6 text-gray-500' />}
             error=''
           />
         </section>

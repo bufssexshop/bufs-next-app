@@ -102,10 +102,10 @@ const Navbar = () => {
               </ul>
               <section className='flex flex-col items-start justify-end gap-4'>
                 <IconButton>
-                  <ShoppingCartIcon class='h-8 w-8 text-gray-500' />
+                  <ShoppingCartIcon className='h-8 w-8 text-gray-500' />
                 </IconButton>
                 <IconButton onClick={handleShowLogin}>
-                  <UserCircleIcon class='h-8 w-8 text-gray-500' />
+                  <UserCircleIcon className='h-8 w-8 text-gray-500' />
                 </IconButton>
               </section>
             </div>
@@ -114,7 +114,7 @@ const Navbar = () => {
 
         <section className='xs:hidden md:flex col-span-3 h-full justify-center items-center'>
           <div className='flex lg:w-1/2 items-center justify-around'>
-            <ShoppingCartIcon class='h-6 w-6 text-gray-500' />
+            <ShoppingCartIcon className='h-6 w-6 text-gray-500' />
             <Button onClick={handleShowLogin} label='Iniciar sesion' />
           </div>
         </section>
@@ -122,8 +122,8 @@ const Navbar = () => {
         {/* Only visible in mobile - menu icon */}
         <section className='xs:flex xs:mr-8 justify-end items-center md:hidden col-span-4 h-full'>
           {showMenu
-            ? (<XMarkIcon onClick={handleShowMenu} class='h-9 w-9 text-gray-500' />)
-            : (<Bars4Icon onClick={handleShowMenu} class='h-9 w-9 text-gray-500' />)}
+            ? (<XMarkIcon onClick={handleShowMenu} className='h-9 w-9 text-gray-500' />)
+            : (<Bars4Icon onClick={handleShowMenu} className='h-9 w-9 text-gray-500' />)}
         </section>
       </nav>
       <Login onClose={handleShowLogin} open={showLogin} />
