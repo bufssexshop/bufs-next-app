@@ -12,6 +12,7 @@ const Announcement = () => {
       flex justify-center items-center
       xs:mt-[65px] md:mt-28
       xs:top-[65px] md:top-[112px]
+      z-40
       '
       style={{
         position: 'sticky'
