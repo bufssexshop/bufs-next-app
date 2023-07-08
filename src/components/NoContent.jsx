@@ -1,7 +1,8 @@
 import Image from 'next/image'
 
 const NoContent = () => {
-  const imageNoContent = 'https://bufssexshop.vercel.app/static/media/construction.71395eab.jpg'
+  const imageNoContent = 'https://res.cloudinary.com/dsykiysl8/' +
+  'image/upload/v1688694698/backgrounds/construction_t6gyol.jpg'
 
   return (
     <section className='flex flex-col items-center sm:flex-row flex-col-reverse'>

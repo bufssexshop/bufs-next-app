@@ -6,6 +6,6 @@ module.exports = nextConfig
 module.exports = {
   // Otras configuraciones...
   images: {
-    domains: ['bufssexshop.vercel.app']
+    domains: ['res.cloudinary.com']
   }
 }
