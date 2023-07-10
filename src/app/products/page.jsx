@@ -32,18 +32,18 @@ const Products = () => {
                 gap: 20
               }}
             >
-              {data.map((user) => (
+              {data.map((product) => (
                 <div
-                  key={user.id}
+                  key={product.id}
                   style={{ border: '1px solid #ccc', textAlign: 'center' }}
                 >
                   <Image
-                    src={`https://robohash.org/${user.id}?set=set2&size=180x180`}
-                    alt={user.name}
+                    src={product.image}
+                    alt={product.name}
                     width={180}
                     height={180}
                   />
-                  <h3>{user.name}</h3>
+                  <h3>{product.name}</h3>
                 </div>
               ))}
             </div>
