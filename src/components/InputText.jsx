@@ -11,18 +11,18 @@ const iconWidths = {
 }
 
 const InputText = ({
-  type = 'text',
+  id,
   label,
-  placeholder,
   fullWidth,
-  error,
+  placeholder,
+  handleChange,
+  type = 'text',
   size = 'medium',
-  onChange = undefined,
   icon = undefined,
   opacity,
-  id
+  error
 }) => {
-  const iconCustom = { ...icon, props: { class: `${iconWidths[size]} text-slate-500` } }
+  const iconCustom = icon ? <span className={`${iconWidths[size]} ${error ? 'text-red-600' : 'text-slate-500'}`}>{icon}</span> : null
 
   return (
     <div
@@ -45,7 +45,7 @@ const InputText = ({
           ${inputHeights[size]}
           bg-white
           border
-          border-slate-500
+          ${error ? 'border-red-600' : 'border-slate-500'}
           rounded-full
         `}
       >
@@ -54,16 +54,10 @@ const InputText = ({
         </span>
         <input
           id={id}
-          className={`
-            h-full
-            pl-2
-            bg-white
-            focus:outline-none
-            text-slate-500
-          `}
           type={type}
           placeholder={placeholder}
-          onChange={onChange}
+          onChange={handleChange}
+          className='h-full pl-2 bg-white focus:outline-none text-slate-500'
         />
       </div>
 

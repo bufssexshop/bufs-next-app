@@ -1,6 +1,8 @@
+import NoContent from '../../components/NoContent'
+
 const Content = () => {
   return (
-    <h1>Content</h1>
+    <NoContent />
   )
 }
 
