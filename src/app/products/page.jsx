@@ -1,14 +1,13 @@
 'use client'
-import Image from 'next/image'
 import { useQuery } from '@tanstack/react-query'
 import { fetchData } from '@/api/fetchData'
+import ProductCard from '@/components/ProductCard'
 
+const method = 'POST'
+const body = {
+  subcategoria: 'vibradores'
+}
 const Products = () => {
-  const method = 'POST'
-  const body = {
-    subcategoria: 'lenceria'
-  }
-
   const { data, isLoading, isFetching, error } = useQuery({
     queryKey: ['hydrate-users'],
     queryFn: () => fetchData('productos/getProducts', method, body)
@@ -28,23 +27,12 @@ const Products = () => {
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: '1fr 1fr 1fr 1fr',
+                gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr 1fr',
                 gap: 20
               }}
             >
               {data.map((product) => (
-                <div
-                  key={product.id}
-                  style={{ border: '1px solid #ccc', textAlign: 'center' }}
-                >
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={180}
-                    height={180}
-                  />
-                  <h3>{product.name}</h3>
-                </div>
+                <ProductCard key={product._id} product={product} />
               ))}
             </div>
             )

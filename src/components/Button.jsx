@@ -10,26 +10,34 @@ const buttonVariants = {
   tertiary: 'text-sm text-slate-500 hover:bg-slate-200 border border-slate-50 hover:border hover:border-slate-500 duration-500'
 }
 
+const disabledStyles = 'bg-slate-500 hover:opacity-100'
+
 const Button = ({
   size = 'medium',
   label = 'button',
   variant = 'primary',
   fullWidth,
   className,
-  onClick
+  disabled,
+  onClick,
+  icon
 }) => {
   return (
     <button
+      disabled={disabled}
       className={
         `rounded-full
+        flex justify-center items-center ${icon ? 'gap-2' : ''}
         ${className}
         ${buttonHeights[size]}
         ${buttonVariants[variant]}
-        ${fullWidth ? 'w-full' : undefined}`
+        ${fullWidth ? 'w-full' : undefined}
+        ${disabled ? disabledStyles : ''}
+        leading-none`
       }
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
     >
-      {label}
+      {(icon && !disabled) && icon} {label}
     </button>
   )
 }
