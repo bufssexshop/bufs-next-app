@@ -1,4 +1,5 @@
 import './globals.css'
+import Providers from '@/utils/reactQueryProvider'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar.jsx'
 import Announcement from '@/components/Announcement.jsx'
@@ -16,19 +17,21 @@ export default function RootLayout ({ children }) {
   return (
     <html lang='en'>
       <body className={`${inter.className} box-border`}>
-        <header>
-          <Navbar />
-        </header>
-        <Announcement />
-        <section className='col-span-6 xs:hidden md:block'>
-          <ul className='flex flex-col md:flex-row justify-around items-center h-full'>
-            <SubMenu />
-          </ul>
-        </section>
-        <section className=''>
-          {children}
-        </section>
-        <Footer />
+        <Providers>
+          <header>
+            <Navbar />
+          </header>
+          <Announcement />
+          <section className='col-span-6 xs:hidden md:block'>
+            <ul className='flex flex-col md:flex-row justify-around items-center h-full'>
+              <SubMenu />
+            </ul>
+          </section>
+          <section className=''>
+            {children}
+          </section>
+          <Footer />
+        </Providers>
       </body>
     </html>
   )
