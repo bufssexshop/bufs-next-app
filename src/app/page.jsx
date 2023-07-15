@@ -1,13 +1,27 @@
 'use client'
 import { Special_Elite as SpecialElite } from 'next/font/google'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
+import { keepServerAlive } from '@/helpers/keepServerAlive'
 import useResponsive from '@/hooks/useResponsive'
 import InputText from '@/components/InputText'
+import { useEffect } from 'react'
 
 const specialElite = SpecialElite({ weight: '400', subsets: ['latin'] })
 
 const Home = () => {
   const { isMobile } = useResponsive()
+
+  useEffect(() => {
+    const intervalTime = 5 * 60 * 1000
+
+    const interval = setInterval(() => {
+      keepServerAlive(intervalTime)
+    }, intervalTime)
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
 
   const backgroundMobile = 'url(https://res.cloudinary.com/dsykiysl8/image/upload/v1687658465/backgrounds/background1_ke0jnm.jpg)'
   const backgroundDesktop = 'url(https://res.cloudinary.com/dsykiysl8/image/upload/v1687661299/backgrounds/pexels-bedbible-com-11393547_be6ui4.jpg)'
