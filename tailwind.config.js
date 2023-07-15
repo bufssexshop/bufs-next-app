@@ -14,6 +14,9 @@ module.exports = {
       },
       colors: {
         customPink: '#FF7BAC'
+      },
+      boxShadow: {
+        cardShadow: '0px 2px 20px 5px rgba(203,213,225,1)'
       }
     },
     screens: {
