@@ -21,6 +21,11 @@ export default function RootLayout ({ children }) {
             <Navbar />
           </header>
           <Announcement />
+          <section className='col-span-6 xs:hidden md:block'>
+            <ul className='flex flex-col md:flex-row justify-around items-center h-full'>
+              <SubMenu />
+            </ul>
+          </section>
           <section className=''>
             {children}
           </section>
