@@ -18,10 +18,10 @@ export default function RootLayout ({ children }) {
       <body className={`${inter.className} box-border`}>
         <Providers>
           <header>
+            <Announcement />
             <Navbar />
           </header>
-          <Announcement />
-          <section className=''>
+          <section className='xs:mt-[100px] md:mt-[148px]'>
             {children}
           </section>
           <Footer />
