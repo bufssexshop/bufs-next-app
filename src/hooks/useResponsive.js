@@ -1,23 +1,22 @@
-'use client'
 import { useState, useEffect } from 'react'
 
 const useResponsive = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767)
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 767)
+  const [isMobile, setIsMobile] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobileValue = window.innerWidth <= 767
-      const isDesktopValue = window.innerWidth > 767
-
-      setIsMobile(isMobileValue)
-      setIsDesktop(isDesktopValue)
+      setIsMobile(window.innerWidth <= 767)
+      setIsDesktop(window.innerWidth > 767)
     }
 
-    window.addEventListener('resize', handleResize)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize)
+      handleResize()
 
-    return () => {
-      window.removeEventListener('resize', handleResize)
+      return () => {
+        window.removeEventListener('resize', handleResize)
+      }
     }
   }, [])
 
