@@ -8,8 +8,8 @@ import { usePathname } from 'next/navigation'
 
 // ICONS
 import {
-  ShoppingCartIcon, Bars4Icon, XMarkIcon, UserCircleIcon,
-  HomeIcon, ShoppingBagIcon, TagIcon, PhotoIcon, PhoneIcon
+  ShoppingCartIcon, Bars4Icon, XMarkIcon, UserCircleIcon, MoonIcon,
+  HomeIcon, ShoppingBagIcon, TagIcon, PhotoIcon, PhoneIcon, SunIcon
 } from '@heroicons/react/24/solid'
 import ClickAwayListener from './ClickAwayListener'
 import IconButton from './IconButton'
@@ -44,8 +44,10 @@ const links = [{
 
 const Navbar = () => {
   const pathname = usePathname()
+  const mode = localStorage.getItem('theme')
   const [showMenu, setShowMenu] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
+  const [theme, setTheme] = useState(mode || 'light')
 
   const handleShowMenu = () => {
     setShowMenu((prev) => !prev)
@@ -57,10 +59,16 @@ const Navbar = () => {
     setShowMenu(false)
   }
 
+  const handleChangeTheme = () => setTheme((prev) => prev === 'light' ? 'dark' : 'light')
+
   useEffect(() => {
     if (showMenu) handleShowMenu()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme)
+  }, [theme])
 
   return (
     <>
@@ -117,6 +125,21 @@ const Navbar = () => {
             <ShoppingCartIcon className='h-6 w-6 text-gray-500' />
             <Button onClick={handleShowLogin} label='Iniciar sesion' />
           </div>
+
+          <div className='flex items-center gap-2'>
+            <SunIcon className={`h-6 w-6 duration-500 ${theme === 'light' ? 'text-amber-500' : 'text-slate-500'}`} />
+            <label htmlFor='theme-toggle' className='relative inline-block w-10 h-6 bg-gray-300 rounded-full cursor-pointer'>
+              <input type='checkbox' id='theme-toggle' className='hidden' onChange={handleChangeTheme} />
+              <span
+                className={`
+                  absolute block w-4 h-4 ${theme === 'dark' ? 'bg-slate-50' : 'bg-gray-700'} bg-gray-700 rounded-full transition-transform duration-300 top-1 left-1
+                  ${theme === 'dark' ? 'translate-x-full' : 'translate-x-0'}
+                `}
+              />
+            </label>
+            <MoonIcon className={`h-6 w-6 duration-500 ${theme === 'dark' ? 'text-amber-500' : 'text-slate-500'}`} />
+          </div>
+
         </section>
 
         {/* Only visible in mobile - menu icon */}
