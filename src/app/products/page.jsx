@@ -2,7 +2,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchData } from '@/api/fetchData'
 import ProductCard from '@/components/ProductCard'
-import SubMenu from '@/components/SubMenu'
 
 const method = 'POST'
 const body = {
@@ -17,9 +16,6 @@ const Products = () => {
   return (
     <main className='w-full box-border'>
       {/* This section is a product menu */}
-      <section className='flex justify-center items-center h-14 bg-slate-200 z-30 sticky top-[148px] xs:h-12 xs:top-[0]'>
-        <SubMenu />
-      </section>
       <section className='px-52 py-8'>
         {error && <p className='xs:w-full'>Hubo un error, sorry</p>}
         {(isLoading || isFetching) && <p>Loading...</p>}

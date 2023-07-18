@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar.jsx'
 import Announcement from '@/components/Announcement.jsx'
 import Footer from '@/components/Footer.jsx'
+import Submenu from '@/components/Submenu'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,10 +22,8 @@ export default function RootLayout ({ children }) {
             <Navbar />
           </header>
           <Announcement />
-          <section className='col-span-6 xs:hidden md:block'>
-            <ul className='flex flex-col md:flex-row justify-around items-center h-full'>
-              <SubMenu />
-            </ul>
+          <section className='flex justify-center items-center h-14 bg-white z-30 sticky top-[148px] xs:h-12 xs:top-[0]'>
+            <Submenu />
           </section>
           <section className=''>
             {children}

@@ -1,7 +1,9 @@
 'use client'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { ChevronRightIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid'
+import {
+  ChevronRightIcon, Bars3Icon, XMarkIcon, ChevronDownIcon
+} from '@heroicons/react/24/solid'
 
 const links = [
   {
@@ -99,7 +101,7 @@ const links = [
   }
 ]
 
-const SubMenu = () => {
+const Submenu = () => {
   const [activeLink, setActiveLink] = useState(null)
   const [activeLinkMobile, setActiveLinkMobile] = useState(null)
   const [isMouseOver, setIsMouseOver] = useState(true)
@@ -126,6 +128,7 @@ const SubMenu = () => {
     if (label && option) setActiveOption(option)
     if (label && option === null) setActiveOption(option)
     if (isMouseOver && activeOption !== null && !hasOptions) {
+      console.log(`select: ${option}`)
       setActiveOption(null)
       handleMouseLeave()
     }
@@ -136,26 +139,27 @@ const SubMenu = () => {
       if (typeof option === 'object') {
         const { label, subOptions } = option
         return (
-          <div key={label} className='md:grid md:grid-cols-2 md:gap-4'>
+          <div key={label} className='md:grid md:grid-cols-2 md:gap-4 w-full'>
             <li
               className={
-                `className='md:ml-0 xs:w-36 xs:py-2 xs:m text-left xs:text-[15px] md:w-32 lg:w-32 md:text-[16px] md:p-2
-                text-xs cursor-pointer bg-slate-200 bl-1-solid  xs:pl-2 flex justify-between
+                `md:ml-0 xs:w-36 xs:py-1 text-left md:w-28 text-sm md:p-1 flex items-center
+                cursor-pointer bl-1-solid  xs:pl-1 flex justify-between lg:text-base
                 ${activeOption === option ? 'text-customPink' : 'text-slate-500'}`
               }
               key={label}
               onClick={() => handleOptionSelect(option, label, true)}
+              onMouseEnter={() => handleOptionSelect(option, label, true)}
             >
               {label}
               <ChevronRightIcon className='h-4 w-4' />
             </li>
             {activeOption === option && subOptions && subOptions.length > 0 && (
-              <ul className='absolute left-full rounded shadow-lg'>
+              <ul className='absolute left-full rounded xs:top-0 bg-white xs:h-28 xs:overflow-y-auto'>
                 {subOptions.map((subOption) => (
                   <li
                     className='
-                    text-left md:w-28 lg:w-36 cursor-pointer bg-slate-200 bl-1-solid xs:text-[14px]
-                    md:w-28 lg:w-40 lg:text-base md:p-1 xs:ml-1 md:text-sm'
+                    xs:ml-1 md:ml-0 xs:w-36 xs:py-2 text-left md:w-28 text-sm md:p-1
+                    cursor-pointer bl-1-solid xs:pl-2 flex justify-between lg:text-sm lg:w-36'
                     key={subOption}
                     onClick={() => {
                       handleOptionSelect(subOption)
@@ -171,11 +175,13 @@ const SubMenu = () => {
         )
       }
       return (
-        <div key={option} className='bg-slate-200 md:grid md:grid-cols-2 md:gap-4 xs:my-2'>
+        <div key={option} className='md:grid md:grid-cols-2 md:gap-4 xs:my-2 w-full'>
           <li
-            className='xs:ml-2 xs:w-36 md:ml-0 xs:py-2 xs:m text-left xs:text-[14px]
-              md:w-28 lg:w-32 md:text-[15px] md:p-2
-              text-xs cursor-pointer bg-slate-200 bl-1-solid'
+            className={
+              `md:ml-0 xs:w-36 xs:py-1 text-left md:w-28 text-sm md:p-1
+              cursor-pointer bl-1-solid  xs:pl-1 flex justify-between lg:text-base
+              ${activeOption === option ? 'text-customPink' : 'text-slate-500'}`
+            }
             key={option}
             onClick={() => {
               handleMouseEnter(route)
@@ -190,23 +196,21 @@ const SubMenu = () => {
   }
 
   return (
-    <div className='xs:items-start md:items-center w-full md:justify-items-center md:items-start lg:px-4'>
-      <section className='xs:hidden bg-slate-200 sx:flex flex-col md:flex-row box-border items-center w-full justify-items-center'>
-        <ul className='flex flex-row md:full-width justify-between'>
+    <div className='xs:items-start flex xs:items-center md:items-center w-full lg:px-4 justify-between'>
+      <section className='xs:hidden flex box-border w-full'>
+        <ul className='flex justify-between w-full'>
           {links.map(({ id, label, route, options }) => (
             <li
               key={id}
               onMouseEnter={() => handleMouseEnter(route)}
-              className={`
-                text-slate-500 text-center md:text-xs md:text-base md:p-1 rounded-sm lg:text-lg lg:ml-3
-                ${activeLink && activeLink === route ? 'bg-slate-300' : 'bg-slate-200'}
-              `}
+              className='text-slate-500 text-center text-xs p-1 rounded-sm lg:text-base flex'
             >
               <Link href={route}>{label}</Link>
+              <ChevronDownIcon className='text-slate-500 ml-1 h-5 w-5' />
               {activeLink === route && isMouseOver && options && (
-                <div className='relative bg-slate-200 opacity-95'>
+                <div className='absolute top-full xs:w-32 md:w-28 lg:w-32'>
                   <ul
-                    className='absolute mt-4 rounded shadow-lg w-36 h-9 z-50 md:w-32 left-0 justify-items-start'
+                    className='bg-white'
                     onMouseEnter={() => handleMouseEnter(route)}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -221,15 +225,15 @@ const SubMenu = () => {
 
       <div className='relative md:hidden xs:mt-3 xs:ml-1' onTouchStart={() => handleMouseLeave()}>
         <Bars3Icon
-          className={`${menuMobile ? 'hidden' : 'h-7 w-7 text-slate-500'}`}
+          className={`${menuMobile ? 'hidden' : 'h-8 w-8 text-slate-500'}`}
           onClick={() => setMenuMobile(true)}
         />
         <XMarkIcon
-          className={`${menuMobile ? 'h-7 w-7 text-customPink' : 'hidden'} relative z-10`}
+          className={`${menuMobile ? 'h-8 w-8 text-customPink' : 'hidden'} relative z-10`}
           onClick={() => setMenuMobile(false)}
         />
         {menuMobile && (
-          <section className='bg-slate-200 absolute top-0 left-0 w-40 mt-8 ml-1 opacity-90'>
+          <section className='bg-white absolute top-0 left-0 w-40 mt-8 ml-1'>
             <ul className='flex flex-col'>
               {links.map(({ id, label, route, options }) => (
                 <li
@@ -245,9 +249,9 @@ const SubMenu = () => {
                     {options && <ChevronRightIcon className='h-4 w-4' />}
                   </p>
                   {activeLinkMobile === route && options && (
-                    <div className='relative bg-slate-200 opacity-95 md:mt-4'>
+                    <div className='relative bg-white opacity-95 md:mt-4 hover-duration-500'>
                       <ul
-                        className='mt-2 rounded w-36 h-9 z-50'
+                        className='mt-2 rounded w-36 z-50'
                         onClick={() => handleMouseEnter(route)}
                       >
                         {renderOptions(options, route)}
@@ -260,8 +264,7 @@ const SubMenu = () => {
           </section>)}
       </div>
     </div>
-
   )
 }
 
-export default SubMenu
+export default Submenu
