@@ -23,7 +23,7 @@ const links = [{
 }, {
   id: 'STumFIla',
   label: 'Productos',
-  route: '/products',
+  route: '/products/vibradores',
   icon: (color) => <ShoppingBagIcon className={`${color} h-6 w-6 text-gray-500`} />
 }, {
   id: 'oWAyBREm',
@@ -68,6 +68,7 @@ const Navbar = () => {
         <section className='xs:col-span-8 xs:ml-8 md:col-span-3 flex  xs:justify-start md:justify-center items-center'>
           <Image
             src='/bufssexshoppink.png'
+            priority
             width={100}
             height={100}
             alt='bufs sex shop representative logo'

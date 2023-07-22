@@ -73,6 +73,7 @@ const Footer = () => {
       <section className='flex justify-center items-start xs:mb-10'>
         <Image
           src='/bufssexshoppink.png'
+          priority
           width={120}
           height={120}
           alt='Bufs sex shop logo'
