@@ -4,102 +4,7 @@ import React, { useState } from 'react'
 import {
   ChevronRightIcon, Bars3Icon, XMarkIcon, ChevronDownIcon
 } from '@heroicons/react/24/solid'
-
-const links = [
-  {
-    id: 'KljS9Pm7',
-    label: 'Juguetes',
-    route: '/products',
-    options: [
-      'TVs',
-      'Laptops',
-      'Smartphones'
-    ]
-  },
-  {
-    id: 'XizR5Ov2',
-    label: 'Lenceria y disfraces',
-    route: '/'
-  },
-  {
-    id: 'GhNc3Wx4',
-    label: 'Bondage',
-    route: '/sales',
-    options: [
-      {
-        label: 'aaa',
-        subOptions: ['a1', 'a2', 'a3']
-      },
-      'tops',
-      'dejas'
-    ]
-  },
-  {
-    id: 'YzMj0Ut9',
-    label: 'Lubricantes',
-    route: '/content'
-  },
-  {
-    id: 'QweF8Nx6',
-    label: 'Estimulantes sexuales',
-    route: '/contact'
-  },
-  {
-    id: 'JklI4As8',
-    label: 'Sex academy',
-    route: '/sexacademy',
-    options: [
-      {
-        label: 'aaa',
-        subOptions: [
-          'Angeles y demonios',
-          'Colegialas',
-          'Complementos',
-          'Conejas y animalitos',
-          'Deportes',
-          'Disfraces masculinos',
-          'Enfermeras',
-          'Marineras y piratas',
-          'Militares',
-          'Mucamas',
-          'Personajes de fantasia',
-          'Policias y ladronas',
-          'Profesiones y oficios',
-          'Superheroes'
-        ]
-      },
-      {
-        label: 'tops',
-        subOptions: ['a1', 'a2', 'a3']
-      }
-    ]
-  },
-  {
-    id: 'PloR2Gz5',
-    label: 'Cuidado personal',
-    route: '/cuidadopersonal'
-  },
-  {
-    id: 'BhuM7Ty1',
-    label: 'Novedades',
-    route: '/novedades'
-  },
-  {
-    id: 'RtyU9Vx3',
-    label: 'Ofertas',
-    route: '/ofertas'
-  },
-  {
-    id: 'FdeN6Zc0',
-    label: 'Webcams',
-    route: '/webcams'
-  },
-  {
-    id: 'ZxcD3Fr9',
-    label: 'Blog',
-    route: '/blog'
-  }
-]
+import { submenuItems } from '@/helpers/submenuItems'
 
 const Submenu = () => {
   const [activeLink, setActiveLink] = useState(null)
@@ -143,7 +48,7 @@ const Submenu = () => {
             <li
               className={
                 `md:ml-0 xs:w-36 xs:py-1 text-left md:w-28 text-sm md:p-1 flex items-center
-                cursor-pointer bl-1-solid  xs:pl-1 flex justify-between lg:text-base
+                cursor-pointer bl-1-solid  xs:pl-1 justify-between lg:text-base
                 ${activeOption === option ? 'text-customPink' : 'text-slate-500'}`
               }
               key={label}
@@ -199,14 +104,14 @@ const Submenu = () => {
     <div className='xs:items-start flex xs:items-center md:items-center w-full lg:px-4 justify-between'>
       <section className='xs:hidden flex box-border w-full'>
         <ul className='flex justify-between w-full'>
-          {links.map(({ id, label, route, options }) => (
+          {submenuItems.map(({ id, label, route, options }) => (
             <li
               key={id}
               onMouseEnter={() => handleMouseEnter(route)}
-              className='text-slate-500 text-center text-xs p-1 rounded-sm lg:text-base flex'
+              className='text-slate-500 text-center text-xs p-1 rounded-sm lg:text-base flex items-center'
             >
               <Link href={route}>{label}</Link>
-              <ChevronDownIcon className='text-slate-500 ml-1 h-5 w-5' />
+              <ChevronDownIcon className='text-slate-500 ml-1 h-4 w-4' />
               {activeLink === route && isMouseOver && options && (
                 <div className='absolute top-full xs:w-32 md:w-28 lg:w-32'>
                   <ul
@@ -235,7 +140,7 @@ const Submenu = () => {
         {menuMobile && (
           <section className='bg-white absolute top-0 left-0 w-40 mt-8 ml-1'>
             <ul className='flex flex-col'>
-              {links.map(({ id, label, route, options }) => (
+              {submenuItems.map(({ id, label, route, options }) => (
                 <li
                   key={id}
                   onClick={() => setActiveLinkMobile(route)}
