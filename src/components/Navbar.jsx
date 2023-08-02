@@ -23,7 +23,7 @@ const links = [{
 }, {
   id: 'STumFIla',
   label: 'Productos',
-  route: '/products',
+  route: '/products/vibradores',
   icon: (color) => <ShoppingBagIcon className={`${color} h-6 w-6 text-gray-500`} />
 }, {
   id: 'oWAyBREm',
@@ -72,10 +72,11 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`z-50 box-border fixed top-0 w-full grid grid-flow-row-dense grid-cols-12 grid-rows-12  xs:${showMenu ? 'h-60' : 'h-16'} md:h-28 py-2 shadow-md bg-white`}>
+      <nav className={`z-50 box-border fixed top-9 w-full grid grid-flow-row-dense grid-cols-12 grid-rows-12  xs:${showMenu ? 'h-60' : 'h-16'} md:h-28 py-2 shadow-md bg-white`}>
         <section className='xs:col-span-8 xs:ml-8 md:col-span-3 flex  xs:justify-start md:justify-center items-center'>
           <Image
             src='/bufssexshoppink.png'
+            priority
             width={100}
             height={100}
             alt='bufs sex shop representative logo'

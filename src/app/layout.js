@@ -8,7 +8,7 @@ import Footer from '@/components/Footer.jsx'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Bufs sex shop',
+  title: 'Buf\'s sex shop | Medellín | Servicios para webcams',
   description: 'Sex shop, envios discretos, a todo el pais, promociones, estudio fotográfico para webcams.'
 }
 
@@ -18,10 +18,10 @@ export default function RootLayout ({ children }) {
       <body className={`${inter.className} box-border`}>
         <Providers>
           <header>
+            <Announcement />
             <Navbar />
           </header>
-          <Announcement />
-          <section className=''>
+          <section className='xs:mt-[100px] md:mt-[148px]'>
             {children}
           </section>
           <Footer />
