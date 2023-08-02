@@ -10,12 +10,11 @@ const Announcement = () => {
       bg-customPink text-slate-50
       w-full h-9
       flex justify-center items-center
-      xs:mt-[65px] md:mt-28
-      xs:top-[65px] md:top-[112px]
-      z-40
+      mt-0 top-0
+      z-50
       '
       style={{
-        position: 'sticky'
+        position: 'fixed'
       }}
     >
       <span className='uppercase mr-1 font-bold'>

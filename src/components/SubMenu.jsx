@@ -101,7 +101,7 @@ const Submenu = () => {
   }
 
   return (
-    <div className='xs:items-start flex xs:items-center md:items-center w-full lg:px-4 justify-between'>
+    <div className='z-40 fixed bg-white py-2 top-[148px] xs:items-start flex md:items-center w-full lg:px-4 justify-between shadow-md'>
       <section className='xs:hidden flex box-border w-full'>
         <ul className='flex justify-between w-full'>
           {submenuItems.map(({ id, label, route, options }) => (

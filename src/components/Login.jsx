@@ -38,6 +38,8 @@ const Login = ({ onClose, open }) => {
       unregister('email')
       unregister('password')
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
 
   const email = watch('email')
@@ -46,7 +48,6 @@ const Login = ({ onClose, open }) => {
   const handleChange = (name, e) => setValue(name, e.target.value)
 
   const onSubmit = (data) => console.log('xxx data: ', data)
-  console.log('xxx errors: ', errors)
 
   return (
     open

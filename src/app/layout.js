@@ -19,13 +19,11 @@ export default function RootLayout ({ children }) {
       <body className={`${inter.className} box-border`}>
         <Providers>
           <header>
+            <Announcement />
             <Navbar />
-          </header>
-          <Announcement />
-          <section className='flex justify-center items-center h-14 bg-white z-30 sticky top-[148px] xs:h-12 xs:top-[0]'>
             <Submenu />
-          </section>
-          <section className=''>
+          </header>
+          <section className='mt-[196px]'>
             {children}
           </section>
           <Footer />
