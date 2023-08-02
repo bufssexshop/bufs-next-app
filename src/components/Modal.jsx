@@ -34,7 +34,7 @@ const Modal = ({
         ${modalWidths[size]}`}
       >
         <div className='relative'>
-          <XMarkIcon onClick={onClose} class='cursor-pointer absolute hover:bg-slate-200 hover:rounded-full right-2 top-2 h-6 w-6 text-gray-500 duration-300' />
+          <XMarkIcon onClick={onClose} className='cursor-pointer absolute hover:bg-slate-200 hover:rounded-full right-2 top-2 h-6 w-6 text-gray-500 duration-300' />
         </div>
         <div className='bg-white rounded-lg p-4 flex flex-col items-center'>
           {icon && icon}

@@ -10,7 +10,7 @@ const buttonVariants = {
   tertiary: 'text-sm text-slate-500 hover:bg-slate-200 border border-slate-50 hover:border hover:border-slate-500 duration-500'
 }
 
-const disabledStyles = 'bg-slate-500 hover:opacity-100'
+const disabledStyles = 'bg-slate-500 hover:opacity-100 cursor-not-allowed'
 
 const Button = ({
   size = 'medium',

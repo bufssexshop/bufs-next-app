@@ -52,7 +52,7 @@ const ImageInput = ({ handleChange, value }) => {
               />
               <div className='w-full flex justify-between absolute bottom-0 right-0 py-1 px-4 bg-slate-500/50'>
                 <p className='text-slate-50 font-bold'>Vista previa</p>
-                <TrashIcon onClick={handleDeleteFile} class='h-6 w-6 text-slate-50 cursor-pointer' />
+                <TrashIcon onClick={handleDeleteFile} className='h-6 w-6 text-slate-50 cursor-pointer' />
               </div>
             </div>
             )

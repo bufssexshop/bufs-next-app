@@ -1,19 +1,21 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { fetchData } from '@/api/fetchData'
+import { getData } from '@/api/fetchData'
 import ProductCard from '@/components/ProductCard'
+import Loader from '@/components/Loader'
 
-const method = 'POST'
-const body = {
-  subcategoria: 'vibradores'
-}
+const Products = ({ params }) => {
+  const { subcategory } = params
 
-const Products = () => {
   const { data, isLoading, isFetching, error } = useQuery({
     queryKey: ['hydrate-users'],
-    queryFn: () => fetchData('productos/getProducts', method, body)
+    queryFn: () => getData(`productos/getProducts/${subcategory}`),
+    enabled: true,
+    staleTime: 0
   })
+
+  if (!data || isLoading || isFetching) return <Loader />
 
   return (
     <main className='w-full'>
