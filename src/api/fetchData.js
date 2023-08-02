@@ -1,4 +1,4 @@
-const defaultHost = process.env.SERVER_URL
+const defaultHost = process.env.NEXT_PUBLIC_API_URL
 
 export async function fetchData (path, method = 'POST', body = {}) {
   const res = await fetch(`${defaultHost}/${path}`,
