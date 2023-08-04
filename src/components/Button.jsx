@@ -5,7 +5,7 @@ const buttonHeights = {
 }
 
 const buttonVariants = {
-  primary: 'text-sm bg-customPink text-white hover:opacity-80 duration-500',
+  primary: 'text-sm bg-customPink dark:bg-darkPink text-white hover:opacity-80 duration-500',
   secondary: 'text-sm bg-white text-slate-500 border border-slate-500 hover:bg-slate-200 duration-500',
   tertiary: 'text-sm text-slate-500 hover:bg-slate-200 border border-slate-50 hover:border hover:border-slate-500 duration-500'
 }

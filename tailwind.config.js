@@ -5,6 +5,7 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}'
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       backgroundImage: {
@@ -13,7 +14,8 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
       },
       colors: {
-        customPink: '#FF7BAC'
+        customPink: '#FF7BAC',
+        darkPink: '#FF3C80'
       },
       boxShadow: {
         cardShadow: '0px 2px 20px 5px rgba(203,213,225,1)'

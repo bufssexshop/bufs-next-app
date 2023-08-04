@@ -1,10 +1,11 @@
 'use client'
+
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Button from './Button'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Login from './Login'
-import { usePathname } from 'next/navigation'
 
 // ICONS
 import {
@@ -48,6 +49,7 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
   const [theme, setTheme] = useState(mode || 'light')
+  const element = document.documentElement
 
   const handleShowMenu = () => {
     setShowMenu((prev) => !prev)
@@ -67,15 +69,17 @@ const Navbar = () => {
   }, [pathname])
 
   useEffect(() => {
+    if (theme === 'dark') element.classList.add(theme)
+    if (theme === 'light') element.classList.remove('dark')
     localStorage.setItem('theme', theme)
-  }, [theme])
+  }, [theme, element])
 
   return (
     <>
-      <nav className={`z-50 box-border fixed top-9 w-full grid grid-flow-row-dense grid-cols-12 grid-rows-12  xs:${showMenu ? 'h-60' : 'h-16'} md:h-28 py-2 shadow-md bg-white`}>
+      <nav className={`z-50 box-border fixed top-9 w-full grid grid-flow-row-dense grid-cols-12 grid-rows-12  xs:${showMenu ? 'h-60' : 'h-16'} md:h-28 py-2 shadow-md bg-white dark:bg-slate-700 duration-700`}>
         <section className='xs:col-span-8 xs:ml-8 md:col-span-3 flex  xs:justify-start md:justify-center items-center'>
           <Image
-            src='/bufssexshoppink.png'
+            src={theme === 'light' ? '/bufssexshoppink.png' : '/bufssexshopwhite.png'}
             priority
             width={100}
             height={100}
@@ -88,7 +92,7 @@ const Navbar = () => {
         <section className='col-span-6 xs:hidden md:block'>
           <ul className='flex justify-around items-center h-full'>
             {links.map(({ label, route }) => (
-              <li className={`${pathname === route ? 'text-customPink' : 'text-slate-500'} duration-0 hover:text-customPink hover:duration-500`} key={route}>
+              <li className={`${pathname === route ? 'text-customPink' : theme === 'light' ? 'text-slate-500' : 'text-slate-50'} duration-0 hover:text-customPink dark:hover:text-customPink hover:duration-500`} key={route}>
                 <Link href={route}>{label}</Link>
               </li>
             ))}
@@ -123,12 +127,12 @@ const Navbar = () => {
 
         <section className='xs:hidden md:flex col-span-3 h-full justify-center items-center'>
           <div className='flex lg:w-1/2 items-center justify-around'>
-            <ShoppingCartIcon className='h-6 w-6 text-gray-500' />
+            <ShoppingCartIcon className='h-6 w-6 text-gray-500 dark:text-slate-50' />
             <Button onClick={handleShowLogin} label='Iniciar sesion' />
           </div>
 
           <div className='flex items-center gap-2'>
-            <SunIcon className={`h-6 w-6 duration-500 ${theme === 'light' ? 'text-amber-500' : 'text-slate-500'}`} />
+            <SunIcon className='h-6 w-6 duration-500 text-amber-500 dark:text-slate-50' />
             <label htmlFor='theme-toggle' className='relative inline-block w-10 h-6 bg-gray-300 rounded-full cursor-pointer'>
               <input type='checkbox' id='theme-toggle' className='hidden' onChange={handleChangeTheme} />
               <span
