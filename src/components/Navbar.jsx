@@ -105,20 +105,34 @@ const Navbar = () => {
             <div className='flex'>
               <ul className='w-4/5 flex-col justify-around items-center'>
                 {links.map(({ id, label, route, icon }) => (
-                  <div key={id} className={`flex items-center gap-4 ${pathname === route ? 'text-customPink' : 'text-slate-500'}`}>
-                    {icon(pathname === route ? 'text-pink-400' : 'text-slate-500')}
-                    <li className='my-2' key={route}>
+                  <div key={id} className='flex items-center gap-4'>
+                    {icon(pathname === route ? 'text-pink-400' : theme === 'light' ? 'text-slate-500' : 'text-slate-50')}
+                    <li className={`${pathname === route ? 'text-customPink' : theme === 'light' ? 'text-slate-500' : 'text-slate-50'} my-2`} key={route}>
                       <Link href={route}>{label}</Link>
                     </li>
                   </div>
                 ))}
+
+                <div className='flex items-center gap-2 mt-4'>
+                  <SunIcon className='h-6 w-6 duration-500 text-amber-500 dark:text-slate-50' />
+                  <label htmlFor='theme-toggle' className='relative inline-block w-10 h-6 bg-gray-300 rounded-full cursor-pointer'>
+                    <input type='checkbox' id='theme-toggle' className='hidden' onChange={handleChangeTheme} />
+                    <span
+                      className={`
+                        absolute block w-4 h-4 ${theme === 'dark' ? 'bg-slate-50' : 'bg-gray-700'} bg-gray-700 rounded-full transition-transform duration-300 top-1 left-1
+                        ${theme === 'dark' ? 'translate-x-full' : 'translate-x-0'}
+                      `}
+                    />
+                  </label>
+                  <MoonIcon className={`h-6 w-6 duration-500 ${theme === 'dark' ? 'text-amber-500' : 'text-slate-500'}`} />
+                </div>
               </ul>
               <section className='flex flex-col items-start justify-end gap-4'>
                 <IconButton>
-                  <ShoppingCartIcon className='h-8 w-8 text-gray-500' />
+                  <ShoppingCartIcon className='h-8 w-8 text-gray-500 dark:text-slate-50' />
                 </IconButton>
                 <IconButton onClick={handleShowLogin}>
-                  <UserCircleIcon className='h-8 w-8 text-gray-500' />
+                  <UserCircleIcon className='h-8 w-8 text-gray-500 dark:text-slate-50' />
                 </IconButton>
               </section>
             </div>
@@ -150,8 +164,8 @@ const Navbar = () => {
         {/* Only visible in mobile - menu icon */}
         <section className='xs:flex xs:mr-8 justify-end items-center md:hidden col-span-4 h-full'>
           {showMenu
-            ? (<XMarkIcon onClick={handleShowMenu} className='h-9 w-9 text-gray-500' />)
-            : (<Bars4Icon onClick={handleShowMenu} className='h-9 w-9 text-gray-500' />)}
+            ? (<XMarkIcon onClick={handleShowMenu} className='h-9 w-9 text-gray-500 dark:text-slate-50' />)
+            : (<Bars4Icon onClick={handleShowMenu} className='h-9 w-9 text-gray-500 dark:text-slate-50' />)}
         </section>
       </nav>
       <Login onClose={handleShowLogin} open={showLogin} />
