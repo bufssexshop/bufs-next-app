@@ -81,13 +81,9 @@ const Submenu = () => {
       }
 
       return (
-        <div key={option.label} className='md:grid md:grid-cols-2 md:gap-4 xs:my-2 w-full'>
+        <div key={option.label} className='w-full'>
           <li
-            className={
-              `md:ml-0 xs:w-36 xs:py-1 text-left md:w-28 text-sm md:p-1
-              cursor-pointer bl-1-solid  xs:pl-1 flex justify-between lg:text-base
-              ${activeOption === option ? 'text-customPink' : 'text-slate-500'}`
-            }
+            className='text-slate-500 dark:text-slate-50 text-left cursor-pointer py-1 hover:text-customPink dark:hover:text-customPink'
             key={option}
             onClick={() => {
               handleMouseEnter(route)
@@ -102,21 +98,20 @@ const Submenu = () => {
   }
 
   return (
-    <div className='z-40 fixed bg-white py-2 top-[148px] xs:items-start flex md:items-center w-full lg:px-4 justify-between shadow-md'>
+    <div className='z-40 fixed bg-white dark:bg-slate-700 py-2 top-[148px] xs:items-start flex md:items-center w-full lg:px-4 justify-between shadow-md duration-700'>
       <section className='xs:hidden flex box-border w-full'>
         <ul className='w-full flex justify-center gap-12'>
           {submenuItems.map(({ id, label, category, options }) => (
             <li
               key={id}
               onMouseEnter={() => handleMouseEnter(category)}
-              className='text-slate-500 text-center text-xs p-1 rounded-sm lg:text-base flex items-center'
+              className='text-center text-xs p-1 rounded-sm lg:text-base flex items-center'
             >
-              <Link href={category}>{label}</Link>
-              <ChevronDownIcon className='text-slate-500 ml-1 h-4 w-4' />
+              <p className='text-slate-500 dark:text-slate-50'>{label}</p>
+              <ChevronDownIcon className='text-slate-500 dark:text-slate-50 ml-1 h-4 w-4' />
               {activeLink === category && isMouseOver && (
-                <div className='absolute top-full xs:w-32 md:w-28 lg:w-32'>
+                <div className='absolute bg-white dark:bg-slate-700 w-52 pl-4 top-full shadow-xl'>
                   <ul
-                    className='bg-white'
                     onMouseEnter={() => handleMouseEnter(category)}
                     onMouseLeave={handleMouseLeave}
                   >
