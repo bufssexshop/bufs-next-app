@@ -45,10 +45,9 @@ const links = [{
 
 const Navbar = () => {
   const pathname = usePathname()
-  const mode = localStorage.getItem('theme')
   const [showMenu, setShowMenu] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
-  const [theme, setTheme] = useState(mode || 'light')
+  const [theme, setTheme] = useState('')
   const element = document.documentElement
 
   const handleShowMenu = () => {
@@ -62,6 +61,17 @@ const Navbar = () => {
   }
 
   const handleChangeTheme = () => setTheme((prev) => prev === 'light' ? 'dark' : 'light')
+
+  const getThemeFromLocalStorage = () => {
+    if (typeof window !== 'undefined') {
+      const mode = localStorage.getItem('theme')
+      setTheme(mode || 'dark') // O un valor predeterminado que desees
+    }
+  }
+
+  useEffect(() => {
+    getThemeFromLocalStorage()
+  }, [])
 
   useEffect(() => {
     if (showMenu) handleShowMenu()
