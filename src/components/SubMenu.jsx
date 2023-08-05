@@ -41,7 +41,7 @@ const Submenu = () => {
 
   const renderOptions = (options, route) => {
     return options.map((option) => {
-      if (typeof option === 'object') {
+      if (Object.prototype.hasOwnProperty.call(option, 'subOptions')) {
         const { label, subOptions } = option
         return (
           <div key={label} className='md:grid md:grid-cols-2 md:gap-4 w-full'>
@@ -79,6 +79,7 @@ const Submenu = () => {
           </div>
         )
       }
+
       return (
         <div key={option} className='md:grid md:grid-cols-2 md:gap-4 xs:my-2 w-full'>
           <li
@@ -93,7 +94,7 @@ const Submenu = () => {
               handleOptionSelect(option)
             }}
           >
-            {option}
+            <Link href={`/products/${option.route}`}>{option.label}</Link>
           </li>
         </div>
       )
@@ -103,20 +104,20 @@ const Submenu = () => {
   return (
     <div className='z-40 fixed bg-white py-2 top-[148px] xs:items-start flex md:items-center w-full lg:px-4 justify-between shadow-md'>
       <section className='xs:hidden flex box-border w-full'>
-        <ul className='flex justify-between w-full'>
-          {submenuItems.map(({ id, label, route, options }) => (
+        <ul className='w-full flex justify-center gap-12'>
+          {submenuItems.map(({ id, label, category, options }) => (
             <li
               key={id}
-              onMouseEnter={() => handleMouseEnter(route)}
+              onMouseEnter={() => handleMouseEnter(category)}
               className='text-slate-500 text-center text-xs p-1 rounded-sm lg:text-base flex items-center'
             >
-              <Link href={route}>{label}</Link>
+              <Link href={category}>{label}</Link>
               <ChevronDownIcon className='text-slate-500 ml-1 h-4 w-4' />
-              {activeLink === route && isMouseOver && options && (
+              {activeLink === category && isMouseOver && (
                 <div className='absolute top-full xs:w-32 md:w-28 lg:w-32'>
                   <ul
                     className='bg-white'
-                    onMouseEnter={() => handleMouseEnter(route)}
+                    onMouseEnter={() => handleMouseEnter(category)}
                     onMouseLeave={handleMouseLeave}
                   >
                     {renderOptions(options)}
@@ -140,10 +141,10 @@ const Submenu = () => {
         {menuMobile && (
           <section className='bg-white absolute top-0 left-0 w-40 mt-8 ml-1'>
             <ul className='flex flex-col'>
-              {submenuItems.map(({ id, label, route, options }) => (
+              {submenuItems.map(({ id, label, category, options }) => (
                 <li
                   key={id}
-                  onClick={() => setActiveLinkMobile(route)}
+                  onClick={() => setActiveLinkMobile(category)}
                   className='text-slate-500 text-left text-sm my-1 lg:text-lg w-40 p-1'
                 >
                   <p
@@ -153,13 +154,13 @@ const Submenu = () => {
                     {label}
                     {options && <ChevronRightIcon className='h-4 w-4' />}
                   </p>
-                  {activeLinkMobile === route && options && (
+                  {activeLinkMobile === category && options && (
                     <div className='relative bg-white opacity-95 md:mt-4 hover-duration-500'>
                       <ul
                         className='mt-2 rounded w-36 z-50'
-                        onClick={() => handleMouseEnter(route)}
+                        onClick={() => handleMouseEnter(category)}
                       >
-                        {renderOptions(options, route)}
+                        {renderOptions(options, category)}
                       </ul>
                     </div>
                   )}

@@ -2,94 +2,78 @@ export const submenuItems = [
   {
     id: 'KljS9Pm7',
     label: 'Juguetes',
-    route: '/products',
+    category: 'juguetes',
     options: [
-      'TVs',
-      'Laptops',
-      'Smartphones'
+      { label: 'Vibradores', route: 'vibradores' },
+      { label: 'Masculinos', route: 'masculinos' },
+      { label: 'Femeninos', route: 'femeninos' },
+      { label: 'Anal', route: 'anal' },
+      { label: 'Consoladores', route: 'consoladores' }
     ]
   },
   {
     id: 'XizR5Ov2',
-    label: 'Lenceria y disfraces',
-    route: '/'
+    label: 'Lubricantes',
+    category: 'lubricantes',
+    options: [
+      { label: 'Estrechantes', route: 'estrechantes' },
+      { label: 'Multiorgasmos', route: 'multiorgasmos' },
+      { label: 'Masajes', route: 'masajes' },
+      { label: 'Retardantes', route: 'retardantes' },
+      { label: 'Anales', route: 'anales' },
+      { label: 'Con sabor', route: 'conSabor' },
+      { label: 'Sin sabor', route: 'sinSabor' },
+      { label: 'Sexo oral', route: 'sexoOral' },
+      { label: 'A prueba de agua', route: 'aPruebaDeAgua' },
+      { label: 'Kits de lubricación', route: 'kitsDeLubricacion' },
+      { label: 'Lubricantes especiales', route: 'lubricantesEspeciales' }
+    ]
   },
   {
     id: 'GhNc3Wx4',
-    label: 'Bondage',
-    route: '/sales',
+    label: 'Lencería',
+    category: 'lenceria',
     options: [
-      {
-        label: 'aaa',
-        subOptions: ['a1', 'a2', 'a3']
-      },
-      'tops',
-      'dejas'
+      { label: 'Disfraces', route: 'disfraces' },
+      { label: 'Lencería', route: 'lenceria' },
+      { label: 'Fetiche', route: 'fetiche' }
     ]
   },
   {
     id: 'YzMj0Ut9',
-    label: 'Lubricantes',
-    route: '/content'
-  },
-  {
-    id: 'QweF8Nx6',
-    label: 'Estimulantes sexuales',
-    route: '/contact'
-  },
-  {
-    id: 'JklI4As8',
-    label: 'Sex academy',
-    route: '/sexacademy',
+    label: 'Fetiche',
+    category: 'fetiche',
     options: [
-      {
-        label: 'aaa',
-        subOptions: [
-          'Angeles y demonios',
-          'Colegialas',
-          'Complementos',
-          'Conejas y animalitos',
-          'Deportes',
-          'Disfraces masculinos',
-          'Enfermeras',
-          'Marineras y piratas',
-          'Militares',
-          'Mucamas',
-          'Personajes de fantasia',
-          'Policias y ladronas',
-          'Profesiones y oficios',
-          'Superheroes'
-        ]
-      },
-      {
-        label: 'tops',
-        subOptions: ['a1', 'a2', 'a3']
-      }
+      { label: 'Juguetes para pezones', route: 'juguetesParaPezones' },
+      { label: 'Máscaras', route: 'mascaras' },
+      { label: 'Mordazas', route: 'mordazas' },
+      { label: 'Esposas', route: 'esposas' },
+      { label: 'Arnés', route: 'arnes' },
+      { label: 'Nalguear', route: 'nalguear' },
+      { label: 'Látigos y fustas', route: 'latigosYfustas' },
+      { label: 'Collares', route: 'collares' },
+      { label: 'Columpios', route: 'columpios' },
+      { label: 'Antifaz', route: 'antifaz' },
+      { label: 'Velas', route: 'velas' },
+      { label: 'Plumas', route: 'plumas' },
+      { label: 'Kit fetichista', route: 'kitFetichista' }
     ]
   },
   {
-    id: 'PloR2Gz5',
-    label: 'Cuidado personal',
-    route: '/cuidadopersonal'
+    id: 'QweF8Nx6',
+    label: 'Higiene & protección',
+    category: 'higiene',
+    options: [
+      { label: 'Condones', route: 'condones' },
+      { label: 'Aseo personal', route: 'aseoPersonal' }
+    ]
   },
   {
-    id: 'BhuM7Ty1',
-    label: 'Novedades',
-    route: '/novedades'
-  },
-  {
-    id: 'RtyU9Vx3',
-    label: 'Ofertas',
-    route: '/ofertas'
-  },
-  {
-    id: 'FdeN6Zc0',
-    label: 'Webcams',
-    route: '/webcams'
-  },
-  {
-    id: 'ZxcD3Fr9',
-    label: 'Blog',
-    route: '/blog'
+    id: 'JklI4As8',
+    label: 'Más',
+    category: 'mas',
+    options: [
+      { label: 'Potenciadores', route: 'potenciadores' }
+    ]
   }
 ]
