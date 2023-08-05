@@ -18,11 +18,8 @@ const Products = ({ params }) => {
   if (!data || isLoading || isFetching) return <Loader />
 
   return (
-    <main className='w-full'>
+    <main className='w-full box-border'>
       {/* This section is a product menu */}
-      <section className='flex justify-center items-center h-14 bg-slate-200 z-30 sticky top-[148px]'>
-        <h1>Here menu</h1>
-      </section>
       <section className='px-20 py-14'>
         {error && <p>Hubo un error, sorry</p>}
         {(isLoading || isFetching) && <p>Loading...</p>}
