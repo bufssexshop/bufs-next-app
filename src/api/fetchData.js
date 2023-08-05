@@ -1,4 +1,4 @@
-const defaultHost = process.env.REACT_APP_SERVER_URL || 'http://localhost:8000'
+const defaultHost = process.env.NEXT_PUBLIC_API_URL
 
 export async function fetchData (path, method = 'POST', body = {}) {
   const res = await fetch(`${defaultHost}/${path}`,
@@ -10,6 +10,12 @@ export async function fetchData (path, method = 'POST', body = {}) {
       body: JSON.stringify(body)
     }
   )
+  const data = await res.json()
+  return data
+}
+
+export async function getData (path) {
+  const res = await fetch(`${defaultHost}/${path}`)
   const data = await res.json()
   return data
 }

@@ -9,7 +9,7 @@ import Submenu from '@/components/SubMenu'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Bufs sex shop',
+  title: 'Buf\'s sex shop | Medellín | Servicios para webcams',
   description: 'Sex shop, envios discretos, a todo el pais, promociones, estudio fotográfico para webcams.'
 }
 
