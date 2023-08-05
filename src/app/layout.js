@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar.jsx'
 import Announcement from '@/components/Announcement.jsx'
 import Footer from '@/components/Footer.jsx'
+import Submenu from '@/components/SubMenu'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,8 +21,9 @@ export default function RootLayout ({ children }) {
           <header>
             <Announcement />
             <Navbar />
+            <Submenu />
           </header>
-          <section className='xs:mt-[100px] md:mt-[148px]'>
+          <section className='mt-[196px]'>
             {children}
           </section>
           <Footer />

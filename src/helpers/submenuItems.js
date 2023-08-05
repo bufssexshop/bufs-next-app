@@ -1,0 +1,79 @@
+export const submenuItems = [
+  {
+    id: 'KljS9Pm7',
+    label: 'Juguetes',
+    category: 'juguetes',
+    options: [
+      { label: 'Vibradores', route: 'vibradores' },
+      { label: 'Masculinos', route: 'masculinos' },
+      { label: 'Femeninos', route: 'femeninos' },
+      { label: 'Anal', route: 'anal' },
+      { label: 'Consoladores', route: 'consoladores' }
+    ]
+  },
+  {
+    id: 'XizR5Ov2',
+    label: 'Lubricantes',
+    category: 'lubricantes',
+    options: [
+      { label: 'Estrechantes', route: 'estrechantes' },
+      { label: 'Multiorgasmos', route: 'multiorgasmos' },
+      { label: 'Masajes', route: 'masajes' },
+      { label: 'Retardantes', route: 'retardantes' },
+      { label: 'Anales', route: 'anales' },
+      { label: 'Con sabor', route: 'conSabor' },
+      { label: 'Sin sabor', route: 'sinSabor' },
+      { label: 'Sexo oral', route: 'sexoOral' },
+      { label: 'A prueba de agua', route: 'aPruebaDeAgua' },
+      { label: 'Kits de lubricación', route: 'kitsDeLubricacion' },
+      { label: 'Lubricantes especiales', route: 'lubricantesEspeciales' }
+    ]
+  },
+  {
+    id: 'GhNc3Wx4',
+    label: 'Lencería',
+    category: 'lenceria',
+    options: [
+      { label: 'Disfraces', route: 'disfraces' },
+      { label: 'Lencería', route: 'lenceria' },
+      { label: 'Fetiche', route: 'fetiche' }
+    ]
+  },
+  {
+    id: 'YzMj0Ut9',
+    label: 'Fetiche',
+    category: 'fetiche',
+    options: [
+      { label: 'Juguetes para pezones', route: 'juguetesParaPezones' },
+      { label: 'Máscaras', route: 'mascaras' },
+      { label: 'Mordazas', route: 'mordazas' },
+      { label: 'Esposas', route: 'esposas' },
+      { label: 'Arnés', route: 'arnes' },
+      { label: 'Nalguear', route: 'nalguear' },
+      { label: 'Látigos y fustas', route: 'latigosYfustas' },
+      { label: 'Collares', route: 'collares' },
+      { label: 'Columpios', route: 'columpios' },
+      { label: 'Antifaz', route: 'antifaz' },
+      { label: 'Velas', route: 'velas' },
+      { label: 'Plumas', route: 'plumas' },
+      { label: 'Kit fetichista', route: 'kitFetichista' }
+    ]
+  },
+  {
+    id: 'QweF8Nx6',
+    label: 'Higiene & protección',
+    category: 'higiene',
+    options: [
+      { label: 'Condones', route: 'condones' },
+      { label: 'Aseo personal', route: 'aseoPersonal' }
+    ]
+  },
+  {
+    id: 'JklI4As8',
+    label: 'Más',
+    category: 'mas',
+    options: [
+      { label: 'Potenciadores', route: 'potenciadores' }
+    ]
+  }
+]

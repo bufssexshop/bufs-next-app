@@ -87,7 +87,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`z-50 box-border fixed top-9 w-full grid grid-flow-row-dense grid-cols-12 grid-rows-12  xs:${showMenu ? 'h-60' : 'h-16'} md:h-28 py-2 shadow-md bg-white dark:bg-slate-700 duration-700`}>
+      <nav className={`z-50 box-border fixed top-9 w-full grid grid-flow-row-dense grid-cols-12 grid-rows-12  xs:${showMenu ? 'h-60' : 'h-16'} md:h-28 py-2 shadow-sm bg-white dark:bg-slate-700 duration-700`}>
         <section className='xs:col-span-8 xs:ml-8 md:col-span-3 flex  xs:justify-start md:justify-center items-center'>
           <Image
             src={theme === 'light' ? '/bufssexshoppink.png' : '/bufssexshopwhite.png'}
