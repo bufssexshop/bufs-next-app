@@ -81,7 +81,7 @@ const Submenu = () => {
       }
 
       return (
-        <div key={option} className='w-full'>
+        <div key={option.label} className='w-full'>
           <li
             className='text-left cursor-pointer py-1 hover:text-customPink'
             key={option}

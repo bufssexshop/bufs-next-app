@@ -7,7 +7,7 @@ const Announcement = () => {
   return (
     <section
       className='
-      bg-customPink text-slate-50
+      bg-customPink dark:bg-darkPink text-slate-50
       w-full h-9
       flex justify-center items-center
       mt-0 top-0
