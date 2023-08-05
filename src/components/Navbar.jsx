@@ -71,7 +71,8 @@ const Navbar = () => {
   useEffect(() => {
     if (theme === 'dark') element.classList.add(theme)
     if (theme === 'light') element.classList.remove('dark')
-    localStorage.setItem('theme', theme)
+
+    if (typeof window !== 'undefined') localStorage.setItem('theme', theme)
   }, [theme, element])
 
   return (
