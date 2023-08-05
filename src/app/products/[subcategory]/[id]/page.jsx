@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query'
 import Loader from '@/components/Loader'
 import Button from '@/components/Button'
 import Image from 'next/image'
+import { camelCaseToNormal } from '@/helpers/strings'
 
 const ShowProductDetails = ({ details }) => {
   const sanitizedHTML = details
@@ -52,12 +53,6 @@ const ProductDetails = ({ params }) => {
   if (!data || isLoading || isFetching) return <Loader />
 
   const zoomAreaSize = 200
-
-  const camelCaseToNormal = (str) => {
-    let result = str.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase()
-    result = result.charAt(0).toUpperCase() + result.slice(1)
-    return result
-  }
 
   const formatterPeso = new Intl.NumberFormat('es-CO', {
     currency: 'COP',

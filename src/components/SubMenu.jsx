@@ -81,7 +81,7 @@ const Submenu = () => {
       }
 
       return (
-        <div key={option} className='md:grid md:grid-cols-2 md:gap-4 xs:my-2 w-full'>
+        <div key={option.label} className='md:grid md:grid-cols-2 md:gap-4 xs:my-2 w-full'>
           <li
             className={
               `md:ml-0 xs:w-36 xs:py-1 text-left md:w-28 text-sm md:p-1
