@@ -48,7 +48,6 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
   const [theme, setTheme] = useState('')
-  const element = document.documentElement
 
   const handleShowMenu = () => {
     setShowMenu((prev) => !prev)
@@ -79,11 +78,12 @@ const Navbar = () => {
   }, [pathname])
 
   useEffect(() => {
+    const element = document.documentElement
     if (theme === 'dark') element.classList.add(theme)
     if (theme === 'light') element.classList.remove('dark')
 
     if (typeof window !== 'undefined' && window.localStorage) localStorage.setItem('theme', theme)
-  }, [theme, element])
+  }, [theme])
 
   return (
     <>
