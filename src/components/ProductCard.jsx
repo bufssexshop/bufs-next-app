@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
   return (
     <section
       key={product.id}
-      className='relative w-56 min-h-[305px] hover:shadow-cardShadow duration-300 border'
+      className='relative w-56 min-h-[305px] hover:shadow-cardShadow duration-300 border dark:rounded-md bg-white'
     >
       <Link href='/products/[subcategory]/[id]' as={`/products/${product.subcategoria}/${product._id}`}>
         <div className='flex justify-center min-h-[180px] max-h-[180px] w-full'>

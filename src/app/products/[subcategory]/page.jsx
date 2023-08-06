@@ -25,20 +25,20 @@ const Products = ({ params }) => {
 
   if (isLoading || isFetching) {
     return (
-      <div className='w-full h-96 flex justify-center items-center'>
+      <div className='w-full h-96 xs:h-72 bg-white dark:bg-slate-800 flex justify-center items-center'>
         <Loader />
       </div>
     )
   }
 
   return (
-    <main className='w-full box-border'>
-      <section className='px-20 py-14'>
+    <main className='w-full box-border dark:bg-slate-800'>
+      <section className='py-14 xs:py-4 px-20'>
         {error && <p>Hubo un error, sorry</p>}
 
         {data.length > 0 && (
-          <div>
-            <p className='text-3xl text-slate-700 mb-14'>
+          <div className='w-full'>
+            <p className='w-full xs:text-center text-3xl text-slate-700 dark:text-slate-50 mb-14 xs:mb-7'>
               {camelCaseToNormal(subcategory)}
             </p>
 
@@ -53,12 +53,14 @@ const Products = ({ params }) => {
         {data.length <= 0 && (
           <div className='flex flex-col justify-center items-center gap-4'>
             <Image
-              src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691273033/images/no-results_dw3ljr.jpg'
+              // src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691273033/images/no-results_dw3ljr.jpg'
+              src='/no-products.png'
               alt='No products'
               width={400}
               height={400}
+              className='xs:w-[100%]'
             />
-            <p className='text-slate-700 text-2xl'>Esta sección aún no tiene productos, lo sentimos.</p>
+            <p className='text-slate-700 dark:text-slate-50 text-2xl xs:text-sm xs:text-center mt-[-250px] xs:mt-[-130px]'>Esta sección aún no tiene productos, lo sentimos.</p>
           </div>
         )}
       </section>
