@@ -53,8 +53,7 @@ const Products = ({ params }) => {
         {data.length <= 0 && (
           <div className='flex flex-col justify-center items-center gap-4'>
             <Image
-              // src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691273033/images/no-results_dw3ljr.jpg'
-              src='/no-products.png'
+              src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691291047/images/no-products_r91w9f.png'
               alt='No products'
               width={400}
               height={400}
