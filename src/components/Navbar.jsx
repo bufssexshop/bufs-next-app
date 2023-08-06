@@ -90,12 +90,12 @@ const Navbar = () => {
       <nav className={`z-50 box-border fixed top-9 w-full grid grid-flow-row-dense grid-cols-12 grid-rows-12  xs:${showMenu ? 'h-60' : 'h-16'} md:h-28 py-2 shadow-sm dark:shadow-slate-600 bg-white dark:bg-slate-700 duration-700`}>
         <section className='xs:col-span-8 xs:ml-8 md:col-span-3 flex  xs:justify-start md:justify-center items-center'>
           <Image
-            src={theme === 'light' ? '/bufssexshoppink.png' : '/bufssexshopwhite.png'}
+            src='/bufssexshoppink.png'
             priority
             width={100}
             height={100}
             alt='bufs sex shop representative logo'
-            className='xs:w-[50px] w-[90px]'
+            className='xs:w-[50px] w-[90px] dark:brightness-0 dark:invert duration-500'
           />
         </section>
 

@@ -5,8 +5,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid'
 
-const upIcon = <ChevronUpIcon className='xs:block xs:mb-8 md:hidden h-6 w-6 text-gray-500' />
-const downIcon = <ChevronDownIcon className='xs:block md:hidden h-6 w-6 text-gray-500' />
+const upIcon = <ChevronUpIcon className='xs:block xs:mb-8 md:hidden h-6 w-6 text-gray-500 dark:text-slate-50' />
+const downIcon = <ChevronDownIcon className='xs:block md:hidden h-6 w-6 text-gray-500 dark:text-slate-50' />
 
 // INFORMATION ITEMS
 const informationLinks = [
@@ -68,7 +68,7 @@ const Footer = () => {
   }
 
   return (
-    <footer className='w-full h-96 py-20 grid grid-cols-1 md:grid-cols-4 xs:divide-y'>
+    <footer className='w-full h-96 py-20 xs:py-10 grid grid-cols-1 md:grid-cols-4 xs:divide-y dark:divide-slate-600 dark:bg-slate-700'>
       {/* LOGO SECTION */}
       <section className='flex justify-center items-start xs:mb-10'>
         <Image
@@ -77,11 +77,12 @@ const Footer = () => {
           width={120}
           height={120}
           alt='Bufs sex shop logo'
+          className='dark:brightness-0 dark:invert duration-500 xs:w-[100px]'
         />
       </section>
 
       {/* INFORMATION SECTION */}
-      <section className='text-slate-500 xs:p-6'>
+      <section className='text-slate-500 xs:p-6 dark:bg-slate-700'>
         <div
           className='xs:flex justify-center xs:gap-x-2 cursor-pointer'
           onClick={toggleInformation}
@@ -89,7 +90,7 @@ const Footer = () => {
           <p className='xs:w-full text-customPink font-bold xs:uppercase md:pb-8'>Información</p>
           {informationOpen ? upIcon : downIcon}
         </div>
-        <div className={`flex flex-col gap-y-2 xs:${informationOpen ? 'flex' : 'hidden'}`}>
+        <div className={`flex flex-col gap-y-2 xs:${informationOpen ? 'flex' : 'hidden'} dark:text-slate-50`}>
           {informationLinks.map(({ label, route }) => (
             <Link key={route} href={route}>
               {label}
@@ -99,7 +100,7 @@ const Footer = () => {
       </section>
 
       {/* HELP SECTION */}
-      <section className='text-slate-500 xs:p-6'>
+      <section className='text-slate-500 xs:p-6 dark:bg-slate-700'>
         <div
           className='xs:flex justify-center xs:gap-x-2 cursor-pointer'
           onClick={toggleHelp}
@@ -107,7 +108,7 @@ const Footer = () => {
           <p className='xs:w-full text-customPink font-bold xs:uppercase md:pb-8'>Ayuda</p>
           {helpOpen ? upIcon : downIcon}
         </div>
-        <div className={`xs:w-4/5 flex flex-col gap-y-2 xs:${helpOpen ? 'flex' : 'hidden'}`}>
+        <div className={`xs:w-4/5 flex flex-col gap-y-2 xs:${helpOpen ? 'flex' : 'hidden'} dark:text-slate-50`}>
           {helpLinks.map(({ label, route }) => (
             <Link key={route} href={route}>
               {label}
@@ -117,9 +118,9 @@ const Footer = () => {
       </section>
 
       {/* SOCIAL MEDIA SECTION */}
-      <section className='xs:p-6'>
+      <section className='xs:p-6 dark:bg-slate-700'>
         <div
-          className='xs:flex justify-center xs:gap-x-2 cursor-pointer'
+          className='xs:flex justify-center xs:gap-x-2 cursor-pointe'
           onClick={toggleSocialMedia}
         >
           <p className='xs:w-full text-customPink font-bold xs:uppercase md:pb-8'>Síguenos en nuestras redes</p>

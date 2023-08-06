@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import {
-  ChevronRightIcon, Bars3Icon, XMarkIcon, ChevronDownIcon
+  ChevronRightIcon, XMarkIcon, ChevronDownIcon, BarsArrowDownIcon
 } from '@heroicons/react/24/solid'
 import { submenuItems } from '@/helpers/submenuItems'
 
@@ -83,11 +83,12 @@ const Submenu = () => {
       return (
         <div key={option.label} className='w-full'>
           <li
-            className='text-slate-500 dark:text-slate-50 text-left cursor-pointer py-1 hover:text-customPink dark:hover:text-customPink'
+            className='text-slate-500 dark:text-slate-50 text-left cursor-pointer py-1 hover:text-customPink dark:hover:text-customPink xs:pl-4 xs:text-xs'
             key={option}
             onClick={() => {
               handleMouseEnter(route)
               handleOptionSelect(option)
+              setMenuMobile(false)
             }}
           >
             <Link href={`/products/${option.route}`}>{option.label}</Link>
@@ -98,7 +99,7 @@ const Submenu = () => {
   }
 
   return (
-    <div className='z-40 fixed bg-white dark:bg-slate-700 py-2 top-[148px] xs:items-start flex md:items-center w-full lg:px-4 justify-between shadow-md duration-700'>
+    <div className='z-40 fixed bg-white dark:bg-slate-700 py-2 top-[148px] xs:top-[100px] xs:items-start flex md:items-center w-full lg:px-4 justify-between shadow-md duration-700'>
       <section className='xs:hidden flex box-border w-full'>
         <ul className='w-full flex justify-center gap-12'>
           {submenuItems.map(({ id, label, category, options }) => (
@@ -124,35 +125,42 @@ const Submenu = () => {
         </ul>
       </section>
 
-      <div className='relative md:hidden xs:mt-3 xs:ml-1' onTouchStart={() => handleMouseLeave()}>
-        <Bars3Icon
-          className={`${menuMobile ? 'hidden' : 'h-8 w-8 text-slate-500'}`}
+      {/* MOBILE DESIGN */}
+      {/* MOBILE DESIGN */}
+      {/* MOBILE DESIGN */}
+      {/* MOBILE DESIGN */}
+      <div className='z-50 relative md:hidden xs:flex xs:justify-center xs:items-center xs:gap-5 w-full' onTouchStart={() => handleMouseLeave()}>
+        <BarsArrowDownIcon
+          className={`${menuMobile ? 'hidden' : 'h-8 w-8  text-slate-500 dark:text-slate-50'}`}
           onClick={() => setMenuMobile(true)}
         />
         <XMarkIcon
-          className={`${menuMobile ? 'h-8 w-8 text-customPink' : 'hidden'} relative z-10`}
+          className={`${menuMobile ? 'h-8 w-8 text-slate-500' : 'hidden'} dark:text-slate-50 relative z-10`}
           onClick={() => setMenuMobile(false)}
         />
+        <p onClick={() => setMenuMobile(!menuMobile)} className='text-slate-500 dark:text-slate-50 cursor-pointer'>Menú de productos</p>
         {menuMobile && (
-          <section className='bg-white absolute top-0 left-0 w-40 mt-8 ml-1'>
+          <section className='bg-white dark:bg-slate-700 absolute top-0 left-0 w-52 h-screen mt-8 p-1'>
             <ul className='flex flex-col'>
               {submenuItems.map(({ id, label, category, options }) => (
                 <li
                   key={id}
                   onClick={() => setActiveLinkMobile(category)}
-                  className='text-slate-500 text-left text-sm my-1 lg:text-lg w-40 p-1'
+                  className='text-slate-500 text-left text-sm my-1 lg:text-lg w-full p-1'
                 >
-                  <p
-                    onClick={() => handleOption(label)}
-                    className={`${options ? 'flex justify-between' : 'flex flex-start'}`}
-                  >
-                    {label}
+                  <div className='flex justify-between'>
+                    <p
+                      onClick={() => handleOption(label)}
+                      className={`${options ? 'flex justify-between' : 'flex flex-start'} dark:text-slate-50`}
+                    >
+                      {label}
+                    </p>
                     {options && <ChevronRightIcon className='h-4 w-4' />}
-                  </p>
+                  </div>
                   {activeLinkMobile === category && options && (
-                    <div className='relative bg-white opacity-95 md:mt-4 hover-duration-500'>
+                    <div className='relative bg-white dark:bg-slate-700 opacity-95 md:mt-4 hover-duration-500'>
                       <ul
-                        className='mt-2 rounded w-36 z-50'
+                        className='mt-2 rounded w-full z-50'
                         onClick={() => handleMouseEnter(category)}
                       >
                         {renderOptions(options, category)}
@@ -164,6 +172,9 @@ const Submenu = () => {
             </ul>
           </section>)}
       </div>
+      {menuMobile && (
+        <div className='z-40 absolute top-12 w-full h-screen bg-black opacity-50' />
+      )}
     </div>
   )
 }
