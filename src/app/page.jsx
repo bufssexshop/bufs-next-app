@@ -6,12 +6,20 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import { keepServerAlive } from '@/helpers/keepServerAlive'
 import useResponsive from '@/hooks/useResponsive'
 import InputText from '@/components/InputText'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
+const backgroundImages = {
+  desktop: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691452375/backgrounds/pexels-bedbible-com-11393547_1920_cojbkd.jpg',
+  mobile: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1687658465/backgrounds/background1_ke0jnm.jpg',
+  desktopDark: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691453329/backgrounds/pexels-alexander-krivitskiy-10970728_icokfm.jpg',
+  mobileDark: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691453329/backgrounds/pexels-alexander-krivitskiy-10970728_icokfm.jpg'
+}
 
 const specialElite = SpecialElite({ weight: '400', subsets: ['latin'] })
 
 const Home = () => {
   const { isMobile } = useResponsive()
+  const [backgroundImage, setBackgroundImage] = useState(backgroundImages.desktop)
 
   useEffect(() => {
     const intervalTime = 5 * 60 * 1000
@@ -25,15 +33,21 @@ const Home = () => {
     }
   }, [])
 
-  const backgroundMobile = 'https://res.cloudinary.com/dsykiysl8/image/upload/v1687658465/backgrounds/background1_ke0jnm.jpg'
-  const backgroundDesktop = 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691452375/backgrounds/pexels-bedbible-com-11393547_1920_cojbkd.jpg'
-  const backgroundDesktopDarkMode = 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691453329/backgrounds/pexels-alexander-krivitskiy-10970728_icokfm.jpg'
+  const getBackgroundImage = () => {
+    const mode = localStorage.getItem('theme')
+    if (!isMobile && mode === 'dark') setBackgroundImage(backgroundImages.desktopDark)
+    if (!isMobile && mode !== 'dark') setBackgroundImage(backgroundImages.desktop)
+    if (isMobile && mode === 'dark') setBackgroundImage(backgroundImages.mobileDark)
+    if (isMobile && mode !== 'dark') setBackgroundImage(backgroundImages.mobile)
+  }
+
+  window.addEventListener('changeMode', getBackgroundImage)
 
   return (
     <>
       <div className='relative h-screen'>
         <Image
-          src={isMobile ? backgroundMobile : backgroundDesktopDarkMode || backgroundDesktop || backgroundDesktopDarkMode}
+          src={backgroundImage}
           alt='Background'
           fill
           style={{

@@ -82,7 +82,10 @@ const Navbar = () => {
     if (theme === 'dark') element.classList.add(theme)
     if (theme === 'light') element.classList.remove('dark')
 
-    if (typeof window !== 'undefined' && window.localStorage) localStorage.setItem('theme', theme)
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('theme', theme)
+      window.dispatchEvent(new Event('changeMode'))
+    }
   }, [theme])
 
   return (

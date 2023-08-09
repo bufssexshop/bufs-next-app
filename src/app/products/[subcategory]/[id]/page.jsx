@@ -11,6 +11,7 @@ import Loader from '@/components/Loader'
 import Button from '@/components/Button'
 import Image from 'next/image'
 import { camelCaseToNormal } from '@/helpers/strings'
+import useResponsive from '@/hooks/useResponsive'
 
 const ShowProductDetails = ({ details }) => {
   const sanitizedHTML = details
@@ -22,6 +23,7 @@ const ShowProductDetails = ({ details }) => {
 
 const ProductDetails = ({ params }) => {
   const { id } = params
+  const { isMobile } = useResponsive()
   const [count, setCount] = useState(1)
   const [isHovering, setIsHovering] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -60,10 +62,10 @@ const ProductDetails = ({ params }) => {
   })
 
   return (
-    <section className='px-20 py-14 flex flex-col gap-8'>
-      <section className='flex gap-8'>
+    <section className='px-20 xs:px-10 py-14 flex flex-col gap-8'>
+      <section className='flex xs:flex-col gap-8'>
         <div
-          className='relative w-[402px] h-[402px] border bg-white border-slate-300 cursor-zoom-in dark:rounded-lg dark:truncate duration-500'
+          className='relative w-[402px] xs:w-full h-[402px] xs:h-[250px] border bg-white border-slate-300 cursor-zoom-in dark:rounded-lg dark:truncate duration-500'
           onMouseMove={handleMouseMove}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -80,7 +82,7 @@ const ProductDetails = ({ params }) => {
           />
         </div>
 
-        {isHovering && (
+        {(isHovering && !isMobile) && (
           <div
             className='absolute right-5 w-[450px] h-[450px] border border-slate-300'
             style={{
@@ -139,6 +141,15 @@ const ProductDetails = ({ params }) => {
               <p className='details-product-price-after dark:text-slate-50 mt-4'>$ {formatterPeso.format(data.precio)} COP</p>
               )}
 
+          <section className='mt-8 flex gap-8 md:hidden'>
+            <section className='flex items-center gap-4'>
+              <Button disabled={!data.disponible} className='p-2' onClick={handleRemovetems} label='-' variant='secondary' />
+              <p className='text-slate-500 dark:text-slate-50'>{data.disponible ? count : 0}</p>
+              <Button disabled={!data.disponible} onClick={handleAddItems} label='+' variant='secondary' />
+            </section>
+            <Button disabled={!data.disponible} icon={<ShoppingCartIcon className='h-6 w-6 text-slate-50' />} label='Agregar al carrito' />
+          </section>
+
           {/* AVAILABLE */}
           <p className={`mt-5 text-sm ${data.disponible ? 'text-green-700 dark:text-darkPink' : 'text-red-600 dark:text-red-400'}`}>
             {data.disponible ? 'Disponible' : 'No disponible'}
@@ -158,8 +169,8 @@ const ProductDetails = ({ params }) => {
             Todos los articulos se envian discretamente en un embalaje sencillo, sin marcar ninguna palabra sinonimo de "actividad sexual"
           </p>
 
-          {/* BUTTONS */}
-          <section className='mt-8 flex gap-8'>
+          {/* BUTTONS DESKTOP */}
+          <section className='mt-8 flex gap-8 xs:hidden'>
             <section className='flex items-center gap-4'>
               <Button disabled={!data.disponible} className='p-2' onClick={handleRemovetems} label='-' variant='secondary' />
               <p className='text-slate-500 dark:text-slate-50'>{data.disponible ? count : 0}</p>
