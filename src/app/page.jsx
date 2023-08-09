@@ -1,12 +1,12 @@
 'use client'
 
-import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { Special_Elite as SpecialElite } from 'next/font/google'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import { keepServerAlive } from '@/helpers/keepServerAlive'
 import useResponsive from '@/hooks/useResponsive'
 import InputText from '@/components/InputText'
-import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 const backgroundImages = {
   desktop: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691452375/backgrounds/pexels-bedbible-com-11393547_1920_cojbkd.jpg',
@@ -41,7 +41,14 @@ const Home = () => {
     if (isMobile && mode !== 'dark') setBackgroundImage(backgroundImages.mobile)
   }
 
-  window.addEventListener('changeMode', getBackgroundImage)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('changeMode', getBackgroundImage)
+      return () => {
+        window.removeEventListener('changeMode', getBackgroundImage)
+      }
+    }
+  }, [])
 
   return (
     <>
