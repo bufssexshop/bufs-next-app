@@ -23,7 +23,7 @@ export default function RootLayout ({ children }) {
             <Navbar />
             <Submenu />
           </header>
-          <section className='mt-[196px] xs:mt-[148px]'>
+          <section className='mt-[196px] xs:mt-[148px] dark:bg-slate-800 duration-700'>
             {children}
           </section>
           <Footer />

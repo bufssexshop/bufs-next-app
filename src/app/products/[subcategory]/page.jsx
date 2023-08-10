@@ -32,7 +32,7 @@ const Products = ({ params }) => {
   }
 
   return (
-    <main className='w-full box-border dark:bg-slate-800'>
+    <main className='w-full box-border'>
       <section className='py-14 xs:py-4 px-20'>
         {error && <p>Hubo un error, sorry</p>}
 

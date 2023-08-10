@@ -83,7 +83,7 @@ const Submenu = () => {
       return (
         <div key={option.label} className='w-full'>
           <li
-            className='text-slate-500 dark:text-slate-50 text-left cursor-pointer py-1 hover:text-customPink dark:hover:text-customPink xs:pl-4 xs:text-xs'
+            className='text-slate-500 dark:text-slate-50 text-left cursor-pointer py-1 xs:py-2 hover:text-customPink dark:hover:text-customPink xs:pl-4 xs:text-xs'
             key={option}
             onClick={() => {
               handleMouseEnter(route)
@@ -146,7 +146,7 @@ const Submenu = () => {
                 <li
                   key={id}
                   onClick={() => setActiveLinkMobile(category)}
-                  className='text-slate-500 text-left text-sm my-1 lg:text-lg w-full p-1'
+                  className='text-slate-500 text-left text-sm my-2 pl-4 lg:text-lg w-full p-1'
                 >
                   <div className='flex justify-between'>
                     <p
