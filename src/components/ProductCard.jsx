@@ -21,7 +21,7 @@ const ProductCard = ({ product }) => {
         <div className='flex justify-center min-h-[180px] max-h-[180px] w-full'>
           <Image
             src={product.image}
-            alt={product.name}
+            alt={product.nombre}
             quality={100}
             width={180}
             height={180}

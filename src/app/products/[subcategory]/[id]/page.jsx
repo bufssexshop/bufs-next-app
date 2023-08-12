@@ -52,7 +52,13 @@ const ProductDetails = ({ params }) => {
 
   const { data, isLoading, isFetching } = productQuery || {}
 
-  if (!data || isLoading || isFetching) return <Loader />
+  if (!data || isLoading || isFetching) {
+    return (
+      <div className='w-full h-96 xs:h-72 bg-white dark:bg-slate-800 flex justify-center items-center'>
+        <Loader />
+      </div>
+    )
+  }
 
   const zoomAreaSize = 200
 

@@ -99,7 +99,7 @@ const Submenu = () => {
   }
 
   return (
-    <div className='z-40 fixed bg-white dark:bg-slate-700 py-2 top-[148px] xs:top-[100px] xs:items-start flex md:items-center w-full lg:px-4 justify-between shadow-md duration-700'>
+    <div onMouseLeave={handleMouseLeave} className='z-40 fixed bg-white dark:bg-slate-700 py-2 top-[148px] xs:top-[100px] xs:items-start flex md:items-center w-full lg:px-4 justify-between shadow-md duration-700'>
       <section className='xs:hidden flex box-border w-full'>
         <ul className='w-full flex justify-center gap-12'>
           {submenuItems.map(({ id, label, category, options }) => (
