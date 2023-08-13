@@ -10,7 +10,7 @@ import Login from './Login'
 // ICONS
 import {
   ShoppingCartIcon, Bars4Icon, XMarkIcon, UserCircleIcon, MoonIcon,
-  HomeIcon, ShoppingBagIcon, TagIcon, PhotoIcon, PhoneIcon, SunIcon
+  HomeIcon, TagIcon, PhotoIcon, PhoneIcon, SunIcon
 } from '@heroicons/react/24/solid'
 import ClickAwayListener from './ClickAwayListener'
 import IconButton from './IconButton'
@@ -21,11 +21,6 @@ const links = [{
   label: 'Inicio',
   route: '/',
   icon: (color) => <HomeIcon className={`${color} h-6 w-6 text-gray-500`} />
-}, {
-  id: 'STumFIla',
-  label: 'Productos',
-  route: '/products/vibradores',
-  icon: (color) => <ShoppingBagIcon className={`${color} h-6 w-6 text-gray-500`} />
 }, {
   id: 'oWAyBREm',
   label: 'Promociones',
@@ -104,7 +99,7 @@ const Navbar = () => {
 
         {/* Desktop menu items - links */}
         <section className='col-span-6 xs:hidden md:block'>
-          <ul className='flex justify-around items-center h-full'>
+          <ul className='flex justify-center gap-24 items-center h-full'>
             {links.map(({ label, route }) => (
               <li className={`${pathname === route ? 'text-customPink' : theme === 'light' ? 'text-slate-500' : 'text-slate-50'} duration-0 hover:text-customPink dark:hover:text-customPink hover:duration-500`} key={route}>
                 <Link href={route}>{label}</Link>
