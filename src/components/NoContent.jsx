@@ -9,8 +9,8 @@ const NoContent = () => {
       {/* Div de los párrafos */}
       <div className='sm:w-1/2 px-8 py-2 md:p-14'>
         <p className='text-customPink text-base font-bold my-3 md:px-6'>¡Lo sentimos!</p>
-        <p className='text-2xl my-3 md:text-4xl md:px-6'>En Construcción</p>
-        <p className='text-center text-justify my-4 md:px-6'>
+        <p className='text-slate-700 dark:text-slate-50 text-2xl my-3 md:text-4xl md:px-6'>En Construcción</p>
+        <p className='text-slate-700 dark:text-slate-50 text-center text-justify my-4 md:px-6'>
           Actualmente, esta sección del sitio web se encuentra en desarrollo.
           Lamentamos los inconvenientes y te invitamos a que navegues por otras secciones.
           Esta parte estará lista muy pronto.
