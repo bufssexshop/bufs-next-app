@@ -109,26 +109,28 @@ const Home = () => {
           </div>
         </section>
         {/* LENCERY PRODUCTS */}
-        <section className='w-full bg-black h-80'>
+        {/* <section className='w-full bg-black h-80'>
           <p>Holi</p>
-        </section>
+        </section> */}
 
         {/* NUMBER 2 */}
         <section className='mt-52 w-full flex xs:flex-col'>
           <div className='relative group md:w-2/4'>
-            <Image
-              src='/addtwo.jpg'
-              alt='adds one'
-              width={900}
-              height={900}
-              priority
-              className='rounded-lg'
-            />
-            <div className='absolute px-4 rounded-lg flex justify-center items-center bottom-0 w-full h-full text-center bg-slate-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
-              <p className='xs:text-xl text-6xl text-slate-800 dark:text-darkPink'>
-                Juguetes
-              </p>
-            </div>
+            <Link href='products/vibradores'>
+              <Image
+                src='/addtwo.jpg'
+                alt='adds one'
+                width={900}
+                height={900}
+                priority
+                className='rounded-lg'
+              />
+              <div className='absolute px-4 rounded-lg flex justify-center items-center bottom-0 w-full h-full text-center bg-slate-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+                <p className='xs:text-xl text-6xl text-slate-800 dark:text-darkPink'>
+                  Juguetes
+                </p>
+              </div>
+            </Link>
           </div>
           <div className='flex flex-col justify-center items-center md:w-2/4 xs:mt-8'>
             <p className='text-slate-500 dark:text-slate-50 text-6xl xs:text-3xl md:text-right xs:text-center pl-5'>
@@ -141,8 +143,10 @@ const Home = () => {
         </section>
         {/* HERE SHOULD BE SOME PRODUCTS LENCERY */}
 
-        <div className='w-full my-20 flex justify-center'>
-          <p className='w-3/4 text-center text-customPink text-7xl xs:text-3xl'>!Explora, juega y disfruta¡</p>
+        <div className='w-full md:my-20 flex justify-center'>
+          <p className='w-3/4 text-center text-customPink dark:text-darkPink text-7xl xs:text-3xl'>
+            !Explora, juega y disfruta¡
+          </p>
         </div>
 
         {/* JUMBOTRON OF 3 IMAGES */}
