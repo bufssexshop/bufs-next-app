@@ -86,7 +86,7 @@ const Navbar = () => {
   return (
     <>
       <nav className={`z-50 box-border fixed top-9 w-full grid grid-flow-row-dense grid-cols-12 grid-rows-12  xs:${showMenu ? 'h-60' : 'h-16'} md:h-28 py-2 shadow-sm dark:shadow-slate-600 bg-white dark:bg-slate-700 duration-700`}>
-        <section className='xs:col-span-8 xs:ml-8 md:col-span-3 flex  xs:justify-start md:justify-center items-center'>
+        <section className='xs:col-span-8 xs:ml-8 md:col-span-2 lg:col-span-3 flex xs:justify-start md:justify-center items-center'>
           <Image
             src='/bufssexshoppink.png'
             priority
@@ -99,7 +99,7 @@ const Navbar = () => {
 
         {/* Desktop menu items - links */}
         <section className='col-span-6 xs:hidden md:block'>
-          <ul className='flex justify-center gap-24 items-center h-full'>
+          <ul className='flex justify-center gap-24 sm:gap-12 items-center h-full'>
             {links.map(({ label, route }) => (
               <li className={`${pathname === route ? 'text-customPink' : theme === 'light' ? 'text-slate-500' : 'text-slate-50'} duration-0 hover:text-customPink dark:hover:text-customPink hover:duration-500`} key={route}>
                 <Link href={route}>{label}</Link>
@@ -148,9 +148,9 @@ const Navbar = () => {
           </ClickAwayListener>
         </section>
 
-        <section className='xs:hidden md:flex col-span-3 h-full justify-center items-center'>
+        <section className='xs:hidden md:flex lg:col-span-3 md:col-span-4 md:gap-3 h-full justify-center items-center'>
           <div className='flex lg:w-1/2 items-center justify-around'>
-            <ShoppingCartIcon className='h-6 w-6 text-gray-500 dark:text-slate-50' />
+            <ShoppingCartIcon className='h-6 w-6 text-gray-500 dark:text-slate-50 md:mr-6' />
             <Button onClick={handleShowLogin} label='Iniciar sesion' />
           </div>
 

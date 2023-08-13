@@ -75,7 +75,7 @@ const Home = () => {
       <section className='md:mt-60 xs:mt-20 pb-28 md:px-28 flex flex-col gap-36'>
 
         <div className='w-full flex justify-center'>
-          <p className='w-2/4 xs:w-3/4 text-center text-customPink dark:text-darkPink text-7xl xs:text-3xl'>
+          <p className='lg:w-2/4 xs:w-3/4 sm:w-full text-center text-customPink dark:text-darkPink text-7xl xs:text-3xl sm:text-6xl'>
             Placer sin límites: Productos eróticos para todas tus fantasías.
           </p>
         </div>
