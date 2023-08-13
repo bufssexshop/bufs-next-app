@@ -93,7 +93,7 @@ const Home = () => {
           <div className='relative group md:w-2/4 xs:mt-8'>
             <Link href='products/lenceria'>
               <Image
-                src='/addone.jpg'
+                src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691900050/images/addone_kown2x.jpg'
                 alt='adds one'
                 width={900}
                 height={900}
@@ -118,7 +118,7 @@ const Home = () => {
           <div className='relative group md:w-2/4'>
             <Link href='products/vibradores'>
               <Image
-                src='/addtwo.jpg'
+                src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691900049/images/addtwo_bsofsd.jpg'
                 alt='adds one'
                 width={900}
                 height={900}
@@ -153,7 +153,7 @@ const Home = () => {
         <section className='w-full flex'>
           <div className='relative group'>
             <Image
-              src='/add5.jpg'
+              src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691900051/images/add5_a7cfxk.jpg'
               alt='adds one'
               width={900}
               height={900}
@@ -168,7 +168,7 @@ const Home = () => {
           </div>
           <div className='relative group'>
             <Image
-              src='/add3.jpg'
+              src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691900049/images/add3_uwbjyz.jpg'
               alt='adds one'
               width={900}
               height={900}
@@ -182,7 +182,7 @@ const Home = () => {
           </div>
           <div className='relative group'>
             <Image
-              src='/add4.jpg'
+              src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691900049/images/add4_mtssps.jpg'
               alt='adds one'
               width={900}
               height={900}
