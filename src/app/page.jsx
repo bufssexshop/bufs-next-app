@@ -103,7 +103,6 @@ const Home = () => {
           <div className='flex flex-col justify-center items-center xs:w-full lg:w-2/4 xs:text-center'>
             <p
               data-aos='fade-right'
-              data-aos-delay='200'
               data-aos-duration='600'
               className='
                 text-slate-500 dark:text-slate-50
@@ -117,7 +116,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div data-aos='fade-left' data-aos-delay='200' data-aos-duration='600' className='relative group xs:w-full lg:w-2/4 xs:mt-8'>
+          <div data-aos='fade-left' data-aos-duration='600' className='relative group xs:w-full lg:w-2/4 xs:mt-8'>
             <Link href='products/lenceria'>
               <Image
                 src={images.lenceryImage}
@@ -143,7 +142,7 @@ const Home = () => {
 
         {/* NUMBER 2 */}
         <section className='mt-52 w-full flex xs:flex-col'>
-          <div data-aos='fade-right' data-aos-delay='100' data-aos-duration='600' className='relative group xs:w-full lg:w-2/4'>
+          <div data-aos='fade-right' data-aos-duration='600' className='relative group xs:w-full lg:w-2/4'>
             <Link href='products/vibradores'>
               <Image
                 src={images.toysImage}
@@ -161,7 +160,7 @@ const Home = () => {
             </Link>
           </div>
 
-          <div data-aos='fade-left' data-aos-delay='100' data-aos-duration='600' className='flex flex-col justify-center items-center xs:w-full lg:w-2/4 xs:mt-8'>
+          <div data-aos='fade-left' data-aos-duration='600' className='flex flex-col justify-center items-center xs:w-full lg:w-2/4 xs:mt-8'>
             <p
               className='
                 text-slate-500 dark:text-slate-50
