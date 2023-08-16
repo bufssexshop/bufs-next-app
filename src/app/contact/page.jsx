@@ -1,6 +1,8 @@
+import NoContent from '@/components/NoContent'
+
 const Contact = () => {
   return (
-    <h1>Contact</h1>
+    <NoContent />
   )
 }
 
