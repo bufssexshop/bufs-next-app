@@ -7,18 +7,31 @@ import { keepServerAlive } from '@/helpers/keepServerAlive'
 import InputText from '@/components/InputText'
 import Image from 'next/image'
 import Link from 'next/link'
+import AOS from 'aos'
 
-const backgroundImages = {
+const images = {
   light: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691452375/backgrounds/pexels-bedbible-com-11393547_1920_cojbkd.jpg',
-  dark: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691453329/backgrounds/pexels-alexander-krivitskiy-10970728_icokfm.jpg'
+  dark: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691453329/backgrounds/pexels-alexander-krivitskiy-10970728_icokfm.jpg',
+  yellowImage: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691900051/images/add5_a7cfxk.jpg',
+  pinkImage: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691900049/images/add3_uwbjyz.jpg',
+  purpleImage: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691900049/images/add4_mtssps.jpg',
+  lenceryImage: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691900050/images/addone_kown2x.jpg',
+  toysImage: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691900049/images/addtwo_bsofsd.jpg'
 }
+
+const imagesParagraphStyles = `
+w-full h-1/3 px-4 absolute bottom-0 rounded-b-lg
+flex justify-center items-center text-center
+bg-slate-50/60 transition-opacity duration-300
+opacity-0 group-hover:opacity-100`
 
 const specialElite = SpecialElite({ weight: '400', subsets: ['latin'] })
 
 const Home = () => {
-  const [backgroundImage, setBackgroundImage] = useState(backgroundImages.light)
+  const [backgroundImage, setBackgroundImage] = useState(images.light)
 
   useEffect(() => {
+    AOS.init()
     const intervalTime = 5 * 60 * 1000
 
     const interval = setInterval(() => {
@@ -32,8 +45,8 @@ const Home = () => {
 
   const getBackgroundImage = () => {
     const mode = localStorage.getItem('theme')
-    if (mode === 'dark') setBackgroundImage(backgroundImages.dark)
-    else setBackgroundImage(backgroundImages.light)
+    if (mode === 'dark') setBackgroundImage(images.dark)
+    else setBackgroundImage(images.light)
   }
 
   useEffect(() => {
@@ -74,7 +87,7 @@ const Home = () => {
       {/* ADDS */}
       <section className='md:mt-60 xs:mt-20 pb-28 md:px-28 flex flex-col gap-36'>
 
-        <div className='w-full flex justify-center'>
+        <div data-aos='fade-up' data-aos-duration='1000' className='w-full flex justify-center'>
           <p className='lg:w-2/4 xs:w-3/4 sm:w-full text-center text-customPink dark:text-darkPink text-7xl xs:text-3xl sm:text-6xl'>
             Placer sin límites: Productos eróticos para todas tus fantasías.
           </p>
@@ -82,18 +95,27 @@ const Home = () => {
 
         {/* NUMBER 1 */}
         <section className='w-full flex xs:flex-col'>
-          <div className='flex flex-col justify-center items-center md:w-2/4 xs:text-center'>
-            <p className='text-slate-500 dark:text-slate-50 text-6xl xs:text-3xl'>
+          <div className='flex flex-col justify-center items-center lg:w-2/4 xs:text-center'>
+            <p
+              data-aos='fade-right'
+              data-aos-delay='200'
+              data-aos-duration='600'
+              className='
+                text-slate-500 dark:text-slate-50
+                xs:text-3xl xl:text-4xl 2xl:text-6xl
+              '
+            >
               Descubre tu lado más sensual:
               <span className='ml-2 text-customPink dark:text-darkPink'>
                 explora nuestra colección íntima.
               </span>
             </p>
           </div>
-          <div className='relative group md:w-2/4 xs:mt-8'>
+
+          <div data-aos='fade-left' data-aos-delay='200' data-aos-duration='600' className='relative group lg:w-2/4 xs:mt-8'>
             <Link href='products/lenceria'>
               <Image
-                src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691900050/images/addone_kown2x.jpg'
+                src={images.lenceryImage}
                 alt='adds one'
                 width={900}
                 height={900}
@@ -109,16 +131,17 @@ const Home = () => {
           </div>
         </section>
         {/* LENCERY PRODUCTS */}
+
         {/* <section className='w-full bg-black h-80'>
           <p>Holi</p>
         </section> */}
 
         {/* NUMBER 2 */}
         <section className='mt-52 w-full flex xs:flex-col'>
-          <div className='relative group md:w-2/4'>
+          <div data-aos='fade-right' data-aos-delay='100' data-aos-duration='600' className='relative group md:w-2/4'>
             <Link href='products/vibradores'>
               <Image
-                src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691900049/images/addtwo_bsofsd.jpg'
+                src={images.toysImage}
                 alt='adds one'
                 width={900}
                 height={900}
@@ -132,8 +155,15 @@ const Home = () => {
               </div>
             </Link>
           </div>
-          <div className='flex flex-col justify-center items-center md:w-2/4 xs:mt-8'>
-            <p className='text-slate-500 dark:text-slate-50 text-6xl xs:text-3xl md:text-right xs:text-center pl-5'>
+
+          <div data-aos='fade-left' data-aos-delay='100' data-aos-duration='600' className='flex flex-col justify-center items-center md:w-2/4 xs:mt-8'>
+            <p
+              className='
+                text-slate-500 dark:text-slate-50
+                xs:text-center md:text-right xs:text-3xl xl:text-4xl 2xl:text-6xl
+                pl-5
+              '
+            >
               Descubre nuevas sensaciones:
               <span className='ml-2 text-customPink dark:text-darkPink'>
                 Productos íntimos para todos los gustos.
@@ -143,7 +173,7 @@ const Home = () => {
         </section>
         {/* HERE SHOULD BE SOME PRODUCTS LENCERY */}
 
-        <div className='w-full md:my-20 flex justify-center'>
+        <div data-aos='fade-up' data-aos-duration='1000' className='w-full md:my-20 flex justify-center'>
           <p className='w-3/4 text-center text-customPink dark:text-darkPink text-7xl xs:text-3xl'>
             !Explora, juega y disfruta¡
           </p>
@@ -151,45 +181,47 @@ const Home = () => {
 
         {/* JUMBOTRON OF 3 IMAGES */}
         <section className='w-full flex'>
-          <div className='relative group'>
+          <div data-aos='fade-right' data-aos-duration='600' className='relative group'>
             <Image
-              src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691900051/images/add5_a7cfxk.jpg'
+              src={images.yellowImage}
               alt='adds one'
               width={900}
               height={900}
               priority
               className='rounded-l-lg'
             />
-            <div className='absolute px-4 rounded-b-lg flex flex-col justify-center items-center bottom-0 w-full h-1/3 text-center bg-slate-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+            <div className={imagesParagraphStyles}>
               <p className='xs:text-xl text-6xl text-slate-700 dark:text-darkPink'>
                 Intimidad & diversión
               </p>
             </div>
           </div>
-          <div className='relative group'>
+          <div data-aos='fade-up' data-aos-duration='600' className='relative group'>
             <Image
-              src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691900049/images/add3_uwbjyz.jpg'
+              src={images.pinkImage}
               alt='adds one'
               width={900}
               height={900}
               priority
             />
-            <div className='absolute px-4 rounded-b-lg flex justify-center items-center bottom-0 w-full h-1/3 text-center bg-slate-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+            <div className={imagesParagraphStyles}>
               <p className='xs:text-xl text-6xl text-slate-700 dark:text-darkPink'>
                 Encuentra tu felicidad íntima
               </p>
             </div>
           </div>
-          <div className='relative group'>
+          <div data-aos='fade-left' data-aos-duration='600' className='relative group'>
             <Image
-              src='https://res.cloudinary.com/dsykiysl8/image/upload/v1691900049/images/add4_mtssps.jpg'
+              src={images.purpleImage}
               alt='adds one'
               width={900}
               height={900}
               priority
               className='rounded-r-lg'
             />
-            <div className='absolute px-4 rounded-b-lg flex justify-center items-center bottom-0 w-full h-1/3 text-center bg-slate-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+            <div
+              className={imagesParagraphStyles}
+            >
               <p className='xs:text-xl text-6xl text-slate-700 dark:text-darkPink'>
                 Explora tus deseos
               </p>

@@ -1,4 +1,5 @@
 import './globals.css'
+import 'aos/dist/aos.css'
 import Providers from '@/utils/reactQueryProvider'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar.jsx'
