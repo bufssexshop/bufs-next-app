@@ -90,10 +90,10 @@ const Home = () => {
       </div>
 
       {/* ADDS */}
-      <section className='md:mt-60 xs:mt-20 pb-28 md:px-28 flex flex-col gap-36'>
+      <section className='md:mt-60 xs:mt-20 pb-28 md:px-28 flex flex-col gap-36 overflow-hidden'>
 
         <div data-aos='fade-up' data-aos-duration='1000' className='w-full flex justify-center'>
-          <p className='lg:w-2/4 xs:w-3/4 sm:w-full text-center text-customPink dark:text-darkPink text-7xl xs:text-3xl sm:text-6xl'>
+          <p className='lg:w-2/4 xs:w-3/4 sm:w-full text-center text-customPink dark:text-darkPink xs:text-3xl sm:text-6xl md:text-5xl text-7xl '>
             Placer sin límites: Productos eróticos para todas tus fantasías.
           </p>
         </div>
@@ -107,7 +107,7 @@ const Home = () => {
               data-aos-duration='600'
               className='
                 text-slate-500 dark:text-slate-50
-                xs:text-3xl xl:text-4xl 2xl:text-6xl
+                xs:text-3xl md:text-3xl xl:text-4xl 2xl:text-6xl
               '
             >
               Descubre tu lado más sensual:
@@ -165,7 +165,7 @@ const Home = () => {
             <p
               className='
                 text-slate-500 dark:text-slate-50
-                xs:text-center md:text-right xs:text-3xl xl:text-4xl 2xl:text-6xl
+                xs:text-center md:text-right xs:text-3xl md:text-3xl xl:text-4xl 2xl:text-6xl
                 pl-5
               '
             >
@@ -179,7 +179,7 @@ const Home = () => {
         {/* HERE SHOULD BE SOME PRODUCTS LENCERY */}
 
         <div data-aos='fade-up' data-aos-duration='1000' className='w-full md:my-20 flex justify-center'>
-          <p className='w-3/4 text-center text-customPink dark:text-darkPink xs:text-3xl lg:text-5xl 2xl:text-7xl'>
+          <p className='w-3/4 text-center text-customPink dark:text-darkPink xs:text-3xl md:text-5xl lg:text-5xl 2xl:text-7xl'>
             !Explora, juega y disfruta¡
           </p>
         </div>
