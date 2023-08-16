@@ -20,10 +20,15 @@ const images = {
 }
 
 const imagesParagraphStyles = `
-w-full h-1/3 px-4 absolute bottom-0 rounded-b-lg
-flex justify-center items-center text-center
-bg-slate-50/60 transition-opacity duration-300
-opacity-0 group-hover:opacity-100`
+  w-full h-1/3 px-4 absolute bottom-0 rounded-b-lg
+  flex justify-center items-center text-center
+  bg-slate-50/60 transition-opacity duration-300
+  opacity-0 group-hover:opacity-100
+`
+
+const groupLabelsStyle = `
+  xs:text-xl xl:text-4xl 2xl:text-6xl text-slate-700 dark:text-darkPink
+`
 
 const specialElite = SpecialElite({ weight: '400', subsets: ['latin'] })
 
@@ -85,24 +90,24 @@ const Home = () => {
       </div>
 
       {/* ADDS */}
-      <section className='md:mt-60 xs:mt-20 pb-28 md:px-28 flex flex-col gap-36'>
+      <section className='md:mt-60 xs:mt-20 pb-28 md:px-28 flex flex-col gap-36 overflow-hidden'>
 
         <div data-aos='fade-up' data-aos-duration='1000' className='w-full flex justify-center'>
-          <p className='lg:w-2/4 xs:w-3/4 sm:w-full text-center text-customPink dark:text-darkPink text-7xl xs:text-3xl sm:text-6xl'>
+          <p className='lg:w-2/4 xs:w-3/4 sm:w-full text-center text-customPink dark:text-darkPink xs:text-3xl sm:text-6xl md:text-5xl text-7xl '>
             Placer sin límites: Productos eróticos para todas tus fantasías.
           </p>
         </div>
 
         {/* NUMBER 1 */}
         <section className='w-full flex xs:flex-col'>
-          <div className='flex flex-col justify-center items-center lg:w-2/4 xs:text-center'>
+          <div className='flex flex-col justify-center items-center xs:w-full lg:w-2/4 xs:text-center'>
             <p
               data-aos='fade-right'
               data-aos-delay='200'
               data-aos-duration='600'
               className='
                 text-slate-500 dark:text-slate-50
-                xs:text-3xl xl:text-4xl 2xl:text-6xl
+                xs:text-3xl md:text-3xl xl:text-4xl 2xl:text-6xl
               '
             >
               Descubre tu lado más sensual:
@@ -112,7 +117,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div data-aos='fade-left' data-aos-delay='200' data-aos-duration='600' className='relative group lg:w-2/4 xs:mt-8'>
+          <div data-aos='fade-left' data-aos-delay='200' data-aos-duration='600' className='relative group xs:w-full lg:w-2/4 xs:mt-8'>
             <Link href='products/lenceria'>
               <Image
                 src={images.lenceryImage}
@@ -138,7 +143,7 @@ const Home = () => {
 
         {/* NUMBER 2 */}
         <section className='mt-52 w-full flex xs:flex-col'>
-          <div data-aos='fade-right' data-aos-delay='100' data-aos-duration='600' className='relative group md:w-2/4'>
+          <div data-aos='fade-right' data-aos-delay='100' data-aos-duration='600' className='relative group xs:w-full lg:w-2/4'>
             <Link href='products/vibradores'>
               <Image
                 src={images.toysImage}
@@ -156,11 +161,11 @@ const Home = () => {
             </Link>
           </div>
 
-          <div data-aos='fade-left' data-aos-delay='100' data-aos-duration='600' className='flex flex-col justify-center items-center md:w-2/4 xs:mt-8'>
+          <div data-aos='fade-left' data-aos-delay='100' data-aos-duration='600' className='flex flex-col justify-center items-center xs:w-full lg:w-2/4 xs:mt-8'>
             <p
               className='
                 text-slate-500 dark:text-slate-50
-                xs:text-center md:text-right xs:text-3xl xl:text-4xl 2xl:text-6xl
+                xs:text-center md:text-right xs:text-3xl md:text-3xl xl:text-4xl 2xl:text-6xl
                 pl-5
               '
             >
@@ -174,7 +179,7 @@ const Home = () => {
         {/* HERE SHOULD BE SOME PRODUCTS LENCERY */}
 
         <div data-aos='fade-up' data-aos-duration='1000' className='w-full md:my-20 flex justify-center'>
-          <p className='w-3/4 text-center text-customPink dark:text-darkPink text-7xl xs:text-3xl'>
+          <p className='w-3/4 text-center text-customPink dark:text-darkPink xs:text-3xl md:text-5xl lg:text-5xl 2xl:text-7xl'>
             !Explora, juega y disfruta¡
           </p>
         </div>
@@ -191,7 +196,7 @@ const Home = () => {
               className='rounded-l-lg'
             />
             <div className={imagesParagraphStyles}>
-              <p className='xs:text-xl text-6xl text-slate-700 dark:text-darkPink'>
+              <p className={groupLabelsStyle}>
                 Intimidad & diversión
               </p>
             </div>
@@ -205,7 +210,7 @@ const Home = () => {
               priority
             />
             <div className={imagesParagraphStyles}>
-              <p className='xs:text-xl text-6xl text-slate-700 dark:text-darkPink'>
+              <p className={groupLabelsStyle}>
                 Encuentra tu felicidad íntima
               </p>
             </div>
@@ -222,7 +227,7 @@ const Home = () => {
             <div
               className={imagesParagraphStyles}
             >
-              <p className='xs:text-xl text-6xl text-slate-700 dark:text-darkPink'>
+              <p className={groupLabelsStyle}>
                 Explora tus deseos
               </p>
             </div>
