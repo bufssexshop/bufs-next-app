@@ -25,8 +25,8 @@ const images = {
 }
 
 const responsive = {
-  0: { items: 1 },
-  568: { items: 2 },
+  0: { items: 2 },
+  568: { items: 3 },
   1024: { items: 4 },
   1536: { items: 6 }
 }
@@ -151,7 +151,7 @@ const Home = () => {
                 width={900}
                 height={900}
                 priority
-                className='rounded-lg'
+                className='md:rounded-lg'
               />
               <div className='absolute px-4 rounded-lg flex justify-center items-center bottom-0 w-full h-full text-center bg-slate-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                 <p className='xs:text-xl text-6xl text-slate-800 dark:text-darkPink'>
@@ -163,12 +163,12 @@ const Home = () => {
         </section>
 
         {/* LENCERY PRODUCTS */}
-        <article className='mt-20'>
+        <article className='mt-20 w-full xs:ml-2'>
           <AliceCarousel responsive={responsive} mouseTracking items={sliderLingerieTtems} />
         </article>
 
         {/* NUMBER 2 */}
-        <section className='mt-52 w-full flex xs:flex-col'>
+        <section className='xs:mt-20 lg:mt-52 w-full flex xs:flex-col'>
           <div data-aos='fade-right' data-aos-duration='600' className='relative group xs:w-full lg:w-2/4'>
             <Link href='products/vibradores'>
               <Image
@@ -177,7 +177,7 @@ const Home = () => {
                 width={900}
                 height={900}
                 priority
-                className='rounded-lg'
+                className='md:rounded-lg'
               />
               <div className='absolute px-4 rounded-lg flex justify-center items-center bottom-0 w-full h-full text-center bg-slate-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                 <p className='xs:text-xl text-6xl text-slate-800 dark:text-darkPink'>
@@ -203,12 +203,12 @@ const Home = () => {
           </div>
         </section>
 
-        {/* LENCERY PRODUCTS */}
-        <article className='mt-20'>
+        {/* VIBRATORS PRODUCTS */}
+        <article className='mt-20 w-full xs:ml-2'>
           <AliceCarousel responsive={responsive} mouseTracking items={sliderVibratorsTtems} />
         </article>
 
-        <div data-aos='fade-up' data-aos-duration='1000' className='w-full md:my-20 flex justify-center'>
+        <div data-aos='fade-up' data-aos-duration='1000' className='w-full md:my-20 flex justify-center xs:my-10'>
           <p className='w-3/4 text-center text-customPink dark:text-darkPink xs:text-3xl md:text-5xl lg:text-5xl 2xl:text-7xl'>
             !Explora, juega y disfruta¡
           </p>
@@ -223,7 +223,7 @@ const Home = () => {
               width={900}
               height={900}
               priority
-              className='rounded-l-lg'
+              className='md:rounded-l-lg'
             />
             <div className={imagesParagraphStyles}>
               <p className={groupLabelsStyle}>
@@ -252,7 +252,7 @@ const Home = () => {
               width={900}
               height={900}
               priority
-              className='rounded-r-lg'
+              className='md:rounded-r-lg'
             />
             <div
               className={imagesParagraphStyles}
