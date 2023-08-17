@@ -68,7 +68,8 @@ const ProductDetails = ({ params }) => {
   })
 
   return (
-    <section className='px-20 xs:px-10 py-14 flex flex-col gap-8'>
+    <section className='px-20 xs:px-10 flex flex-col gap-8'>
+      <p className='text-4xl text-slate-500 dark:text-slate-50 xs:text-center'>Detalles</p>
       <section className='flex xs:flex-col gap-8'>
         <div
           className='relative w-[402px] xs:w-full h-[402px] xs:h-[250px] border bg-white border-slate-300 cursor-zoom-in dark:rounded-lg dark:truncate duration-500'
