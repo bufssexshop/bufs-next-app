@@ -25,8 +25,8 @@ const images = {
 }
 
 const responsive = {
-  0: { items: 1 },
-  568: { items: 2 },
+  0: { items: 2 },
+  568: { items: 3 },
   1024: { items: 4 },
   1536: { items: 6 }
 }
@@ -163,12 +163,12 @@ const Home = () => {
         </section>
 
         {/* LENCERY PRODUCTS */}
-        <article className='mt-20'>
+        <article className='mt-20 w-full xs:ml-2'>
           <AliceCarousel responsive={responsive} mouseTracking items={sliderLingerieTtems} />
         </article>
 
         {/* NUMBER 2 */}
-        <section className='mt-52 w-full flex xs:flex-col'>
+        <section className='xs:mt-20 lg:mt-52 w-full flex xs:flex-col'>
           <div data-aos='fade-right' data-aos-duration='600' className='relative group xs:w-full lg:w-2/4'>
             <Link href='products/vibradores'>
               <Image
@@ -203,12 +203,12 @@ const Home = () => {
           </div>
         </section>
 
-        {/* LENCERY PRODUCTS */}
-        <article className='mt-20'>
+        {/* VIBRATORS PRODUCTS */}
+        <article className='mt-20 w-full xs:ml-2'>
           <AliceCarousel responsive={responsive} mouseTracking items={sliderVibratorsTtems} />
         </article>
 
-        <div data-aos='fade-up' data-aos-duration='1000' className='w-full md:my-20 flex justify-center'>
+        <div data-aos='fade-up' data-aos-duration='1000' className='w-full md:my-20 flex justify-center xs:my-10'>
           <p className='w-3/4 text-center text-customPink dark:text-darkPink xs:text-3xl md:text-5xl lg:text-5xl 2xl:text-7xl'>
             !Explora, juega y disfruta¡
           </p>

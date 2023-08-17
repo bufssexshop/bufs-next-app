@@ -100,11 +100,9 @@ const Products = ({ params }) => {
     return 0
   })
 
-  console.log('xxx sortedProducts: ', sortedProducts)
-
   return (
     <main className='w-full box-border'>
-      <section className='py-14 xs:py-4 px-20'>
+      <section>
         {error && <p>Hubo un error, sorry</p>}
 
         {sortedProducts.length > 0 && (
@@ -129,7 +127,7 @@ const Products = ({ params }) => {
               </select>
             </div>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8'>
+            <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8'>
               {sortedProducts.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
