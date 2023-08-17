@@ -151,7 +151,7 @@ const Home = () => {
                 width={900}
                 height={900}
                 priority
-                className='rounded-lg'
+                className='md:rounded-lg'
               />
               <div className='absolute px-4 rounded-lg flex justify-center items-center bottom-0 w-full h-full text-center bg-slate-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                 <p className='xs:text-xl text-6xl text-slate-800 dark:text-darkPink'>
@@ -177,7 +177,7 @@ const Home = () => {
                 width={900}
                 height={900}
                 priority
-                className='rounded-lg'
+                className='md:rounded-lg'
               />
               <div className='absolute px-4 rounded-lg flex justify-center items-center bottom-0 w-full h-full text-center bg-slate-50/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                 <p className='xs:text-xl text-6xl text-slate-800 dark:text-darkPink'>
@@ -223,7 +223,7 @@ const Home = () => {
               width={900}
               height={900}
               priority
-              className='rounded-l-lg'
+              className='md:rounded-l-lg'
             />
             <div className={imagesParagraphStyles}>
               <p className={groupLabelsStyle}>
@@ -252,7 +252,7 @@ const Home = () => {
               width={900}
               height={900}
               priority
-              className='rounded-r-lg'
+              className='md:rounded-r-lg'
             />
             <div
               className={imagesParagraphStyles}
