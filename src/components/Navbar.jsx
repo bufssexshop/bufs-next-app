@@ -1,9 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+
 import Link from 'next/link'
 import Button from './Button'
-import { usePathname } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
+import { useSnackbar, SnackbarProvider } from 'notistack'
+import { useMutation } from '@tanstack/react-query'
+import { mutationData } from '@/api/fetchData'
 import Image from 'next/image'
 import Login from './Login'
 
@@ -39,9 +43,11 @@ const links = [{
 }]
 
 const Navbar = () => {
+  const router = useRouter()
   const pathname = usePathname()
   const [showMenu, setShowMenu] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
+  const { enqueueSnackbar } = useSnackbar()
   const [theme, setTheme] = useState('')
 
   const handleShowMenu = () => {
@@ -83,8 +89,21 @@ const Navbar = () => {
     }
   }, [theme])
 
+  const loginMutation = useMutation({
+    mutationFn: ({ email, password }) => mutationData('usuarios/signin', 'POST', { email, password }),
+    onSuccess: ({ token, message }) => {
+      if (message) enqueueSnackbar(message, { variant: 'error' })
+      else {
+        enqueueSnackbar('Session iniciada correctamente!', { variant: 'success' })
+        handleShowLogin()
+        localStorage.setItem('sexshop-token', token)
+        router.push('/dashboard', { scroll: false })
+      }
+    }
+  })
+
   return (
-    <>
+    <SnackbarProvider maxSnack={3}>
       <nav className={`z-50 box-border fixed top-9 w-full grid grid-flow-row-dense grid-cols-12 grid-rows-12  xs:${showMenu ? 'h-60' : 'h-16'} md:h-28 py-2 shadow-sm dark:shadow-slate-600 bg-white dark:bg-slate-700 duration-700`}>
         <section className='xs:col-span-8 xs:ml-8 md:col-span-2 lg:col-span-3 flex xs:justify-start md:justify-center items-center'>
           <Image
@@ -177,8 +196,8 @@ const Navbar = () => {
             : (<Bars4Icon onClick={handleShowMenu} className='h-9 w-9 text-gray-500 dark:text-slate-50' />)}
         </section>
       </nav>
-      <Login onClose={handleShowLogin} open={showLogin} />
-    </>
+      <Login onClose={handleShowLogin} open={showLogin} onSubmit={loginMutation} />
+    </SnackbarProvider>
   )
 }
 

@@ -1,6 +1,6 @@
 const defaultHost = process.env.NEXT_PUBLIC_API_URL
 
-export async function fetchData (path, method = 'POST', body = {}) {
+export async function mutationData (path, method = 'POST', body = {}) {
   const res = await fetch(`${defaultHost}/${path}`,
     {
       method,
