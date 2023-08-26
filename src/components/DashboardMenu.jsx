@@ -1,3 +1,5 @@
+'use client'
+
 import {
   ChartPieIcon, ArrowsUpDownIcon, HeartIcon, NoSymbolIcon, UsersIcon
 } from '@heroicons/react/24/solid'
