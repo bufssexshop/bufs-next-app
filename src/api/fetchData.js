@@ -1,6 +1,12 @@
 const defaultHost = process.env.NEXT_PUBLIC_API_URL
 
-export async function fetchData (path, method = 'POST', body = {}) {
+let token = ''
+
+if (typeof window !== 'undefined') {
+  token = localStorage.getItem('sexshop-token') || ''
+}
+
+export async function mutationData (path, method = 'POST', body = {}) {
   const res = await fetch(`${defaultHost}/${path}`,
     {
       method,
@@ -15,7 +21,11 @@ export async function fetchData (path, method = 'POST', body = {}) {
 }
 
 export async function getData (path) {
-  const res = await fetch(`${defaultHost}/${path}`)
+  const res = await fetch(`${defaultHost}/${path}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
   const data = await res.json()
   return data
 }

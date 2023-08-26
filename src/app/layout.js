@@ -1,8 +1,8 @@
 import './globals.css'
 import 'aos/dist/aos.css'
-import Providers from '@/utils/reactQueryProvider'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar.jsx'
+import ClientProviders from '@/app/client-providers.jsx'
 import Announcement from '@/components/Announcement.jsx'
 import Footer from '@/components/Footer.jsx'
 import Submenu from '@/components/SubMenu'
@@ -18,7 +18,7 @@ export default function RootLayout ({ children }) {
   return (
     <html lang='en'>
       <body className={`${inter.className} box-border`}>
-        <Providers>
+        <ClientProviders>
           <header>
             <Announcement />
             <Navbar />
@@ -28,7 +28,7 @@ export default function RootLayout ({ children }) {
             {children}
           </section>
           <Footer />
-        </Providers>
+        </ClientProviders>
       </body>
     </html>
   )
