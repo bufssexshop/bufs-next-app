@@ -9,7 +9,6 @@ import { imagesParagraphStyles, groupLabelsStyle } from '@/helpers/repetitiveSty
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import AliceCarousel from 'react-alice-carousel'
 import InputText from '@/components/InputText'
-import { SnackbarProvider } from 'notistack'
 import { getData } from '@/api/fetchData'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -85,7 +84,7 @@ const Home = () => {
   ))
 
   return (
-    <SnackbarProvider maxSnack={3}>
+    <>
       <div className='relative h-screen'>
         <Image
           src={backgroundImage}
@@ -266,7 +265,7 @@ const Home = () => {
         </section>
 
       </section>
-    </SnackbarProvider>
+    </>
   )
 }
 

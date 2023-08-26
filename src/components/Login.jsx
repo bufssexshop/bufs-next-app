@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form'
 import { AtSymbolIcon, LockClosedIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { joiResolver } from '@hookform/resolvers/joi'
 import { loginSchema } from '@/helpers/formSchemas'
-import { SnackbarProvider } from 'notistack'
 import Actions from './Actions'
 import Modal from './Modal'
 
@@ -60,7 +59,7 @@ const Login = ({ onClose, open, onSubmit }) => {
           size='small'
           icon={<UserCircleIcon className='h-20 w-20 text-slate-500' />}
         >
-          <SnackbarProvider maxSnack={3}>
+          <>
             <form onSubmit={handleSubmit(submit)}>
               <div className='flex flex-col gap-4 pt-2 items-center'>
                 <InputText
@@ -106,7 +105,7 @@ const Login = ({ onClose, open, onSubmit }) => {
                 />
               </div>
             </form>
-          </SnackbarProvider>
+          </>
         </Modal>
         )
       : null
