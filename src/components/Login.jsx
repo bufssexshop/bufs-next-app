@@ -94,7 +94,7 @@ const Login = ({ onClose, open, onSubmit }) => {
 
                 <Actions
                   primary={{
-                    variant: 'primary',
+                    color: 'primary',
                     label: 'Iniciar sesion',
                     type: 'submit'
                   }}

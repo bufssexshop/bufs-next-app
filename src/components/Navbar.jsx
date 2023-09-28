@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
-import Button from './Button'
 import { useSnackbar } from 'notistack'
 import { useRouter, usePathname } from 'next/navigation'
 import { useMutation } from '@tanstack/react-query'
@@ -13,11 +12,14 @@ import Login from './Login'
 
 // ICONS
 import {
-  ShoppingCartIcon, Bars4Icon, XMarkIcon, UserCircleIcon, MoonIcon,
-  HomeIcon, TagIcon, PhotoIcon, PhoneIcon, SunIcon
+  ShoppingCartIcon, Bars4Icon, XMarkIcon, UserCircleIcon,
+  HomeIcon, TagIcon, PhotoIcon, PhoneIcon
 } from '@heroicons/react/24/solid'
 import ClickAwayListener from './ClickAwayListener'
 import IconButton from './IconButton'
+import { Button, Switch } from '@nextui-org/react'
+import { SunIcon } from '@/SVG/sun'
+import { MoonIcon } from '@/SVG/moon'
 
 // NAVBAR ITEMS
 const links = [{
@@ -142,17 +144,14 @@ const Navbar = () => {
                 ))}
 
                 <div className='flex items-center gap-2 mt-4'>
-                  <SunIcon className='h-6 w-6 duration-500 text-amber-500 dark:text-slate-50' />
-                  <label htmlFor='theme-toggle' className='relative inline-block w-10 h-6 bg-gray-300 rounded-full cursor-pointer'>
-                    <input type='checkbox' id='theme-toggle' className='hidden' onChange={handleChangeTheme} />
-                    <span
-                      className={`
-                        absolute block w-4 h-4 ${theme === 'dark' ? 'bg-slate-50' : 'bg-gray-700'} bg-gray-700 rounded-full transition-transform duration-300 top-1 left-1
-                        ${theme === 'dark' ? 'translate-x-full' : 'translate-x-0'}
-                      `}
-                    />
-                  </label>
-                  <MoonIcon className={`h-6 w-6 duration-500 ${theme === 'dark' ? 'text-amber-500' : 'text-slate-500'}`} />
+                  <Switch
+                    size='lg'
+                    color='default'
+                    endContent={<MoonIcon />}
+                    startContent={<SunIcon />}
+                    onChange={handleChangeTheme}
+                    isSelected={theme === 'dark'}
+                  />
                 </div>
               </ul>
               <section className='flex flex-col items-start justify-end gap-4'>
@@ -170,22 +169,23 @@ const Navbar = () => {
         <section className='xs:hidden md:flex lg:col-span-3 md:col-span-4 md:gap-3 h-full justify-center items-center'>
           <div className='flex lg:w-1/2 items-center justify-around'>
             <ShoppingCartIcon className='h-6 w-6 text-gray-500 dark:text-slate-50 md:mr-6' />
-            <Button onClick={handleShowLogin} label='Iniciar sesion' />
+            <Button
+              radius='full'
+              color='primary'
+              onClick={handleShowLogin}
+            >
+              Iniciar sesion
+            </Button>
           </div>
 
-          <div className='flex items-center gap-2'>
-            <SunIcon className='h-6 w-6 duration-500 text-amber-500 dark:text-slate-50' />
-            <label htmlFor='theme-toggle' className='relative inline-block w-10 h-6 bg-gray-300 rounded-full cursor-pointer'>
-              <input type='checkbox' id='theme-toggle' className='hidden' onChange={handleChangeTheme} />
-              <span
-                className={`
-                  absolute block w-4 h-4 ${theme === 'dark' ? 'bg-slate-50' : 'bg-gray-700'} bg-gray-700 rounded-full transition-transform duration-300 top-1 left-1
-                  ${theme === 'dark' ? 'translate-x-full' : 'translate-x-0'}
-                `}
-              />
-            </label>
-            <MoonIcon className={`h-6 w-6 duration-500 ${theme === 'dark' ? 'text-amber-500' : 'text-slate-500'}`} />
-          </div>
+          <Switch
+            size='lg'
+            color='default'
+            endContent={<MoonIcon />}
+            startContent={<SunIcon />}
+            onChange={handleChangeTheme}
+            isSelected={theme === 'dark'}
+          />
 
         </section>
 

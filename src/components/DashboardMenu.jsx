@@ -4,10 +4,52 @@ import {
   ChartPieIcon, ArrowsUpDownIcon, HeartIcon, NoSymbolIcon, UsersIcon
 } from '@heroicons/react/24/solid'
 
+import { Card, CardHeader, Avatar, Button } from '@nextui-org/react'
+
 import { getData } from '@/api/fetchData'
 import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import Loader from './Loader'
+
+const iconClasses = 'h-7 w-9 text-gray-600 dark:text-slate-100'
+
+const icons = {
+  products: <ChartPieIcon className={iconClasses} />,
+  disabled: <NoSymbolIcon className={iconClasses} />,
+  visited: <ArrowsUpDownIcon className={iconClasses} />,
+  sales: <HeartIcon className={iconClasses} />,
+  users: <UsersIcon className={iconClasses} />
+}
+
+const NextCard = ({ label, icon, info }) => {
+  return (
+    <Card className='lg:w-64'>
+      <CardHeader className='bg-slate-100 dark:bg-slate-700 justify-between'>
+        <div className='flex gap-2'>
+          <Avatar
+            radius='full'
+            size='md'
+            icon={icon}
+          />
+          <div className='flex flex-col gap-1 items-start justify-center'>
+            <h4 className='text-lg font-semibold leading-none text-default-600'>{info}</h4>
+            <h5 className='text-xs tracking-tight text-default-600'>{label}</h5>
+          </div>
+        </div>
+        <Button
+          className=''
+          color='primary'
+          radius='full'
+          size='sm'
+          variant='solid'
+          onPress={() => undefined}
+        >
+          Ver
+        </Button>
+      </CardHeader>
+    </Card>
+  )
+}
 
 const DashboardMenu = () => {
   const indicatorsQuery = useQuery({
@@ -30,82 +72,44 @@ const DashboardMenu = () => {
     <section className='flex justify-around flex-wrap'>
 
       <Link href='/dashboard/productos'>
-        <main
-          className='lg:w-64 m-5
-          flex justify-between p-5 rounded-md
-          bg-slate-100 dark:bg-slate-50
-          '
-        >
-          <div className='w-14 h-14 bg-slate-300 rounded-full flex justify-center items-center'>
-            <ChartPieIcon class='h-9 w-9 text-gray-800' />
-          </div>
-          <div className='flex flex-col justify-center items-center'>
-            <div className='text-2xl'>{data?.cantidad}</div>
-            <div className='text-sm text-slate-500'>Total Productos</div>
-          </div>
-        </main>
+        <NextCard
+          label='Total Productos'
+          icon={icons.products}
+          info={data?.cantidad}
+        />
       </Link>
 
-      <main
-        className='lg:w-64 m-5
-          flex justify-between p-5 rounded-md
-          bg-slate-100 dark:bg-slate-50
-          '
-      >
-        <div className='w-14 h-14 bg-slate-300 rounded-full flex justify-center items-center'>
-          <NoSymbolIcon class='h-9 w-9 text-gray-800' />
-        </div>
-        <div className='flex flex-col justify-center items-center'>
-          <div className='text-2xl'>{data?.inactivos}</div>
-          <div className='text-sm text-slate-500'>Productos inactivos</div>
-        </div>
-      </main>
+      {/* <Link href='/dashboard/productos'> */}
+      <NextCard
+        label='Productos Inactivos'
+        icon={icons.disabled}
+        info={data?.inactivos}
+      />
+      {/* </Link> */}
 
-      <main
-        className='lg:w-64 m-5
-          flex justify-between p-5 rounded-md
-          bg-slate-100 dark:bg-slate-50
-          '
-      >
-        <div className='w-14 h-14 bg-slate-300 rounded-full flex justify-center items-center'>
-          <ArrowsUpDownIcon class='h-9 w-9 text-gray-800' />
-        </div>
-        <div className='flex flex-col justify-center items-center'>
-          <div className='text-2xl'>531</div>
-          <div className='text-sm text-slate-500'>Total Visitas</div>
-        </div>
-      </main>
+      {/* <Link href='/dashboard/productos'> */}
+      <NextCard
+        label='Total Visitas'
+        icon={icons.visited}
+        info='531'
+      />
+      {/* </Link> */}
 
-      <main
-        className='lg:w-64 m-5
-          flex justify-between p-5 rounded-md
-          bg-slate-100 dark:bg-slate-50
-          '
-      >
-        <div className='w-14 h-14 bg-slate-300 rounded-full flex justify-center items-center'>
-          <HeartIcon class='h-9 w-9 text-gray-800' />
-        </div>
-        <div className='flex flex-col justify-center items-center'>
-          <div className='text-2xl'>{data?.promociones}</div>
-          <div className='text-sm text-slate-500'>Total Promociones</div>
-        </div>
-      </main>
+      {/* <Link href='/dashboard/productos'> */}
+      <NextCard
+        label='Total Promociones'
+        icon={icons.sales}
+        info={data?.promociones}
+      />
+      {/* </Link> */}
 
-      <main
-        className='lg:w-64 m-5
-            flex justify-between p-5 rounded-md
-          bg-slate-100 dark:bg-slate-50
-          '
-      >
-        <div className='w-14 h-14 bg-slate-300 rounded-full flex justify-center items-center'>
-          <UsersIcon class='h-9 w-9 text-gray-800' />
-        </div>
-        <div className='flex flex-col justify-center items-center'>
-          <div className='text-2xl'>{data?.usuarios}</div>
-          <div className='text-sm text-slate-500'>Total Usuarios</div>
-        </div>
-      </main>
-
+      {/* <Link href='/dashboard/productos'> */}
+      <NextCard
+        label='Total Usuarios'
+        icon={icons.users}
+        info={data?.usuarios}
+      />
+      {/* </Link> */}
     </section>
   )
 }

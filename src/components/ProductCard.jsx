@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Button from './Button'
+// import Button from './Button'
+import { Button } from '@nextui-org/react'
 
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
 
@@ -15,7 +16,7 @@ const ProductCard = ({ product }) => {
   return (
     <section
       key={product.id}
-      className='relative xs:w-44 lg:w-56 xs: min-h-[305px] lg:min-h-[305px] hover:shadow-cardShadow duration-300 border dark:rounded-md bg-white'
+      className='relative xs:w-44 lg:w-56 xs: min-h-[310px] lg:min-h-[310px] hover:shadow-cardShadow duration-300 border dark:rounded-md bg-white'
     >
       <Link href='/products/[subcategory]/[id]' as={`/products/${product.subcategoria}/${product._id}`}>
         <div className='flex justify-center min-h-[180px] max-h-[180px] w-full'>
@@ -33,9 +34,9 @@ const ProductCard = ({ product }) => {
       </Link>
       <div className='border-t border-slate-200 mt-2 text-center'>
         <Link href='/products/[subcategory]/[id]' as={`/products/${product.subcategoria}/${product._id}`}>
-          <p className='px-[10px] pt-[10px] uppercase xs:text-xs text-sm text-slate-500 leading-tight'>{product.nombre}</p>
+          <p className='px-[10px] pt-[10px] uppercase xs:text-xs text-xs text-slate-500 leading-tight'>{product.nombre}</p>
         </Link>
-        <div className='absolute w-full bottom-0 px-[10px] pb-[10px] text-xs text-slate-600 font-bold'>
+        <div className='absolute w-full bottom-0 px-[10px] pb-[8px] text-xs text-slate-600 font-bold'>
           {product?.promocion
             ? (
               <p>
@@ -48,14 +49,16 @@ const ProductCard = ({ product }) => {
               </p>
               )}
           <Button
-            label={disponible ? 'Agregar al carrito' : '!AGOTADO!'}
-            size='small'
-            icon={<ShoppingCartIcon className='h-5 w-5 text-slate-50' />}
             fullWidth
-            className='mt-1 xs:text-xs'
-            disabled={!product.disponible}
-            onClick={undefined}
-          />
+            radius='full'
+            onClick={() => undefined}
+            startContent={<ShoppingCartIcon className='h-5 w-5 text-slate-50' />}
+            isDisabled={!product.disponible}
+            color='primary'
+            size='sm'
+          >
+            {disponible ? 'Agregar al carrito' : '!AGOTADO!'}
+          </Button>
         </div>
       </div>
     </section>

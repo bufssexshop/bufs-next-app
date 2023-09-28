@@ -1,6 +1,9 @@
+'use client'
+
 const ManageProducts = () => {
+  console.log('holi')
   return (
-    <h1>Hola, soy el admon productos</h1>
+    <h1>hola mundo</h1>
   )
 }
 
