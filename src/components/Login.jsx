@@ -1,20 +1,27 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import InputText from './InputText'
-import { useForm } from 'react-hook-form'
-import { AtSymbolIcon, LockClosedIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { joiResolver } from '@hookform/resolvers/joi'
-import { loginSchema } from '@/helpers/formSchemas'
-import Actions from './Actions'
 import Modal from './Modal'
+import Actions from './Actions'
+import { MailIcon } from '@/SVG/mail'
+import { Input } from '@nextui-org/react'
+import { useForm } from 'react-hook-form'
+import { loginSchema } from '@/helpers/formSchemas'
+import { EyeFilledIcon } from '../SVG/EyeFilledIcon'
+import { joiResolver } from '@hookform/resolvers/joi'
+import { UserCircleIcon } from '@heroicons/react/24/solid'
+import { EyeSlashFilledIcon } from '../SVG/EyeSlashFilledIcon'
+import { LockIcon } from '@/SVG/Lock'
 
 const Login = ({ onClose, open, onSubmit }) => {
   const schema = loginSchema.messages({
     'any.required': 'Este campo es requerido',
     'string.empty': 'Este campo es requerido'
   })
+
+  const [isVisible, setIsVisible] = useState(false)
+  const toggleVisibility = () => setIsVisible(!isVisible)
 
   const {
     watch,
@@ -62,33 +69,40 @@ const Login = ({ onClose, open, onSubmit }) => {
           <>
             <form onSubmit={handleSubmit(submit)}>
               <div className='flex flex-col gap-4 pt-2 items-center'>
-                <InputText
-                  id='email'
+                <Input
                   type='email'
                   value={email}
-                  defaultValue=''
-                  placeholder='Correo'
-                  icon={<AtSymbolIcon />}
-                  // {...register('email', { required: 'Ingrese un correo' })}
-                  handleChange={(e) => {
+                  placeholder='Usuario'
+                  labelPlacement='outside'
+                  onChange={(e) => {
                     clearErrors('email')
                     handleChange('email', e)
                   }}
+                  startContent={
+                    <MailIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
+                  }
                   error={errors?.email?.message}
                 />
 
-                <InputText
-                  id='password'
-                  type='password'
-                  value={password}
-                  defaultValue=''
+                <Input
                   placeholder='Contraseña'
-                  icon={<LockClosedIcon />}
-                  // {...register('password', { required: 'Ingrese una contraseña' })}
-                  handleChange={(e) => {
+                  value={password}
+                  endContent={
+                    <button className='focus:outline-none' type='button' onClick={toggleVisibility}>
+                      {isVisible
+                        ? (<EyeSlashFilledIcon className='text-2xl text-default-400 pointer-events-none' />)
+                        : (<EyeFilledIcon className='text-2xl text-default-400 pointer-events-none' />)}
+                    </button>
+                  }
+                  type={isVisible ? 'text' : 'password'}
+                  onChange={(e) => {
                     clearErrors('password')
                     handleChange('password', e)
                   }}
+                  startContent={
+                    <LockIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
+                  }
+                  className='max-w-xs'
                   error={errors?.password?.message}
                 />
 

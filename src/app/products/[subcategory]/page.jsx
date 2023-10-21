@@ -8,6 +8,7 @@ import Pagination from '@/components/Pagination'
 import { getData } from '@/api/fetchData'
 import Loader from '@/components/Loader'
 import Image from 'next/image'
+import ColoredPagination from '@/components/ColoredPagination'
 
 const Products = ({ params }) => {
   const { subcategory } = params
@@ -155,6 +156,15 @@ const Products = ({ params }) => {
             itemsPerPage={itemsPerPage}
             onPageChange={handlePageChange}
             onItemsPerPageChange={handleItemsPerPageChange}
+          />
+        )}
+
+        {totalPages > 1 && (
+          <ColoredPagination
+            initialPage={1}
+            page={currentPage}
+            total={totalPages}
+            onChange={handlePageChange}
           />
         )}
       </section>
