@@ -162,7 +162,9 @@ const ProductDetails = ({ params }) => {
               <p className='text-slate-500 dark:text-slate-50'>{productIsAvailable ? count : 0}</p>
               <ButtonCounter label='+' click={handleAddItems} available={productIsAvailable} />
             </section>
-            <Button color='primary' disabled={!productIsAvailable} icon={<ShoppingCartIcon className='h-6 w-6 text-slate-50' />} label='Agregar al carrito' />
+            <Button color={productIsAvailable ? 'primary' : 'default'} radius='full' disabled={!productIsAvailable} startContent={<ShoppingCartIcon className='h-6 w-6 text-slate-50' />}>
+              Agregar al carrito
+            </Button>
           </section>
 
           {/* AVAILABLE */}

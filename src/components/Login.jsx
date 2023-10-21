@@ -57,6 +57,10 @@ const Login = ({ onClose, open, onSubmit }) => {
 
   const submit = (data) => onSubmit.mutate(data)
 
+  console.log('xxx errors: ', errors)
+  console.log('xxx email: ', email)
+  console.log('xxx pass: ', password)
+
   return (
     open
       ? (
@@ -81,7 +85,8 @@ const Login = ({ onClose, open, onSubmit }) => {
                   startContent={
                     <MailIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
                   }
-                  error={errors?.email?.message}
+                  isInvalid={errors?.email?.message}
+                  errorMessage={errors?.email?.message}
                 />
 
                 <Input
@@ -114,7 +119,8 @@ const Login = ({ onClose, open, onSubmit }) => {
                   }}
                   secondary={{
                     label: 'Cancelar',
-                    onClick: onClose
+                    onClick: onClose,
+                    type: 'reset'
                   }}
                 />
               </div>

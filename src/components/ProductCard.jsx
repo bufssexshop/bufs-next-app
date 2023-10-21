@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import Image from 'next/image'
+// import Image from 'next/image'
 // import Button from './Button'
-import { Button } from '@nextui-org/react'
+import { Button, Image } from '@nextui-org/react'
 
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
 
@@ -21,14 +21,10 @@ const ProductCard = ({ product }) => {
       <Link href='/products/[subcategory]/[id]' as={`/products/${product.subcategoria}/${product._id}`}>
         <div className='flex justify-center min-h-[180px] max-h-[180px] w-full'>
           <Image
-            src={product.image}
-            alt={product.nombre}
-            quality={100}
+            isZoomed
             width={180}
-            height={180}
-            style={{
-              objectFit: 'contain'
-            }}
+            alt={product.nombre}
+            src={product.image}
           />
         </div>
       </Link>
