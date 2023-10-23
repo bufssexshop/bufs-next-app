@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useSnackbar } from 'notistack'
 import { useRouter, usePathname } from 'next/navigation'
 import { useMutation } from '@tanstack/react-query'
+import { handleLogout } from '../helpers/logout'
 import { mutationData } from '@/api/fetchData'
 import Image from 'next/image'
 import Login from './Login'
@@ -17,9 +18,12 @@ import {
 } from '@heroicons/react/24/solid'
 import ClickAwayListener from './ClickAwayListener'
 import IconButton from './IconButton'
-import { Button, Switch } from '@nextui-org/react'
+import { Avatar, Button, Listbox, ListboxItem, Popover, PopoverContent, PopoverTrigger, Switch } from '@nextui-org/react'
 import { SunIcon } from '@/SVG/sun'
 import { MoonIcon } from '@/SVG/moon'
+import { UserIcon } from '@/SVG/User'
+import { LogoutIcon } from '@/SVG/LogoutIcon'
+import cn from 'classnames'
 
 // NAVBAR ITEMS
 const links = [{
@@ -44,6 +48,14 @@ const links = [{
   icon: (color) => <PhoneIcon className={`${color} h-6 w-6 text-gray-500`} />
 }]
 
+const ListboxWrapper = ({ children }) => (
+  <div className='w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100'>
+    {children}
+  </div>
+)
+
+const iconClasses = 'text-xl text-default-500 pointer-events-none flex-shrink-0'
+
 const Navbar = () => {
   const router = useRouter()
   const pathname = usePathname()
@@ -51,6 +63,7 @@ const Navbar = () => {
   const [showLogin, setShowLogin] = useState(false)
   const { enqueueSnackbar } = useSnackbar()
   const [theme, setTheme] = useState('')
+  const [token, setToken] = useState('')
 
   const handleShowMenu = () => {
     setShowMenu((prev) => !prev)
@@ -67,7 +80,9 @@ const Navbar = () => {
   const getThemeFromLocalStorage = () => {
     if (typeof window !== 'undefined') {
       const mode = localStorage.getItem('theme')
-      setTheme(mode || 'dark') // O un valor predeterminado que desees
+      const token = localStorage.getItem('sexshop-token')
+      setTheme(mode || 'dark')
+      setToken(token)
     }
   }
 
@@ -169,13 +184,50 @@ const Navbar = () => {
         <section className='xs:hidden md:flex lg:col-span-3 md:col-span-4 md:gap-3 h-full justify-center items-center'>
           <div className='flex lg:w-1/2 items-center justify-around'>
             <ShoppingCartIcon className='h-6 w-6 text-gray-500 dark:text-slate-50 md:mr-6' />
-            <Button
-              radius='full'
-              color='primary'
-              onClick={handleShowLogin}
-            >
-              Iniciar sesion
-            </Button>
+            {!token
+              ? (
+                <Button
+                  radius='full'
+                  color='primary'
+                  onClick={handleShowLogin}
+                >
+                  Iniciar sesion
+                </Button>
+                )
+              : (
+                <Popover placement='bottom'>
+                  <PopoverTrigger>
+                    <Avatar
+                      fallaback={<UserIcon className='w-6 h-6' />}
+                      classNames={{
+                        base: 'bg-customPink text-white dark:bg-darkPink cursor-pointer'
+                      }}
+                    />
+                  </PopoverTrigger>
+                  <PopoverContent>
+                    <ListboxWrapper>
+                      <Listbox
+                        aria-label='Actions'
+                      >
+                        <ListboxItem key='new'>
+                          <Link href='/dashboard'>
+                            Panel de administración
+                          </Link>
+                        </ListboxItem>
+                        <ListboxItem
+                          key='delete'
+                          className='text-danger'
+                          color='danger'
+                          startContent={<LogoutIcon className={cn(iconClasses, 'text-danger')} />}
+                          onClick={handleLogout}
+                        >
+                          Cerrar sesion
+                        </ListboxItem>
+                      </Listbox>
+                    </ListboxWrapper>
+                  </PopoverContent>
+                </Popover>
+                )}
           </div>
 
           <Switch

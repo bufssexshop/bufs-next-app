@@ -57,10 +57,6 @@ const Login = ({ onClose, open, onSubmit }) => {
 
   const submit = (data) => onSubmit.mutate(data)
 
-  console.log('xxx errors: ', errors)
-  console.log('xxx email: ', email)
-  console.log('xxx pass: ', password)
-
   return (
     open
       ? (
