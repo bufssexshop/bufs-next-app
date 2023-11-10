@@ -13,6 +13,7 @@ import { getData } from '@/api/fetchData'
 import Image from 'next/image'
 import Link from 'next/link'
 import AOS from 'aos'
+import SearchFilters from '@/components/SearchFilters'
 
 const images = {
   light: 'https://res.cloudinary.com/dsykiysl8/image/upload/v1691452375/backgrounds/pexels-bedbible-com-11393547_1920_cojbkd.jpg',
@@ -99,13 +100,16 @@ const Home = () => {
         />
         <section className='relative pt-28 flex flex-col items-center gap-2'>
           <h1 className={`${specialElite.className} uppercase text-slate-500 dark:text-slate-50 xs:text-3xl md:text-5xl`}>buf's sex shop</h1>
-          <InputText
-            className='dark:opacity-0'
-            id='searchBar'
-            placeholder='Buscar...'
-            icon={<MagnifyingGlassIcon className='h-6 w-6 text-gray-500' />}
-            error=''
-          />
+          <div className='flex items-center'>
+            <InputText
+              className='dark:opacity-0'
+              id='searchBar'
+              placeholder='Buscar...'
+              icon={<MagnifyingGlassIcon className='h-6 w-6 text-gray-500' />}
+              error=''
+            />
+            <SearchFilters />
+          </div>
         </section>
       </div>
 
