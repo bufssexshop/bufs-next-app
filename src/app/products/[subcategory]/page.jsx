@@ -4,10 +4,10 @@ import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { camelCaseToNormal } from '@/helpers/strings'
 import ProductCard from '@/components/ProductCard'
-import Pagination from '@/components/Pagination'
 import { getData } from '@/api/fetchData'
 import Loader from '@/components/Loader'
 import Image from 'next/image'
+import Pagination from '@/components/Pagination'
 
 const Products = ({ params }) => {
   const { subcategory } = params
@@ -100,6 +100,8 @@ const Products = ({ params }) => {
     return 0
   })
 
+  console.log('xxx currentPage: ', currentPage)
+
   return (
     <main className='w-full box-border'>
       <section>
@@ -150,11 +152,12 @@ const Products = ({ params }) => {
 
         {totalPages > 1 && (
           <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
+            initialPage={1}
+            page={currentPage}
+            total={totalPages}
             itemsPerPage={itemsPerPage}
-            onPageChange={handlePageChange}
-            onItemsPerPageChange={handleItemsPerPageChange}
+            onChange={handlePageChange}
+            onChangeItemsPerPage={handleItemsPerPageChange}
           />
         )}
       </section>

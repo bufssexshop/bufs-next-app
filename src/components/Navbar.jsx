@@ -3,21 +3,19 @@
 import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
-import Button from './Button'
-import { useSnackbar } from 'notistack'
-import { useRouter, usePathname } from 'next/navigation'
-import { useMutation } from '@tanstack/react-query'
-import { mutationData } from '@/api/fetchData'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
-import Login from './Login'
 
 // ICONS
 import {
-  ShoppingCartIcon, Bars4Icon, XMarkIcon, UserCircleIcon, MoonIcon,
-  HomeIcon, TagIcon, PhotoIcon, PhoneIcon, SunIcon
+  ShoppingCartIcon, Bars4Icon, XMarkIcon,
+  HomeIcon, TagIcon, PhotoIcon, PhoneIcon
 } from '@heroicons/react/24/solid'
 import ClickAwayListener from './ClickAwayListener'
 import IconButton from './IconButton'
+import { Switch } from '@nextui-org/react'
+import { SunIcon } from '@/SVG/sun'
+import { MoonIcon } from '@/SVG/moon'
 
 // NAVBAR ITEMS
 const links = [{
@@ -43,29 +41,18 @@ const links = [{
 }]
 
 const Navbar = () => {
-  const router = useRouter()
   const pathname = usePathname()
   const [showMenu, setShowMenu] = useState(false)
-  const [showLogin, setShowLogin] = useState(false)
-  const { enqueueSnackbar } = useSnackbar()
   const [theme, setTheme] = useState('')
 
-  const handleShowMenu = () => {
-    setShowMenu((prev) => !prev)
-    setShowLogin(false)
-  }
-
-  const handleShowLogin = () => {
-    setShowLogin((prev) => !prev)
-    setShowMenu(false)
-  }
+  const handleShowMenu = () => setShowMenu((prev) => !prev)
 
   const handleChangeTheme = () => setTheme((prev) => prev === 'light' ? 'dark' : 'light')
 
   const getThemeFromLocalStorage = () => {
     if (typeof window !== 'undefined') {
       const mode = localStorage.getItem('theme')
-      setTheme(mode || 'dark') // O un valor predeterminado que desees
+      setTheme(mode || 'dark')
     }
   }
 
@@ -88,19 +75,6 @@ const Navbar = () => {
       window.dispatchEvent(new Event('changeMode'))
     }
   }, [theme])
-
-  const loginMutation = useMutation({
-    mutationFn: ({ email, password }) => mutationData('usuarios/signin', 'POST', { email, password }),
-    onSuccess: ({ token, message }) => {
-      if (message) enqueueSnackbar(message, { variant: 'error' })
-      if (token) {
-        enqueueSnackbar('Session iniciada correctamente!', { variant: 'success' })
-        handleShowLogin()
-        localStorage.setItem('sexshop-token', token)
-        router.push('/dashboard', { scroll: false })
-      }
-    }
-  })
 
   return (
     <>
@@ -142,25 +116,19 @@ const Navbar = () => {
                 ))}
 
                 <div className='flex items-center gap-2 mt-4'>
-                  <SunIcon className='h-6 w-6 duration-500 text-amber-500 dark:text-slate-50' />
-                  <label htmlFor='theme-toggle' className='relative inline-block w-10 h-6 bg-gray-300 rounded-full cursor-pointer'>
-                    <input type='checkbox' id='theme-toggle' className='hidden' onChange={handleChangeTheme} />
-                    <span
-                      className={`
-                        absolute block w-4 h-4 ${theme === 'dark' ? 'bg-slate-50' : 'bg-gray-700'} bg-gray-700 rounded-full transition-transform duration-300 top-1 left-1
-                        ${theme === 'dark' ? 'translate-x-full' : 'translate-x-0'}
-                      `}
-                    />
-                  </label>
-                  <MoonIcon className={`h-6 w-6 duration-500 ${theme === 'dark' ? 'text-amber-500' : 'text-slate-500'}`} />
+                  <Switch
+                    size='lg'
+                    color='default'
+                    endContent={<MoonIcon />}
+                    startContent={<SunIcon />}
+                    onChange={handleChangeTheme}
+                    isSelected={theme === 'dark'}
+                  />
                 </div>
               </ul>
               <section className='flex flex-col items-start justify-end gap-4'>
                 <IconButton>
                   <ShoppingCartIcon className='h-8 w-8 text-gray-500 dark:text-slate-50' />
-                </IconButton>
-                <IconButton onClick={handleShowLogin}>
-                  <UserCircleIcon className='h-8 w-8 text-gray-500 dark:text-slate-50' />
                 </IconButton>
               </section>
             </div>
@@ -168,24 +136,16 @@ const Navbar = () => {
         </section>
 
         <section className='xs:hidden md:flex lg:col-span-3 md:col-span-4 md:gap-3 h-full justify-center items-center'>
-          <div className='flex lg:w-1/2 items-center justify-around'>
-            <ShoppingCartIcon className='h-6 w-6 text-gray-500 dark:text-slate-50 md:mr-6' />
-            <Button onClick={handleShowLogin} label='Iniciar sesion' />
-          </div>
+          <ShoppingCartIcon className='h-6 w-6 text-gray-500 dark:text-slate-50 md:mr-6' />
 
-          <div className='flex items-center gap-2'>
-            <SunIcon className='h-6 w-6 duration-500 text-amber-500 dark:text-slate-50' />
-            <label htmlFor='theme-toggle' className='relative inline-block w-10 h-6 bg-gray-300 rounded-full cursor-pointer'>
-              <input type='checkbox' id='theme-toggle' className='hidden' onChange={handleChangeTheme} />
-              <span
-                className={`
-                  absolute block w-4 h-4 ${theme === 'dark' ? 'bg-slate-50' : 'bg-gray-700'} bg-gray-700 rounded-full transition-transform duration-300 top-1 left-1
-                  ${theme === 'dark' ? 'translate-x-full' : 'translate-x-0'}
-                `}
-              />
-            </label>
-            <MoonIcon className={`h-6 w-6 duration-500 ${theme === 'dark' ? 'text-amber-500' : 'text-slate-500'}`} />
-          </div>
+          <Switch
+            size='lg'
+            color='default'
+            endContent={<MoonIcon />}
+            startContent={<SunIcon />}
+            onChange={handleChangeTheme}
+            isSelected={theme === 'dark'}
+          />
 
         </section>
 
@@ -196,7 +156,6 @@ const Navbar = () => {
             : (<Bars4Icon onClick={handleShowMenu} className='h-9 w-9 text-gray-500 dark:text-slate-50' />)}
         </section>
       </nav>
-      <Login onClose={handleShowLogin} open={showLogin} onSubmit={loginMutation} />
     </>
   )
 }

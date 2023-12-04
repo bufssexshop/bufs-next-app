@@ -8,10 +8,16 @@ import React, { useState } from 'react'
 import { getData } from '@/api/fetchData'
 import { useQuery } from '@tanstack/react-query'
 import Loader from '@/components/Loader'
-import Button from '@/components/Button'
 import Image from 'next/image'
 import { camelCaseToNormal } from '@/helpers/strings'
 import useResponsive from '@/hooks/useResponsive'
+import { Button } from '@nextui-org/react'
+
+const ButtonCounter = ({ label, available, click }) => (
+  <Button isIconOnly size='sm' color={available ? 'primary' : 'default'} variant='ghost' disabled={!available} onClick={click}>
+    {label}
+  </Button>
+)
 
 const ShowProductDetails = ({ details }) => {
   const sanitizedHTML = details
@@ -66,6 +72,8 @@ const ProductDetails = ({ params }) => {
     currency: 'COP',
     minimumFractionDigits: 0
   })
+
+  const productIsAvailable = data.disponible
 
   return (
     <section className='px-20 xs:px-10 flex flex-col gap-8'>
@@ -150,16 +158,18 @@ const ProductDetails = ({ params }) => {
 
           <section className='mt-8 flex gap-8 md:hidden'>
             <section className='flex items-center gap-4'>
-              <Button disabled={!data.disponible} className='p-2' onClick={handleRemovetems} label='-' variant='secondary' />
-              <p className='text-slate-500 dark:text-slate-50'>{data.disponible ? count : 0}</p>
-              <Button disabled={!data.disponible} onClick={handleAddItems} label='+' variant='secondary' />
+              <ButtonCounter label='-' click={handleRemovetems} available={productIsAvailable} />
+              <p className='text-slate-500 dark:text-slate-50'>{productIsAvailable ? count : 0}</p>
+              <ButtonCounter label='+' click={handleAddItems} available={productIsAvailable} />
             </section>
-            <Button disabled={!data.disponible} icon={<ShoppingCartIcon className='h-6 w-6 text-slate-50' />} label='Agregar al carrito' />
+            <Button color={productIsAvailable ? 'primary' : 'default'} radius='full' disabled={!productIsAvailable} startContent={<ShoppingCartIcon className='h-6 w-6 text-slate-50' />}>
+              Agregar al carrito
+            </Button>
           </section>
 
           {/* AVAILABLE */}
-          <p className={`mt-5 text-sm ${data.disponible ? 'text-green-700 dark:text-darkPink' : 'text-red-600 dark:text-red-400'}`}>
-            {data.disponible ? 'Disponible' : 'No disponible'}
+          <p className={`mt-5 text-sm ${productIsAvailable ? 'text-green-700 dark:text-darkPink' : 'text-red-600 dark:text-red-400'}`}>
+            {productIsAvailable ? 'Disponible' : 'No disponible'}
           </p>
 
           {/* SEND */}
@@ -179,11 +189,13 @@ const ProductDetails = ({ params }) => {
           {/* BUTTONS DESKTOP */}
           <section className='mt-8 flex gap-8 xs:hidden'>
             <section className='flex items-center gap-4'>
-              <Button disabled={!data.disponible} className='p-2' onClick={handleRemovetems} label='-' variant='secondary' />
-              <p className='text-slate-500 dark:text-slate-50'>{data.disponible ? count : 0}</p>
-              <Button disabled={!data.disponible} onClick={handleAddItems} label='+' variant='secondary' />
+              <ButtonCounter label='-' click={handleRemovetems} available={productIsAvailable} />
+              <p className='text-slate-500 dark:text-slate-50'>{productIsAvailable ? count : 0}</p>
+              <ButtonCounter label='+' click={handleAddItems} available={productIsAvailable} />
             </section>
-            <Button disabled={!data.disponible} icon={<ShoppingCartIcon className='h-6 w-6 text-slate-50' />} label='Agregar al carrito' />
+            <Button color={productIsAvailable ? 'primary' : 'default'} radius='full' disabled={!productIsAvailable} startContent={<ShoppingCartIcon className='h-6 w-6 text-slate-50' />}>
+              Agregar al carrito
+            </Button>
           </section>
         </div>
       </section>

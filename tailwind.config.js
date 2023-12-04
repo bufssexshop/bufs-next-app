@@ -1,11 +1,13 @@
+import { nextui } from '@nextui-org/react'
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}'
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       backgroundImage: {
@@ -18,7 +20,7 @@ module.exports = {
         darkPink: '#FF3C80'
       },
       boxShadow: {
-        cardShadow: '0px 2px 20px 5px rgba(203,213,225,1)'
+        cardShadow: '0px 5px 15px rgba(203,213,225,1)'
       }
     },
     screens: {
@@ -30,5 +32,27 @@ module.exports = {
       '2xl': '1536px'
     }
   },
-  plugins: []
+  darkMode: 'class',
+  plugins: [nextui({
+    themes: {
+      light: {
+        colors: {
+          primary: {
+            DEFAULT: '#FF7BAC',
+            foreground: '#FFFFFF'
+          },
+          focus: 'yellow'
+        }
+      },
+      dark: {
+        colors: {
+          primary: {
+            DEFAULT: '#FF3C80',
+            foreground: '#FFFFFF'
+          },
+          focus: '#BEF264'
+        }
+      }
+    }
+  })]
 }
