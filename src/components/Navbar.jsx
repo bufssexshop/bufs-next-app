@@ -3,27 +3,19 @@
 import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
-import { useSnackbar } from 'notistack'
-import { useRouter, usePathname } from 'next/navigation'
-import { useMutation } from '@tanstack/react-query'
-import { handleLogout } from '../helpers/logout'
-import { mutationData } from '@/api/fetchData'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
-import Login from './Login'
 
 // ICONS
 import {
-  ShoppingCartIcon, Bars4Icon, XMarkIcon, UserCircleIcon,
+  ShoppingCartIcon, Bars4Icon, XMarkIcon,
   HomeIcon, TagIcon, PhotoIcon, PhoneIcon
 } from '@heroicons/react/24/solid'
 import ClickAwayListener from './ClickAwayListener'
 import IconButton from './IconButton'
-import { Avatar, Button, Listbox, ListboxItem, Popover, PopoverContent, PopoverTrigger, Switch } from '@nextui-org/react'
+import { Switch } from '@nextui-org/react'
 import { SunIcon } from '@/SVG/sun'
 import { MoonIcon } from '@/SVG/moon'
-import { UserIcon } from '@/SVG/User'
-import { LogoutIcon } from '@/SVG/LogoutIcon'
-import cn from 'classnames'
 
 // NAVBAR ITEMS
 const links = [{
@@ -48,41 +40,19 @@ const links = [{
   icon: (color) => <PhoneIcon className={`${color} h-6 w-6 text-gray-500`} />
 }]
 
-const ListboxWrapper = ({ children }) => (
-  <div className='w-full max-w-[260px] border-small px-1 py-2 rounded-small border-default-200 dark:border-default-100'>
-    {children}
-  </div>
-)
-
-const iconClasses = 'text-xl text-default-500 pointer-events-none flex-shrink-0'
-
 const Navbar = () => {
-  const router = useRouter()
   const pathname = usePathname()
   const [showMenu, setShowMenu] = useState(false)
-  const [showLogin, setShowLogin] = useState(false)
-  const { enqueueSnackbar } = useSnackbar()
   const [theme, setTheme] = useState('')
-  const [token, setToken] = useState('')
 
-  const handleShowMenu = () => {
-    setShowMenu((prev) => !prev)
-    setShowLogin(false)
-  }
-
-  const handleShowLogin = () => {
-    setShowLogin((prev) => !prev)
-    setShowMenu(false)
-  }
+  const handleShowMenu = () => setShowMenu((prev) => !prev)
 
   const handleChangeTheme = () => setTheme((prev) => prev === 'light' ? 'dark' : 'light')
 
   const getThemeFromLocalStorage = () => {
     if (typeof window !== 'undefined') {
       const mode = localStorage.getItem('theme')
-      const token = localStorage.getItem('sexshop-token')
       setTheme(mode || 'dark')
-      setToken(token)
     }
   }
 
@@ -105,19 +75,6 @@ const Navbar = () => {
       window.dispatchEvent(new Event('changeMode'))
     }
   }, [theme])
-
-  const loginMutation = useMutation({
-    mutationFn: ({ email, password }) => mutationData('usuarios/signin', 'POST', { email, password }),
-    onSuccess: ({ token, message }) => {
-      if (message) enqueueSnackbar(message, { variant: 'error' })
-      if (token) {
-        enqueueSnackbar('Session iniciada correctamente!', { variant: 'success' })
-        handleShowLogin()
-        localStorage.setItem('sexshop-token', token)
-        router.push('/dashboard', { scroll: false })
-      }
-    }
-  })
 
   return (
     <>
@@ -173,62 +130,13 @@ const Navbar = () => {
                 <IconButton>
                   <ShoppingCartIcon className='h-8 w-8 text-gray-500 dark:text-slate-50' />
                 </IconButton>
-                <IconButton onClick={handleShowLogin}>
-                  <UserCircleIcon className='h-8 w-8 text-gray-500 dark:text-slate-50' />
-                </IconButton>
               </section>
             </div>
           </ClickAwayListener>
         </section>
 
         <section className='xs:hidden md:flex lg:col-span-3 md:col-span-4 md:gap-3 h-full justify-center items-center'>
-          <div className='flex lg:w-1/2 items-center justify-around'>
-            <ShoppingCartIcon className='h-6 w-6 text-gray-500 dark:text-slate-50 md:mr-6' />
-            {!token
-              ? (
-                <Button
-                  radius='full'
-                  color='primary'
-                  onClick={handleShowLogin}
-                >
-                  Iniciar sesion
-                </Button>
-                )
-              : (
-                <Popover placement='bottom'>
-                  <PopoverTrigger>
-                    <Avatar
-                      fallaback={<UserIcon className='w-6 h-6' />}
-                      classNames={{
-                        base: 'bg-customPink text-white dark:bg-darkPink cursor-pointer'
-                      }}
-                    />
-                  </PopoverTrigger>
-                  <PopoverContent>
-                    <ListboxWrapper>
-                      <Listbox
-                        aria-label='Actions'
-                      >
-                        <ListboxItem key='new'>
-                          <Link href='/dashboard'>
-                            Panel de administración
-                          </Link>
-                        </ListboxItem>
-                        <ListboxItem
-                          key='delete'
-                          className='text-danger'
-                          color='danger'
-                          startContent={<LogoutIcon className={cn(iconClasses, 'text-danger')} />}
-                          onClick={handleLogout}
-                        >
-                          Cerrar sesion
-                        </ListboxItem>
-                      </Listbox>
-                    </ListboxWrapper>
-                  </PopoverContent>
-                </Popover>
-                )}
-          </div>
+          <ShoppingCartIcon className='h-6 w-6 text-gray-500 dark:text-slate-50 md:mr-6' />
 
           <Switch
             size='lg'
@@ -248,7 +156,6 @@ const Navbar = () => {
             : (<Bars4Icon onClick={handleShowMenu} className='h-9 w-9 text-gray-500 dark:text-slate-50' />)}
         </section>
       </nav>
-      <Login onClose={handleShowLogin} open={showLogin} onSubmit={loginMutation} />
     </>
   )
 }
