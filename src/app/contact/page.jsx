@@ -1,4 +1,4 @@
-import NoContent from '../../components/NoContent'
+import NoContent from '@/components/NoContent'
 
 const Contact = () => {
   return (
