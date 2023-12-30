@@ -8,7 +8,11 @@ export const submenuItems = [
       { label: 'Masculinos', route: 'masculinos' },
       { label: 'Femeninos', route: 'femeninos' },
       { label: 'Anal', route: 'anal' },
-      { label: 'Consoladores', route: 'consoladores' }
+      { label: 'Consoladores', route: 'consoladores' },
+      { label: 'Anillos vibradores', route: 'anillos' },
+      { label: 'Control remoto', route: 'controlRemoto' },
+      { label: 'Interactivos', route: 'interactivos' },
+      { label: 'Juegos de mesa', route: 'juegosMesa' }
     ]
   },
   {
@@ -36,7 +40,15 @@ export const submenuItems = [
     options: [
       { label: 'Disfraces', route: 'disfraces' },
       { label: 'Lencería', route: 'lenceria' },
-      { label: 'Fetiche', route: 'fetiche' }
+      { label: 'Fetiche', route: 'fetiche' },
+      { label: 'Calzado', route: 'calzado' },
+      { label: 'Bodys', route: 'bodys' },
+      { label: 'Conjuntos', route: 'conjuntos' },
+      { label: 'Babydoll', route: 'babdydoll' },
+      { label: 'Medias', route: 'medias' },
+      { label: 'Pantys', route: 'pantys' },
+      { label: 'Pijamas', route: 'pijamas' },
+      { label: 'Enterizos', route: 'enterizos' }
     ]
   },
   {
@@ -74,6 +86,23 @@ export const submenuItems = [
     category: 'mas',
     options: [
       { label: 'Potenciadores', route: 'potenciadores' }
+    ]
+  },
+  {
+    id: 'JklI4As8',
+    label: 'Accesorios',
+    category: 'accesorios',
+    options: [
+      { label: 'General', route: 'general' }
+    ]
+  },
+  {
+    id: 'JklI4As8',
+    label: 'Potenciadores',
+    category: 'potenciadores',
+    options: [
+      { label: 'Masculinos', route: 'masculinos' },
+      { label: 'Femeninos', route: 'femeninos' }
     ]
   }
 ]
