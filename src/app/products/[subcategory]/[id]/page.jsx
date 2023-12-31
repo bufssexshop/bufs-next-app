@@ -4,7 +4,7 @@ import {
   TruckIcon, EyeSlashIcon, ShoppingCartIcon, SparklesIcon
 } from '@heroicons/react/24/solid'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getData } from '@/api/fetchData'
 import { useQuery } from '@tanstack/react-query'
 import Loader from '@/components/Loader'
@@ -40,6 +40,10 @@ const ProductDetails = ({ params }) => {
     enabled: true,
     staleTime: 0
   })
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleAddItems = () => setCount((prev) => prev + 1)
   const handleRemovetems = () => setCount((prev) => prev > 1 ? prev - 1 : prev)
