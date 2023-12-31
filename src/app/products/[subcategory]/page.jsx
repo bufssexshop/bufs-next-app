@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import Pagination from '@/components/Pagination'
 import { camelCaseToNormal } from '@/helpers/strings'
+import { useNavigation } from '@/context/navigationContext'
 import ProductCard from '@/components/ProductCard'
 import { useSearchParams } from 'next/navigation'
 import { getData } from '@/api/fetchData'
@@ -11,19 +12,33 @@ import Loader from '@/components/Loader'
 import Image from 'next/image'
 
 const Products = ({ params }) => {
-  const { subcategory } = params
+  const { subcategory: currentSubcategory } = params
   const searchParams = useSearchParams()
-  const category = searchParams.get('category')
-  const [currentPage, setCurrentPage] = useState(1)
+  const currentCategory = searchParams.get('category')
+  const {
+    currentPage, setPage,
+    category, setCategory,
+    subcategory, setSubcategory
+  } = useNavigation()
   const [itemsPerPage, setItemsPerPage] = useState(10)
+
+  useEffect(() => {
+    if (currentCategory !== category) {
+      setCategory(currentCategory)
+    }
+
+    if (currentSubcategory !== subcategory) {
+      setSubcategory(currentSubcategory)
+    }
+  }, [currentCategory, category, setCategory, currentSubcategory, subcategory, setSubcategory])
 
   // order filter
   const [orderBy, setOrderBy] = useState('name')
   const [orderDirection, setOrderDirection] = useState('asc')
 
   const productsQuery = useQuery({
-    queryKey: ['hydrate-users', category, subcategory, currentPage, itemsPerPage],
-    queryFn: () => getData(`productos/getProducts/${category}/${subcategory}?page=${currentPage}&limit=${itemsPerPage}`),
+    queryKey: ['hydrate-users', category, currentSubcategory, currentPage, itemsPerPage],
+    queryFn: () => getData(`productos/getProducts/${category}/${currentSubcategory}?page=${currentPage}&limit=${itemsPerPage}`),
     enabled: true,
     onSuccess: () => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -40,10 +55,10 @@ const Products = ({ params }) => {
     )
   }
 
-  const handlePageChange = (newPage) => setCurrentPage(newPage)
+  const handlePageChange = (newPage) => setPage(newPage)
 
   const handleItemsPerPageChange = (newItemsPerPage) => {
-    setCurrentPage(1)
+    setPage(1)
     setItemsPerPage(newItemsPerPage)
   }
 
@@ -58,7 +73,7 @@ const Products = ({ params }) => {
       setOrderBy(newOrderBy)
       setOrderDirection(newOrderBy === 'price' ? 'asc' : 'desc')
     }
-    setCurrentPage(1)
+    setPage(1)
   }
 
   const orderType = {
@@ -111,7 +126,7 @@ const Products = ({ params }) => {
         {sortedProducts.length > 0 && (
           <div className='w-full'>
             <p className='w-full xs:text-center text-3xl text-slate-700 dark:text-slate-50 mb-10 xs:mb-7'>
-              {camelCaseToNormal(subcategory)}
+              {camelCaseToNormal(currentSubcategory)}
             </p>
 
             <div className='flex items-center gap-4 mb-10'>

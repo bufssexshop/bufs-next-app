@@ -3,6 +3,7 @@
 import { SnackbarProvider } from 'notistack'
 import Providers from '@/utils/reactQueryProvider'
 import { NextUIProvider } from '@nextui-org/react'
+import { NavigationProvider } from '@/context/navigationContext'
 
 const ClientProviders = ({ children }) => {
   console.log('ClientProviders')
@@ -11,7 +12,9 @@ const ClientProviders = ({ children }) => {
     <NextUIProvider>
       <SnackbarProvider maxSnack={3}>
         <Providers>
-          {children}
+          <NavigationProvider>
+            {children}
+          </NavigationProvider>
         </Providers>
       </SnackbarProvider>
     </NextUIProvider>
