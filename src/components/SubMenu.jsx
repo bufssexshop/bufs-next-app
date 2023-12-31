@@ -91,7 +91,7 @@ const Submenu = () => {
               setMenuMobile(false)
             }}
           >
-            <Link href={`/products/${option.route}`}>{option.label}</Link>
+            <Link href={`/products/${option.route}?category=${route}`}>{option.label}</Link>
           </li>
         </div>
       )
@@ -116,7 +116,7 @@ const Submenu = () => {
                     onMouseEnter={() => handleMouseEnter(category)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    {renderOptions(options)}
+                    {renderOptions(options, category)}
                   </ul>
                 </div>
               )}

@@ -2,15 +2,18 @@
 
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import Pagination from '@/components/Pagination'
 import { camelCaseToNormal } from '@/helpers/strings'
 import ProductCard from '@/components/ProductCard'
+import { useSearchParams } from 'next/navigation'
 import { getData } from '@/api/fetchData'
 import Loader from '@/components/Loader'
 import Image from 'next/image'
-import Pagination from '@/components/Pagination'
 
 const Products = ({ params }) => {
   const { subcategory } = params
+  const searchParams = useSearchParams()
+  const category = searchParams.get('category')
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(10)
 
@@ -19,8 +22,8 @@ const Products = ({ params }) => {
   const [orderDirection, setOrderDirection] = useState('asc')
 
   const productsQuery = useQuery({
-    queryKey: ['hydrate-users', subcategory, currentPage, itemsPerPage],
-    queryFn: () => getData(`productos/getProducts/${subcategory}?page=${currentPage}&limit=${itemsPerPage}`),
+    queryKey: ['hydrate-users', category, subcategory, currentPage, itemsPerPage],
+    queryFn: () => getData(`productos/getProducts/${category}/${subcategory}?page=${currentPage}&limit=${itemsPerPage}`),
     enabled: true,
     onSuccess: () => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -99,8 +102,6 @@ const Products = ({ params }) => {
 
     return 0
   })
-
-  console.log('xxx currentPage: ', currentPage)
 
   return (
     <main className='w-full box-border'>
