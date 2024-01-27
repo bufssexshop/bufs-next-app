@@ -68,7 +68,7 @@ const Home = () => {
 
   const lingerieQuery = useQuery({
     queryKey: ['hydrate-lingerie'],
-    queryFn: () => getData('productos/getProducts/lenceria/lenceria?page=1&limit=10'),
+    queryFn: () => getData('productos/getProducts/fetiche/mordazas?page=1&limit=10'),
     enabled: true
   })
 
@@ -85,13 +85,17 @@ const Home = () => {
 
   const { data: vibratorsProducts } = vibratorsQuery || {}
 
-  const sliderLingerieTtems = lingerieProducts?.products.map((product) => (
-    <ProductCard key={product._id} product={product} />
-  ))
+  const sliderLingerieTtems = lingerieProducts?.products
+    .filter((product) => product.disponible)
+    .map((product) => (
+      <ProductCard key={product._id} product={product} />
+    ))
 
-  const sliderVibratorsTtems = vibratorsProducts?.products.map((product) => (
-    <ProductCard key={product._id} product={product} />
-  ))
+  const sliderVibratorsTtems = vibratorsProducts?.products
+    .filter((product) => product.disponible)
+    .map((product) => (
+      <ProductCard key={product._id} product={product} />
+    ))
 
   return (
     <>
