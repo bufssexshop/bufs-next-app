@@ -68,7 +68,7 @@ const Home = () => {
 
   const lingerieQuery = useQuery({
     queryKey: ['hydrate-lingerie'],
-    queryFn: () => getData('productos/getProducts/lenceria?page=1&limit=10'),
+    queryFn: () => getData('productos/getProducts/lenceria/lenceria?page=1&limit=10'),
     enabled: true
   })
 
@@ -76,7 +76,7 @@ const Home = () => {
 
   const vibratorsQuery = useQuery({
     queryKey: ['hydrate-vibrators'],
-    queryFn: () => getData('productos/getProducts/vibradores?page=1&limit=10'),
+    queryFn: () => getData('productos/getProducts/juguetes/vibradores?page=1&limit=10'),
     enabled: true,
     onSuccess: () => {
       window.scrollTo({ top: 0, behavior: 'smooth' })

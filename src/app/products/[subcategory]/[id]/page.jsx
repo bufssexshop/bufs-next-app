@@ -33,6 +33,7 @@ const ProductDetails = ({ params }) => {
   const [count, setCount] = useState(1)
   const [isHovering, setIsHovering] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [productView, setProductView] = useState('primary')
 
   const productQuery = useQuery({
     queryKey: ['hydrate-users'],
@@ -90,7 +91,7 @@ const ProductDetails = ({ params }) => {
           onMouseLeave={handleMouseLeave}
         >
           <Image
-            src={data?.image}
+            src={productView === 'primary' ? data?.image : data?.image2}
             alt={data?.nombre}
             quality={100}
             fill
@@ -105,7 +106,7 @@ const ProductDetails = ({ params }) => {
           <div
             className='absolute right-5 w-[450px] h-[450px] border border-slate-300'
             style={{
-              backgroundImage: `url("${data?.image}")`,
+              backgroundImage: `url("${productView === 'primary' ? data?.image : data?.image2}")`,
               backgroundPosition: `-${
                   mousePosition.x * 0.9 - zoomAreaSize / 2
                 }px -${mousePosition.y * 0.9 - zoomAreaSize / 2}px`,
@@ -202,6 +203,42 @@ const ProductDetails = ({ params }) => {
             </Button>
           </section>
         </div>
+      </section>
+
+      <section
+        className='max-w-[50px] flex gap-4'
+      >
+        <Image
+          src={data?.image}
+          alt={data?.nombre}
+          quality={100}
+          width={120}
+          height={120}
+          style={{
+            objectFit: 'contain',
+            borderRadius: '8px',
+            cursor: 'pointer'
+          }}
+          className='img2'
+          onClick={() => setProductView('primary')}
+        />
+
+        {data?.image2 && (
+          <Image
+            src={data?.image2}
+            alt={data?.nombre}
+            quality={100}
+            width={120}
+            height={120}
+            style={{
+              objectFit: 'cover',
+              borderRadius: '8px',
+              cursor: 'pointer'
+            }}
+            className='img2'
+            onClick={() => setProductView('secondary')}
+          />
+        )}
       </section>
 
       <section>

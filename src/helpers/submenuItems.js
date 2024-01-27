@@ -12,7 +12,8 @@ export const submenuItems = [
       { label: 'Anillos vibradores', route: 'anillos' },
       { label: 'Control remoto', route: 'controlRemoto' },
       { label: 'Interactivos', route: 'interactivos' },
-      { label: 'Juegos de mesa', route: 'juegosMesa' }
+      { label: 'Juegos de mesa', route: 'juegosMesa' },
+      { label: 'Huevos/Balas vibradores', route: 'huevosBalas' }
     ]
   },
   {
