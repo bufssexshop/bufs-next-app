@@ -6,6 +6,7 @@ import ClientProviders from '@/app/client-providers.jsx'
 import Announcement from '@/components/Announcement.jsx'
 import Footer from '@/components/Footer.jsx'
 import Submenu from '@/components/SubMenu'
+import WhatsappButton from '@/components/WhatsappBtn'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,6 +29,7 @@ export default function RootLayout ({ children }) {
             {children}
           </section>
           <Footer />
+          <WhatsappButton />
         </ClientProviders>
       </body>
     </html>
