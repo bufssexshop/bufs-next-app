@@ -110,7 +110,9 @@ const Navbar = () => {
                   <div key={id} className='flex items-center gap-4'>
                     {icon(pathname === route ? 'text-pink-400' : theme === 'light' ? 'text-slate-500' : 'text-slate-50')}
                     <li className={`${pathname === route ? 'text-customPink' : theme === 'light' ? 'text-slate-500' : 'text-slate-50'} my-2`} key={route}>
-                      <Link href={route}>{label}</Link>
+                      <Link href={route}>
+                        {label}
+                      </Link>
                     </li>
                   </div>
                 ))}
