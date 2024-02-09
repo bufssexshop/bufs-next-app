@@ -83,14 +83,6 @@ export const submenuItems = [
   },
   {
     id: 'JklI4As8',
-    label: 'Más',
-    category: 'mas',
-    options: [
-      { label: 'Potenciadores', route: 'potenciadores' }
-    ]
-  },
-  {
-    id: 'JklI4As8',
     label: 'Accesorios',
     category: 'accesorios',
     options: [
