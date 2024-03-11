@@ -90,7 +90,7 @@ export const submenuItems = [
     ]
   },
   {
-    id: 'JklI4As8',
+    id: 'Hvls5as9',
     label: 'Potenciadores',
     category: 'potenciadores',
     options: [
