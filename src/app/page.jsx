@@ -6,6 +6,7 @@ import ProductCard from '@/components/ProductCard'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import { Special_Elite as SpecialElite } from 'next/font/google'
 import AliceCarousel from 'react-alice-carousel'
+import { useRouter } from 'next/navigation'
 import { SearchIcon } from '../SVG/search'
 import { getData } from '@/api/fetchData'
 import { Input } from '@nextui-org/react'
@@ -44,7 +45,9 @@ const imagesParagraphStyles = `
 const specialElite = SpecialElite({ weight: '400', subsets: ['latin'] })
 
 const Home = () => {
+  const router = useRouter()
   const [backgroundImage, setBackgroundImage] = useState(images.light)
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     AOS.init()
@@ -97,6 +100,10 @@ const Home = () => {
       <ProductCard key={product._id} product={product} />
     ))
 
+  const handleEnterKeyPress = (e) => {
+    if (e.key === 'Enter') { router.push(`/products/search?search=${search}`) }
+  }
+
   return (
     <>
       <div className='relative h-screen'>
@@ -113,8 +120,9 @@ const Home = () => {
         />
         <section className='relative pt-28 flex flex-col items-center gap-2'>
           <h1 className={`${specialElite.className} uppercase text-slate-500 dark:text-slate-50 xs:text-3xl md:text-5xl`}>buf's sex shop</h1>
-          <div className='md:w-[530px] px-8 rounded-2xl flex justify-center items-center text-white'>
+          <div onKeyDown={handleEnterKeyPress} className='md:w-[530px] px-8 rounded-2xl flex justify-center items-center text-white'>
             <Input
+              onChange={(e) => setSearch(e.target.value)}
               label='Buscar'
               isClearable
               radius='lg'
