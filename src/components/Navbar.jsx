@@ -9,7 +9,7 @@ import Image from 'next/image'
 // ICONS
 import {
   ShoppingCartIcon, Bars4Icon, XMarkIcon,
-  HomeIcon, TagIcon, PhotoIcon, PhoneIcon
+  HomeIcon, TagIcon, PhotoIcon, PhoneIcon, MagnifyingGlassIcon
 } from '@heroicons/react/24/solid'
 import ClickAwayListener from './ClickAwayListener'
 import IconButton from './IconButton'
@@ -98,6 +98,11 @@ const Navbar = () => {
                 <Link href={route}>{label}</Link>
               </li>
             ))}
+
+            {/* SEARCH ICON */}
+            <div className='cursor-pointer'>
+              <MagnifyingGlassIcon className={`h-5 w-5 ${theme === 'light' ? 'text-slate-500' : 'text-slate-50'}`} />
+            </div>
           </ul>
         </section>
 
