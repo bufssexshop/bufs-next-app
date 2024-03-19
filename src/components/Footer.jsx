@@ -4,27 +4,31 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/solid'
+import ModalPoliticaEnvio from './Modal.PoliticaEnvio'
+import ModalPrivacyPolicies from './Modal.PrivacyPolicies'
 
 const upIcon = <ChevronUpIcon className='xs:block xs:mb-8 md:hidden h-6 w-6 text-gray-500 dark:text-slate-50' />
 const downIcon = <ChevronDownIcon className='xs:block md:hidden h-6 w-6 text-gray-500 dark:text-slate-50' />
 
 // INFORMATION ITEMS
-const informationLinks = [
+const informationItems = [
   {
     label: '¿Quiénes Somos?',
-    route: '/quienes-somos'
+    route: '#'
   },
   {
     label: 'Políticas de cambio y garantías',
-    route: '/politicas-de-cambio-y-garantias'
+    route: '#'
   },
   {
     label: 'Política de envío',
-    route: '/politica-de-envio'
+    route: '#',
+    modal: 'shippingPolicies'
   },
   {
     label: 'Política de privacidad',
-    route: '/politica-de-privacidad'
+    route: '#',
+    modal: 'privacyPolicies'
   }
 ]
 
@@ -32,15 +36,15 @@ const informationLinks = [
 const helpLinks = [
   {
     label: 'Preguntas frecuentes',
-    route: '/preguntas-frecuentes'
+    route: '#'
   },
   {
     label: '¿Cómo comprar?',
-    route: '/como-comprar'
+    route: '#'
   },
   {
     label: 'Contáctanos',
-    route: '/contacto'
+    route: '#'
   }
 ]
 
@@ -48,6 +52,8 @@ const Footer = () => {
   const [informationOpen, setInformationOpen] = useState(false)
   const [helpOpen, setHelpOpen] = useState(false)
   const [socialMediaOpen, setSocialMediaOpen] = useState(false)
+
+  const [openModal, setOpenModal] = useState({ modal: '', open: false })
 
   const toggleInformation = () => {
     setInformationOpen(!informationOpen)
@@ -91,10 +97,10 @@ const Footer = () => {
           {informationOpen ? upIcon : downIcon}
         </div>
         <div className={`flex flex-col gap-y-2 xs:${informationOpen ? 'flex' : 'hidden'} dark:text-slate-50`}>
-          {informationLinks.map(({ label, route }) => (
-            <Link key={route} href={route}>
+          {informationItems.map(({ label, route, modal }) => (
+            <p className='cursor-pointer' key={route} onClick={() => setOpenModal({ open: true, modal })}>
               {label}
-            </Link>
+            </p>
           ))}
         </div>
       </section>
@@ -145,6 +151,20 @@ const Footer = () => {
           </Link>
         </div>
       </section>
+      <ModalPoliticaEnvio
+        size='3xl'
+        isOpen={openModal.modal === 'shippingPolicies'}
+        onClose={
+          () => setOpenModal({ })
+        }
+      />
+      <ModalPrivacyPolicies
+        size='4xl'
+        isOpen={openModal.modal === 'privacyPolicies'}
+        onClose={
+          () => setOpenModal({ })
+        }
+      />
     </footer>
   )
 }
