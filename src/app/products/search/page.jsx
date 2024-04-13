@@ -6,13 +6,16 @@ import { useEffect, useState } from 'react'
 import ProductCard from '@/components/ProductCard'
 
 const searchProducts = async (data) => {
+  const { search, min, max } = data || {}
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/productos/getSearch`,
+    `${process.env.NEXT_PUBLIC_API_URL}/productos/${(min > 0 || max > 0) ? 'getAdvancedSearch' : 'getSearch'}`,
     {
       method: 'POST',
       body: JSON.stringify({
         typeSearch: 'forName',
-        search: data
+        search,
+        min,
+        max
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -27,11 +30,13 @@ const searchProducts = async (data) => {
 const SearchProducts = () => {
   const searchParams = useSearchParams()
   const search = searchParams.get('search')
+  const priceMin = searchParams.get('min')
+  const priceMax = searchParams.get('max')
   const [results, setResults] = useState([])
 
   const productsQuery = useQuery({
-    queryKey: ['hydrate-users', search],
-    queryFn: () => searchProducts(search),
+    queryKey: ['hydrate-users', search, priceMin, priceMax],
+    queryFn: () => searchProducts({ search, min: priceMin, max: priceMax }),
     enabled: true,
     onSuccess: () => {
       window.scrollTo({ top: 0, behavior: 'smooth' })

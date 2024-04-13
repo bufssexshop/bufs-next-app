@@ -16,6 +16,7 @@ import IconButton from './IconButton'
 import { Switch } from '@nextui-org/react'
 import { SunIcon } from '@/SVG/sun'
 import { MoonIcon } from '@/SVG/moon'
+import AdvancedSearch from './AdvancedSearch'
 
 // NAVBAR ITEMS
 const links = [{
@@ -43,7 +44,10 @@ const links = [{
 const Navbar = () => {
   const pathname = usePathname()
   const [showMenu, setShowMenu] = useState(false)
+  const [openAdvancedSearch, setOpenAdvancedSearch] = useState(false)
   const [theme, setTheme] = useState('')
+
+  const closeAdvancedSearch = () => setOpenAdvancedSearch(false)
 
   const handleShowMenu = () => setShowMenu((prev) => !prev)
 
@@ -101,7 +105,7 @@ const Navbar = () => {
 
             {/* SEARCH ICON */}
             <div className='cursor-pointer'>
-              <MagnifyingGlassIcon className={`h-5 w-5 ${theme === 'light' ? 'text-slate-500' : 'text-slate-50'}`} />
+              <MagnifyingGlassIcon onClick={() => setOpenAdvancedSearch((prev) => !prev)} className={`h-5 w-5 ${theme === 'light' ? 'text-slate-500' : 'text-slate-50'}`} />
             </div>
           </ul>
         </section>
@@ -163,6 +167,7 @@ const Navbar = () => {
             : (<Bars4Icon onClick={handleShowMenu} className='h-9 w-9 text-gray-500 dark:text-slate-50' />)}
         </section>
       </nav>
+      <AdvancedSearch isOpen={openAdvancedSearch} onOpenChange={closeAdvancedSearch} />
     </>
   )
 }
