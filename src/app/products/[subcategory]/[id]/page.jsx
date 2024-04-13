@@ -81,7 +81,7 @@ const ProductDetails = ({ params }) => {
   const productIsAvailable = data.disponible
 
   return (
-    <section className='px-20 xs:px-10 flex flex-col gap-8'>
+    <section className='w-full px-20 xs:px-6 flex flex-col gap-8'>
       <p className='text-4xl text-slate-500 dark:text-slate-50 xs:text-center'>Detalles</p>
       <section className='flex xs:flex-col gap-8'>
         <div
@@ -101,6 +101,42 @@ const ProductDetails = ({ params }) => {
             className='img1'
           />
         </div>
+
+        <section
+          className='w-full flex justify-center gap-4 lg:hidden'
+        >
+          <Image
+            src={data?.image}
+            alt={data?.nombre}
+            quality={100}
+            width={50}
+            height={50}
+            style={{
+              objectFit: 'contain',
+              borderRadius: '8px',
+              cursor: 'pointer'
+            }}
+            className='img2'
+            onClick={() => setProductView('primary')}
+          />
+
+          {data?.image2 && (
+            <Image
+              src={data?.image2}
+              alt={data?.nombre}
+              quality={100}
+              width={50}
+              height={50}
+              style={{
+                objectFit: 'cover',
+                borderRadius: '8px',
+                cursor: 'pointer'
+              }}
+              className='img2'
+              onClick={() => setProductView('secondary')}
+            />
+          )}
+        </section>
 
         {(isHovering && !isMobile) && (
           <div
@@ -205,8 +241,9 @@ const ProductDetails = ({ params }) => {
         </div>
       </section>
 
+      {/* ONLY VISIBLE IN DESKTOP */}
       <section
-        className='max-w-[50px] flex gap-4'
+        className='max-w-[50px] flex gap-4 xs:hidden'
       >
         <Image
           src={data?.image}

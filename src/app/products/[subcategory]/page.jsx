@@ -149,7 +149,9 @@ const Products = ({ params }) => {
               {sortedProducts
                 .filter((product) => product.disponible)
                 .map((product) => (
-                  <ProductCard key={product._id} product={product} />
+                  <div className='flex justify-center items-center' key={product._id}>
+                    <ProductCard product={product} />
+                  </div>
                 ))}
             </div>
           </div>
