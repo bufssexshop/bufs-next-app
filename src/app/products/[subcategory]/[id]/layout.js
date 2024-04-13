@@ -1,6 +1,6 @@
 export default function ProducDetailstLayout ({ children }) {
   return (
-    <section className='xs:-mx-[30px]'>
+    <section className='w-full'>
       {children}
     </section>
   )
