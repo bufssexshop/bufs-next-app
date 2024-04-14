@@ -21,7 +21,6 @@ const WhatsappButton = () => {
     >
       <Image src={hover ? WhatsappWhiteLogo.src : WhatsappGreenLogo.src} alt='whatsapp' width={30} height={30} />
       <p className={`${hover ? 'block text-white font-bold' : 'hidden'}`}>Chat on Whatsapp</p>
-      <p />
     </Link>
   )
 }
