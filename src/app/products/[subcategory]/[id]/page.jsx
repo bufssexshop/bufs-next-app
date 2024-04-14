@@ -10,8 +10,11 @@ import { useQuery } from '@tanstack/react-query'
 import Loader from '@/components/Loader'
 import Image from 'next/image'
 import { camelCaseToNormal } from '@/helpers/strings'
+import WhatsappGreenLogo from '../../../../../public/Digital_Glyph_Green.svg'
 import useResponsive from '@/hooks/useResponsive'
 import { Button } from '@nextui-org/react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const ButtonCounter = ({ label, available, click }) => (
   <Button isIconOnly size='sm' color={available ? 'primary' : 'default'} variant='ghost' disabled={!available} onClick={click}>
@@ -34,6 +37,7 @@ const ProductDetails = ({ params }) => {
   const [isHovering, setIsHovering] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [productView, setProductView] = useState('primary')
+  const pathname = usePathname()
 
   const productQuery = useQuery({
     queryKey: ['hydrate-users'],
@@ -79,6 +83,12 @@ const ProductDetails = ({ params }) => {
   })
 
   const productIsAvailable = data.disponible
+
+  const customMessage = `?text=Hola,%20tengo%20interés%20en%20este%20producto.
+  Código: ${data.codigo}
+  Nombre: ${data.nombre}
+  Link: https://www.bufssexshop.com/${pathname}`
+  const phoneNumber = '3044580143'
 
   return (
     <section className='w-full px-20 xs:px-6 flex flex-col gap-8'>
@@ -227,8 +237,22 @@ const ProductDetails = ({ params }) => {
             Todos los articulos se envian discretamente en un embalaje sencillo, sin marcar ninguna palabra sinonimo de "actividad sexual"
           </p>
 
+          {/* BTN WHATSAPP */}
+          <section className='mt-4'>
+            <Link
+              className='flex items-center gap-2'
+              href={`https://wa.me/${phoneNumber}/${customMessage}`}
+              target='_blank'
+            >
+              <div className='bg-slate-50 w-8 h-8 rounded-md flex justify-center items-center'>
+                <Image src={WhatsappGreenLogo.src} alt='whatsapp' width={15} height={15} />
+              </div>
+              <p>Pregúntanos por este producto</p>
+            </Link>
+          </section>
+
           {/* BUTTONS DESKTOP */}
-          <section className='mt-8 flex gap-8 xs:hidden'>
+          <section className='mt-4 flex gap-8 xs:hidden'>
             <section className='flex items-center gap-4'>
               <ButtonCounter label='-' click={handleRemovetems} available={productIsAvailable} />
               <p className='text-slate-500 dark:text-slate-50'>{productIsAvailable ? count : 0}</p>
