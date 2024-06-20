@@ -108,7 +108,7 @@ const Submenu = () => {
               onMouseEnter={() => handleMouseEnter(category)}
               className='text-center text-xs p-1 rounded-sm lg:text-base flex items-center'
             >
-              <p className='text-slate-500 dark:text-slate-50'>{label}</p>
+              <Link href={`/products/category?category=${category}`}>{label}</Link>
               <ChevronDownIcon className='text-slate-500 dark:text-slate-50 ml-1 h-4 w-4' />
               {activeLink === category && isMouseOver && (
                 <div className='absolute bg-white dark:bg-slate-700 w-52 pl-4 top-full shadow-xl'>
